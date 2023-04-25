@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.JComboBox;
 
 public class InterfaceFilmSerieAnime extends JFrame
 {
@@ -34,10 +35,9 @@ public class InterfaceFilmSerieAnime extends JFrame
     public InterfaceFilmSerieAnime()
     {
         initComponents();
-        PanelMain.remove(ChoixOeuvre);
+        //PanelMain.remove(ChoixOeuvre);
         String[] ch = {"Film", "Série", "Animé","Trailer"};
-        //ChoixOeuvre = new JComboBox(ch);
-        PanelMain.add(ChoixOeuvre);
+        JComboBox<String> ChoixOeuvre = new JComboBox<String>(ch);
 
     }
 
@@ -51,22 +51,20 @@ public class InterfaceFilmSerieAnime extends JFrame
 
 
 
-        PanelMain.add(ComboboxLabel);
-        ChoixOeuvre.setModel(new DefaultComboBoxModel<>(new String[] {"Item 1","Item 2","Item 3","Item 4"}));
-        PanelMain.add(ChoixOeuvre);
-        getContentPane().add(ComboboxLabel);
-
-        Buttonchoix.setText("CONFIRMER");
+        //ChoixOeuvre.setModel(new DefaultComboBoxModel<>(new String[] {"Item 1","Item 2","Item 3","Item 4"}));
+        ChoixOeuvre.setModel(new DefaultComboBoxModel<>(new String[] {"Film", "Série", "Animé","Trailer"}));
+        Buttonchoix.addActionListener(new java.awt.event.ActionListener()
+        {public void actionPerformed(java.awt.event.ActionEvent evt){ButtonchoixActionPerformed(evt);}});
 
 
+        pack();
 
 
+    }
 
-
-        //JPanel buttonPanel = new JPanel(new FlowLayout());
-
-
-
+    private void ButtonchoixActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        System.out.println("Choix : " + ChoixOeuvre.getSelectedItem());
     }
 
     public static void main(String[] args)
