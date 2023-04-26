@@ -1,3 +1,5 @@
+package Utilisateur;
+
 import javax.swing.*;
 import javax.swing.JComboBox;
 
