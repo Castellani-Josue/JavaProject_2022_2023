@@ -33,6 +33,10 @@ public class InterfaceFilmSerieAnime extends JFrame
     private JRadioButton GenreAction;
     private JButton Buttonchoix;
     private JLabel ChoixLabel;
+    private JButton ButtonIcon;
+    private JLabel Editeur;
+    private JTextField EditeurTextField;
+
 
     public InterfaceFilmSerieAnime()
     {

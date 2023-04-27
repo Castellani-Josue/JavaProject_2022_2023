@@ -16,7 +16,7 @@ public class InterfaceConnection  extends JDialog
     private JLabel LoginLabel;
     private JLabel InfoLabel;
     private JTextField Logintextfield;
-    private JTextField mdpfield;
+    private JPasswordField mdpfield;
     private JButton ButtonConfirmer;
     private JLabel mdpLabel;
 
@@ -28,6 +28,7 @@ public class InterfaceConnection  extends JDialog
             setLocationRelativeTo(null);
             pack();
             Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
 
             Confirmer = false;
@@ -37,7 +38,7 @@ public class InterfaceConnection  extends JDialog
                 public void actionPerformed(ActionEvent e)
                 {
                     login = Logintextfield.getText();
-                    motDePasse = mdpfield.getText();
+                    motDePasse = new String(mdpfield.getPassword());
                     Confirmer = true;
                     setVisible(false);
                 }

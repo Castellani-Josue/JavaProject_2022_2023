@@ -5,50 +5,54 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InterfaceCreate_Account {
 
-
-    public static class InterfaceCreateAccount extends JDialog
-    {
+public class InterfaceCreate_Account extends JDialog
+{
 
 
         private String login;
         private String motDePasse;
         private boolean Confirmer;
 
+    private JTextField NomTextField;
+    private JTextField PrenomTextField;
+    private JLabel NomLabel;
+    private JLabel PrenomLabel;
+    private JPanel Main;
+    private JLabel LoginLabel;
+    private JPasswordField Mdpfield;
+    private JTextField LoginTextfield;
+    private JLabel MdpLabel;
+    private JPanel InfoPanel;
+    private JLabel InfoLabel;
+    private JButton ButtonCreate;
+    private JLabel TelLabel;
+    private JTextField TeltextField;
 
-        public InterfaceCreateAccount(java.awt.Frame parent, boolean modal)
+
+        public InterfaceCreate_Account(JFrame parent, boolean modal,String titre)
         {
             super(parent,modal);
-            initComponents();
-        }
-
-        private void initComponents()
-        {
-            setTitle("Création Compte");
-            //setSize(500, 200);
+            setTitle(titre);
             setContentPane(Main);
             setLocationRelativeTo(null);
             pack();
-            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+            setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
-            ButtonCreate = new JButton();
 
-            Confirmer  = false;
-            //ButtonCreate.setText("CONFIRMER");
-            ButtonCreate.addActionListener(new ActionListener() {
+            Confirmer = false;
+            ButtonCreate.addActionListener(new ActionListener()
+            {
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
                     login = LoginTextfield.getText();
-                    motDePasse = Mdpfield.getText();
+                    motDePasse = new String(Mdpfield.getPassword());
                     Confirmer = true;
                     setVisible(false);
-
                 }
             });
-
 
 
         }
@@ -56,14 +60,14 @@ public class InterfaceCreate_Account {
         public static void main(String[] args)
         {
 
-            InterfaceCreateAccount jdialog = new InterfaceCreateAccount(null,true);
-            jdialog.setVisible(true);
-            if(jdialog.isConfirmer())
+            InterfaceCreate_Account interfaceCreate_Account = new InterfaceCreate_Account(null,true,"Session de connexion");
+            interfaceCreate_Account.setVisible(true);
+            if(interfaceCreate_Account.isConfirmer())
             {
-                System.out.println("Login = " + jdialog.getLogin());
-                System.out.println("Mot de passe = " + jdialog.getMotDePasse());
+                System.out.println("Login = " + interfaceCreate_Account.getLogin());
+                System.out.println("Mot de passe = " + interfaceCreate_Account.getMotDePasse());
             }
-            jdialog.dispose();
+            interfaceCreate_Account.dispose();
         }
 
         public String getLogin()
@@ -81,19 +85,6 @@ public class InterfaceCreate_Account {
             return Confirmer;
         }
 
-        private JTextField NomTextField;
-        private JTextField PrenomTextField;
-        private JLabel NomLabel;
-        private JLabel PrenomLabel;
-        private JPanel Main;
-        private JLabel LoginLabel;
-        private JPasswordField Mdpfield;
-        private JTextField LoginTextfield;
-        private JLabel MdpLabel;
-        private JPanel InfoPanel;
-        private JLabel InfoLabel;
-        private JButton ButtonCreate;
-        private JLabel TelLabel;
-        private JTextField TeltextField;
-    }
+
 }
+

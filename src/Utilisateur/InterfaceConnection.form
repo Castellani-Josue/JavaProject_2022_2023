@@ -55,16 +55,6 @@
           <text value="CONNECTION"/>
         </properties>
       </component>
-      <component id="afe41" class="javax.swing.JTextField" binding="mdpfield">
-        <constraints>
-          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-          </grid>
-        </constraints>
-        <properties>
-          <foreground color="-16777216"/>
-        </properties>
-      </component>
       <component id="9ec39" class="javax.swing.JButton" binding="ButtonConfirmer">
         <constraints>
           <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -101,6 +91,16 @@
           <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
+      <component id="2aa24" class="javax.swing.JPasswordField" binding="mdpfield">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <foreground color="-16777216"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>
