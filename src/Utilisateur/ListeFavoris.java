@@ -6,4 +6,6 @@ public class ListeFavoris extends client
     {
         super(nomPersonne, prenomPersonne, login, motDePasse, telephone, preference);
     }
+
+
 }

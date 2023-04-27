@@ -1,4 +1,7 @@
 package Utilisateur;
+
+import java.util.Objects;
+
 public abstract class Personne
 {
 
@@ -22,7 +25,17 @@ public abstract class Personne
         MotDePasse = motDePasse;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Personne personne)) return false;
+        return Objects.equals(getNompersonne(), personne.getNompersonne()) && Objects.equals(getPrenomPersonne(), personne.getPrenomPersonne()) && Objects.equals(getLogin(), personne.getLogin()) && Objects.equals(getMotDePasse(), personne.getMotDePasse());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNompersonne(), getPrenomPersonne(), getLogin(), getMotDePasse());
+    }
 
     public String getNompersonne()
     {
@@ -67,10 +80,5 @@ public abstract class Personne
     // Methode abstraite qui pourra etre use dans les classes filles
     public abstract void affiche();
 
-    public static void main(String[] args)
-    {
 
-
-
-    }
 }

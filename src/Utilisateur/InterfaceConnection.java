@@ -19,6 +19,7 @@ public class InterfaceConnection  extends JDialog
     private JPasswordField mdpfield;
     private JButton ButtonConfirmer;
     private JLabel mdpLabel;
+    private JLabel Iconlabel;
 
     public InterfaceConnection(JFrame parent,boolean modal,String titre)
         {
@@ -30,6 +31,7 @@ public class InterfaceConnection  extends JDialog
             Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
+            setSize(1920,1080);
 
             Confirmer = false;
             ButtonConfirmer.addActionListener(new ActionListener()
