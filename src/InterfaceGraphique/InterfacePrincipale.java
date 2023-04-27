@@ -6,6 +6,8 @@ import javax.swing.*;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class InterfacePrincipale extends JFrame
 {
@@ -18,6 +20,8 @@ public class InterfacePrincipale extends JFrame
     private JPanel PanelTree;
     private JPanel PanelList;
     private JScrollPane ScrollList;
+
+
 
     public InterfacePrincipale()
     {
@@ -165,6 +169,28 @@ public class InterfacePrincipale extends JFrame
         PanelList.add(TypeOeuvre.Anime);
         PanelList.add(TypeOeuvre.Film);
         PanelList.add(TypeOeuvre.Trailer);*/
+
+
+        jMenuItem1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                InterfaceConnection fenetre = new InterfaceConnection();
+                fenetre.setVisible(true);
+
+            }
+        });
+
+        jMenuItem8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                InterfaceCreate_Account fenetre2 = new InterfaceCreate_Account();
+                fenetre2.setVisible(true);
+            }
+        });
+
+
 
 
     }

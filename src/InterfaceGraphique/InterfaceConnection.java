@@ -1,4 +1,4 @@
-package Utilisateur;
+package InterfaceGraphique;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,8 +30,9 @@ public class InterfaceConnection  extends JDialog
             pack();
             Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            setSize(1200,700);
             setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
-            setSize(1920,1080);
+
 
             Confirmer = false;
             ButtonConfirmer.addActionListener(new ActionListener()
@@ -47,7 +48,19 @@ public class InterfaceConnection  extends JDialog
             });
 
         }
-        public static void main(String[] args)
+
+    public InterfaceConnection()
+    {
+        setContentPane(Main);
+        setLocationRelativeTo(null);
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(1200,700);
+        setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
+
+    }
+
+    public static void main(String[] args)
         {
             InterfaceConnection interfaceConnection = new InterfaceConnection(null,true,"Entrée en session...");
             interfaceConnection.setVisible(true);

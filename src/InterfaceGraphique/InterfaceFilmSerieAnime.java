@@ -1,4 +1,4 @@
-package Utilisateur;
+package InterfaceGraphique;
 
 import javax.swing.*;
 import javax.swing.JComboBox;
