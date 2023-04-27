@@ -52,7 +52,7 @@
           <background color="-4711132"/>
           <font name="Consolas" size="24"/>
           <foreground color="-4711132"/>
-          <text value="CONNECTION"/>
+          <text value="CONNEXION"/>
         </properties>
       </component>
       <component id="9ec39" class="javax.swing.JButton" binding="ButtonConfirmer">

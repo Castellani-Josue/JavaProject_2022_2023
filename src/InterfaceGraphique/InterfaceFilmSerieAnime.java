@@ -2,6 +2,7 @@ package InterfaceGraphique;
 
 import javax.swing.*;
 import javax.swing.JComboBox;
+import java.awt.*;
 
 public class InterfaceFilmSerieAnime extends JFrame
 {
@@ -21,7 +22,7 @@ public class InterfaceFilmSerieAnime extends JFrame
     //date_SortieTextField = new JTextField(10);
     //descriptionTextField = new JTextField(30);
 
-    private JComboBox<String> ChoixOeuvre;
+
     private JPanel PanelPegi;
     private JRadioButton Pegi10Button;
     private JRadioButton Pegi12Button;
@@ -31,49 +32,37 @@ public class InterfaceFilmSerieAnime extends JFrame
     private JRadioButton GenreThriller;
     private JRadioButton GenreHorreur;
     private JRadioButton GenreAction;
-    private JButton Buttonchoix;
-    private JLabel ChoixLabel;
-    private JButton ButtonIcon;
     private JLabel Editeur;
     private JTextField EditeurTextField;
     private JLabel AudioLabel;
     private JLabel SousTitreLabel;
+    private JButton ButtonConfrimer;
 
 
     public InterfaceFilmSerieAnime()
     {
         initComponents();
-        //PanelMain.remove(ChoixOeuvre);
-        String[] ch = {"Film", "Série", "Animé","Trailer"};
-        JComboBox<String> ChoixOeuvre = new JComboBox<String>(ch);
 
     }
 
-    private void initComponents()
-    {
+    private void initComponents() {
         setTitle("Ajouter Une Oeuvre");
-        setSize(400, 300);
+
         setContentPane(PanelMain);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        pack();
+        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(1200, 700);
+        setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
+
         //ChoixOeuvre = new JComboBox<>();
 
 
 
-        //ChoixOeuvre.setModel(new DefaultComboBoxModel<>(new String[] {"Item 1","Item 2","Item 3","Item 4"}));
-        ChoixOeuvre.setModel(new DefaultComboBoxModel<>(new String[] {"Film", "Série", "Animé","Trailer"}));
-        Buttonchoix.addActionListener(new java.awt.event.ActionListener()
-        {public void actionPerformed(java.awt.event.ActionEvent evt){ButtonchoixActionPerformed(evt);}});
-
-
-        pack();
-
-
     }
 
-    private void ButtonchoixActionPerformed(java.awt.event.ActionEvent evt)
-    {
-        System.out.println("Choix : " + ChoixOeuvre.getSelectedItem());
-    }
+
 
     public static void main(String[] args)
     {

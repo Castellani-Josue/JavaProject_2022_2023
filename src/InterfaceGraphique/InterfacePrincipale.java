@@ -190,6 +190,30 @@ public class InterfacePrincipale extends JFrame
             }
         });
 
+        jMenuItem4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InterfaceFilmSerieAnime film = new InterfaceFilmSerieAnime();
+                film.setVisible(true);
+            }
+        });
+
+        jMenuItem5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InterfaceFilmSerieAnime serie = new InterfaceFilmSerieAnime();
+                serie.setVisible(true);
+            }
+        });
+
+        jMenuItem6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InterfaceFilmSerieAnime anime = new InterfaceFilmSerieAnime();
+                anime.setVisible(true);
+            }
+        });
+
 
 
 
