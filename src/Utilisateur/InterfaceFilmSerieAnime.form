@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Utilisateur.InterfaceFilmSerieAnime">
-  <grid id="27dc6" binding="PanelMain" layout-manager="GridLayoutManager" row-count="11" column-count="9" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="PanelMain" layout-manager="GridLayoutManager" row-count="11" column-count="9" same-size-horizontally="false" same-size-vertically="true" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="1754" height="531"/>
+      <xy x="20" y="20" width="1754" height="604"/>
     </constraints>
     <properties>
       <background color="-14541025"/>
@@ -386,16 +386,17 @@
           <background color="-1"/>
           <caretColor color="-13356237"/>
           <font name="Consolas" size="12" style="0"/>
-          <foreground color="-13356237"/>
+          <foreground color="-16777216"/>
           <verifyInputWhenFocusTarget value="false"/>
         </properties>
       </component>
-      <component id="ac183" class="javax.swing.JLabel">
+      <component id="ac183" class="javax.swing.JLabel" binding="AudioLabel">
         <constraints>
           <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Label"/>
+          <foreground color="-4711132"/>
+          <text value="Audio"/>
         </properties>
       </component>
       <component id="da168" class="javax.swing.JTextField">
@@ -408,16 +409,17 @@
           <background color="-1"/>
           <caretColor color="-13356237"/>
           <font name="Consolas" size="12" style="0"/>
-          <foreground color="-13356237"/>
+          <foreground color="-16777216"/>
           <verifyInputWhenFocusTarget value="false"/>
         </properties>
       </component>
-      <component id="f3fe1" class="javax.swing.JLabel">
+      <component id="f3fe1" class="javax.swing.JLabel" binding="SousTitreLabel">
         <constraints>
           <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Label"/>
+          <foreground color="-4711132"/>
+          <text value="Sous-Titre"/>
         </properties>
       </component>
       <component id="b19ea" class="javax.swing.JTextField" binding="EditeurTextField">

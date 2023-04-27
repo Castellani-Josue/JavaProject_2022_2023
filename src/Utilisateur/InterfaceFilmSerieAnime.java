@@ -36,6 +36,8 @@ public class InterfaceFilmSerieAnime extends JFrame
     private JButton ButtonIcon;
     private JLabel Editeur;
     private JTextField EditeurTextField;
+    private JLabel AudioLabel;
+    private JLabel SousTitreLabel;
 
 
     public InterfaceFilmSerieAnime()
