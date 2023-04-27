@@ -72,4 +72,11 @@ public class Serie extends Oeuvre implements AUneCotation
                 ", editeur='" + editeur + '\'' +
                 '}';
     }
+
+    public static void main(String[] args)
+    {
+        LocalDate dateSortie = LocalDate.of(2022, 3, 15);
+        Serie serie1 = new Serie("Titre du film", 120, 123456, dateSortie, "Description du film", "Nom de l'éditeur", "Anglais", "Japonais");
+        System.out.println(serie1.toString());
+    }
 }

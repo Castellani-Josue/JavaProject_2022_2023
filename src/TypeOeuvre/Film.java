@@ -14,12 +14,12 @@ public class Film extends Oeuvre implements AUneCotation
         super();
         coteFilm = 0;
     }
-    public Film(String n , int t, int i, LocalDate d, String desc, String e, CategorieOeuvre o, ClassificationOeuvre oe)
+    public Film(String n , int t, int i, LocalDate d, String desc, String e, String a, String st/*, CategorieOeuvre o, ClassificationOeuvre oe*/)
     {
-        //super(n, t, i, d, desc, e);
+        super(n, t, i, d, desc, e, a, st);
         setCotation(0);
-        setCategorieFilm(o);
-        setClassificationFilm(oe);
+        //setCategorieFilm(o);
+        //setClassificationFilm(oe);
     }
     //getter et setter
     @Override
@@ -71,5 +71,12 @@ public class Film extends Oeuvre implements AUneCotation
                 ", sousTitre=" + sousTitre +
                 ", editeur='" + editeur + '\'' +
                 '}';
+    }
+
+    public static void main(String[] args)
+    {
+        LocalDate dateSortie = LocalDate.of(2022, 3, 15);
+        Film film1 = new Film("Titre du film", 120, 123456, dateSortie, "Description du film", "Nom de l'éditeur", "Français", "Espagnol");
+        System.out.println(film1.toString());
     }
 }

@@ -1,5 +1,5 @@
 package TypeOeuvre;
-public class ClassificationOeuvre
+public abstract class ClassificationOeuvre
 {
     static public final int ALL;
     static public final int pegi6;
@@ -34,3 +34,4 @@ public class ClassificationOeuvre
         }
     }*/
 }
+

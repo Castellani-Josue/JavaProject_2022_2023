@@ -10,11 +10,11 @@ public class Trailer extends Oeuvre
     {
         super();
     }
-    public Trailer(String n , int t, int i, LocalDate d, String desc, String e, CategorieOeuvre o, ClassificationOeuvre oe)
+    public Trailer(String n , int t, int i, LocalDate d, String desc, String e,String a, String st /*, CategorieOeuvre o, ClassificationOeuvre oe*/)
     {
-        //super(n, t, i, d, desc, e);
-        setCategorieTrailer(o);
-        setClassificationTrailer(oe);
+        super(n, t, i, d, desc, e, a, st);
+        //setCategorieTrailer(o);
+        //setClassificationTrailer(oe);
     }
     public ClassificationOeuvre getClassificationTrailer()
     {
@@ -37,5 +37,12 @@ public class Trailer extends Oeuvre
             this.categorieTrailer = categorieSerie;
         else
             System.out.println("Categorie invalide !");
+    }
+
+    public static void main(String[] args)
+    {
+        LocalDate dateSortie = LocalDate.of(2022, 3, 15);
+        Trailer trailer1 = new Trailer("Titre du film", 120, 123456, dateSortie, "Description du film", "Nom de l'éditeur", "Danois", "Polonais");
+        System.out.println(trailer1.toString());
     }
 }

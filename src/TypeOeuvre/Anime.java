@@ -15,12 +15,12 @@ public class Anime extends Oeuvre implements AUneCotation
         super();
         coteAnime = 0;
     }
-    public Anime(String n , int t, int i, LocalDate d, String desc, String e, CategorieOeuvre o, ClassificationOeuvre oe)
+    public Anime(String n , int t, int i, LocalDate d, String desc, String e, String a, String st /*, CategorieOeuvre o, ClassificationOeuvre oe*/)
     {
-        //super(n, t, i, d, desc, e);
+        super(n, t, i, d, desc, e,a, st);
         setCotation(0);
-        setCategorieAnime(o);
-        setClassificationAnime(oe);
+        //setCategorieAnime(o);
+        //setClassificationAnime(oe);
     }
     //getter et setter
     @Override
@@ -71,5 +71,12 @@ public class Anime extends Oeuvre implements AUneCotation
                 ", sousTitre=" + sousTitre +
                 ", editeur='" + editeur + '\'' +
                 '}';
+    }
+
+    public static void main(String[] args)
+    {
+        LocalDate dateSortie = LocalDate.of(2022, 3, 15);
+        Anime anime1 = new Anime("Titre du film", 120, 123456, dateSortie, "Description du film", "Nom de l'éditeur", "Allemand", "Arabe");
+        System.out.println(anime1.toString());
     }
 }
