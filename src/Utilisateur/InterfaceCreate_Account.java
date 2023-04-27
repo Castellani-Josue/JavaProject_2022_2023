@@ -28,9 +28,10 @@ public class InterfaceCreate_Account extends JDialog
     private JButton ButtonCreate;
     private JLabel TelLabel;
     private JTextField TeltextField;
+    private JLabel LogoLabel;
 
 
-        public InterfaceCreate_Account(JFrame parent, boolean modal,String titre)
+    public InterfaceCreate_Account(JFrame parent, boolean modal,String titre)
         {
             super(parent,modal);
             setTitle(titre);
