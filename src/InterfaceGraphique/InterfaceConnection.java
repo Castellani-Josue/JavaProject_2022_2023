@@ -30,9 +30,8 @@ public class InterfaceConnection  extends JDialog
             pack();
             Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-            setSize(1200,700);
+            setSize(1000,700);
             setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
-
 
             Confirmer = false;
             ButtonConfirmer.addActionListener(new ActionListener()
@@ -47,6 +46,8 @@ public class InterfaceConnection  extends JDialog
                 }
             });
 
+
+
         }
 
     public InterfaceConnection()
@@ -55,8 +56,21 @@ public class InterfaceConnection  extends JDialog
         setLocationRelativeTo(null);
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(1200,700);
+        setSize(1000,700);
         setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
+
+        Confirmer = false;
+        ButtonConfirmer.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                login = Logintextfield.getText();
+                motDePasse = new String(mdpfield.getPassword());
+                Confirmer = true;
+                setVisible(false);
+            }
+        });
 
     }
 

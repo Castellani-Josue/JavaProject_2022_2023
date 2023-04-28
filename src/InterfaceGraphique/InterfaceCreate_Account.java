@@ -43,7 +43,6 @@ public class InterfaceCreate_Account extends JDialog
             setSize(1200,700);
             setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
 
-
             Confirmer = false;
             ButtonCreate.addActionListener(new ActionListener()
             {
@@ -60,6 +59,7 @@ public class InterfaceCreate_Account extends JDialog
 
 
 
+
         }
 
     public InterfaceCreate_Account()
@@ -70,6 +70,20 @@ public class InterfaceCreate_Account extends JDialog
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1200,700);
         setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
+
+        Confirmer = false;
+        ButtonCreate.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                login = LoginTextfield.getText();
+                motDePasse = new String(Mdpfield.getPassword());
+                Confirmer = true;
+                setVisible(false);
+            }
+        });
+
 
     }
 
