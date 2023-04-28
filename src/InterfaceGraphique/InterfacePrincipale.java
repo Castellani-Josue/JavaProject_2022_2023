@@ -223,6 +223,7 @@ public class InterfacePrincipale extends JFrame
         InterfacePrincipale dlm = new InterfacePrincipale();
         dlm.setVisible(true);
 
+
     }
 
 }

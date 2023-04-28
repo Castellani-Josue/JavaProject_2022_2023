@@ -41,11 +41,6 @@ public class InterfaceFilmSerieAnime extends JFrame
 
     public InterfaceFilmSerieAnime()
     {
-        initComponents();
-
-    }
-
-    private void initComponents() {
         setTitle("Ajouter Une Oeuvre");
 
         setContentPane(PanelMain);
@@ -56,11 +51,9 @@ public class InterfaceFilmSerieAnime extends JFrame
         setSize(1200, 700);
         setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
 
-        //ChoixOeuvre = new JComboBox<>();
-
-
-
     }
+
+
 
 
 

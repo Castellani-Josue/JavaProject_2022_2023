@@ -72,7 +72,10 @@ public class InterfaceConnection  extends JDialog
             }
         });
 
+
     }
+
+
 
     public static void main(String[] args)
         {
