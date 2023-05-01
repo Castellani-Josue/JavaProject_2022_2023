@@ -1,11 +1,30 @@
 package  Utilisateur;
-public class ListeFavoris extends client
-{
 
-    public ListeFavoris(String nomPersonne, String prenomPersonne, String login, String motDePasse, String telephone, String preference)
+import Interface.AUnIdentifiant;
+
+public class ListeFavoris implements AUnIdentifiant
+{
+    protected int identifiantFilm;
+    public ListeFavoris(int idFilm)
     {
-        super(nomPersonne, prenomPersonne, login, motDePasse, telephone, preference);
+        setIdentifiant(idFilm);
+    }
+    @Override
+    public int getIdentifiant()
+    {
+        return identifiantFilm;
     }
 
+    @Override
+    public void setIdentifiant(int i)
+    {
+        identifiantFilm = i;
+    }
 
+    @Override
+    public String toString() {
+        return "ListeFavoris{" +
+                "identifiantFilm=" + identifiantFilm +
+                '}';
+    }
 }

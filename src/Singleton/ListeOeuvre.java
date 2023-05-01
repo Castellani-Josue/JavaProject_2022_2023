@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class ListeOeuvre
 {
+   //Ces listes permettent de stocker toutes les œuvres de chaque type dans une liste ordonnée et d'y accéder facilement.
     private ArrayList<Film> listeFilm = new ArrayList<Film>();
     private ArrayList<Serie> listeSerie = new ArrayList<Serie>();
     private ArrayList<Anime> listeAnime = new ArrayList<Anime>();
@@ -21,7 +22,7 @@ public class ListeOeuvre
     {
         //constructeur privé pour empêcher l'instanciation directe de la classe
     }
-    public static ListeOeuvre getInstance()
+    public static ListeOeuvre getInstance() //verif si instance existe deja si non ça cree et permet qu'1 instance share aux clients
     {
         if(instance == null)
             instance = new ListeOeuvre();

@@ -25,11 +25,13 @@ public class InterfacePrincipale extends JFrame
 
     public InterfacePrincipale()
     {
-        setSize(800,600);
+
         //mainPanel = new JPanel();
         setContentPane(mainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        setSize(1000,700);
+        setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
         //PanelTree = new JPanel();
         //ScrollList = new JScrollPane();
 
@@ -175,8 +177,14 @@ public class InterfacePrincipale extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                InterfaceConnection fenetre = new InterfaceConnection();
-                fenetre.setVisible(true);
+                InterfaceConnection interfaceConnection = new InterfaceConnection(null,true,"Entrée en session...");
+                interfaceConnection.setVisible(true);
+                if (interfaceConnection.isConfirmer())
+                {
+                    System.out.println("Login = " + interfaceConnection.getLogin());
+                    System.out.println("Mot de passe = " + interfaceConnection.getMotDePasse());
+                }
+                interfaceConnection.dispose();
 
             }
         });
@@ -185,8 +193,14 @@ public class InterfacePrincipale extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                InterfaceCreate_Account fenetre2 = new InterfaceCreate_Account();
-                fenetre2.setVisible(true);
+                InterfaceCreate_Account interfaceCreate_Account = new InterfaceCreate_Account(null,true,"Session de connexion");
+                interfaceCreate_Account.setVisible(true);
+                if(interfaceCreate_Account.isConfirmer())
+                {
+                    System.out.println("Login = " + interfaceCreate_Account.getLogin());
+                    System.out.println("Mot de passe = " + interfaceCreate_Account.getMotDePasse());
+                }
+                interfaceCreate_Account.dispose();
             }
         });
 

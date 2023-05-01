@@ -14,6 +14,8 @@ public class Administrateur extends Personne
 
     }
 
+
+
     @Override
     public String toString()
     {
@@ -30,6 +32,12 @@ public class Administrateur extends Personne
     {
         System.out.println(toString());
 
+    }
+
+    public static void main(String[] args)
+    {
+        Administrateur admin= new Administrateur("Castellani", "Josue", "Sparkwillo", "Jcast05");
+        System.out.println(admin.toString());
     }
 
 

@@ -3,6 +3,7 @@ import Interface.AUneCotation;
 
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Serie extends Oeuvre implements AUneCotation
 {
@@ -72,6 +73,15 @@ public class Serie extends Oeuvre implements AUneCotation
                 ", editeur='" + editeur + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Serie serie)) return false;
+        return coteSerie == serie.coteSerie && Objects.equals(getClassificationSerie(), serie.getClassificationSerie()) && Objects.equals(getCategorieSerie(), serie.getCategorieSerie());
+    }
+
+
 
     public static void main(String[] args)
     {

@@ -1,6 +1,7 @@
 package TypeOeuvre;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Trailer extends Oeuvre
 {
@@ -38,6 +39,15 @@ public class Trailer extends Oeuvre
         else
             System.out.println("Categorie invalide !");
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Trailer trailer)) return false;
+        return Objects.equals(getClassificationTrailer(), trailer.getClassificationTrailer()) && Objects.equals(getCategorieTrailer(), trailer.getCategorieTrailer());
+    }
+
+
 
     public static void main(String[] args)
     {

@@ -2,6 +2,7 @@ package TypeOeuvre;
 
 import Interface.AUneCotation;
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 public class Anime extends Oeuvre implements AUneCotation
@@ -54,6 +55,13 @@ public class Anime extends Oeuvre implements AUneCotation
             this.categorieAnime = categorieAnime;
         else
             System.out.println("Categorie invalide !");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Anime anime)) return false;
+        return coteAnime == anime.coteAnime && Objects.equals(getClassificationAnime(), anime.getClassificationAnime()) && Objects.equals(getCategorieAnime(), anime.getCategorieAnime());
     }
 
     @Override

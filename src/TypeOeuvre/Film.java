@@ -1,6 +1,8 @@
 package TypeOeuvre;
 
 import java.time.LocalDate;
+import java.util.Objects;
+
 import Interface.AUneCotation;
 
 public class Film extends Oeuvre implements AUneCotation
@@ -41,6 +43,9 @@ public class Film extends Oeuvre implements AUneCotation
         this.coteFilm = coteFilm;
     }
 
+
+    //Si la classification du film correspond à une des classifications prédéfinies,
+    // alors la variable classificationFilm est initialisée avec cette classification.
     public void setClassificationFilm(ClassificationOeuvre classificationFilm)
     {
         if(classificationFilm.equals(ClassificationOeuvre.ALL) || classificationFilm.equals(ClassificationOeuvre.pegi6) || classificationFilm.equals(ClassificationOeuvre.pegi9) || classificationFilm.equals(ClassificationOeuvre.pegi12) || classificationFilm.equals(ClassificationOeuvre.pegi14) || classificationFilm.equals(ClassificationOeuvre.pegi16) || classificationFilm.equals(ClassificationOeuvre.pegi18))
@@ -55,6 +60,15 @@ public class Film extends Oeuvre implements AUneCotation
         else
             System.out.println("Categorie invalide !");
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Film film)) return false;
+        return coteFilm == film.coteFilm && Objects.equals(getClassificationFilm(), film.getClassificationFilm()) && Objects.equals(getCategorieFilm(), film.getCategorieFilm());
+    }
+
+
 
     @Override
     public String toString() {

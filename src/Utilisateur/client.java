@@ -8,6 +8,7 @@ public class client extends Personne
 
     private ArrayList<String> Preference =  new ArrayList<String>();
 
+    private ArrayList<ListeFavoris> oeuvreFavorite;
     //private  int IdClient;
 
     public client()
@@ -15,12 +16,12 @@ public class client extends Personne
         String Telephone = " ";
 
     }
-    public client(String nomPersonne, String prenomPersonne, String login, String motDePasse, String telephone , String preference)
+    public client(String nomPersonne, String prenomPersonne, String login, String motDePasse, String telephone , String preference, ArrayList<ListeFavoris> l)
     {
         super(nomPersonne, prenomPersonne, login, motDePasse);
         Telephone = telephone;
         Preference.add(preference);
-
+        oeuvreFavorite = l;
     }
 
     public String getTelephone()
@@ -43,6 +44,10 @@ public class client extends Personne
         Preference = preference;
     }
 
+    public void setFavoris (ListeFavoris favori)
+    {
+
+    }
 
     public void ResetMotDePasse()
     {
@@ -53,18 +58,17 @@ public class client extends Personne
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "client{" +
-                "Nompersonne='" + Nompersonne + '\'' +
+                "Telephone='" + Telephone + '\'' +
+                ", Preference=" + Preference +
+                ", oeuvreFavorite=" + oeuvreFavorite +
+                ", Nompersonne='" + Nompersonne + '\'' +
                 ", PrenomPersonne='" + PrenomPersonne + '\'' +
                 ", Login='" + Login + '\'' +
                 ", MotDePasse='" + MotDePasse + '\'' +
-                ",Telephone='" + Telephone + '\'' +
-                ",Preference=" + Preference + '\'' +
                 '}';
     }
-
 
 
     @Override
@@ -75,5 +79,16 @@ public class client extends Personne
 
     }
 
-
+    public static void main(String[] args)
+    {
+        ArrayList<ListeFavoris> test1 = new ArrayList<>();
+        ListeFavoris test2 = new ListeFavoris(9);
+        ListeFavoris test3 = new ListeFavoris(45);
+        ListeFavoris test4 = new ListeFavoris(36);
+        test1.add(test2);
+        test1.add(test3);
+        test1.add(test4);
+        client client1= new client("Castellani", "Josue", "Sparkwillo", "Jcast05","0479/044211" ,"Horreur", test1);
+        System.out.println(client1.toString());
+    }
 }

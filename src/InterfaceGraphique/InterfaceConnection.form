@@ -106,7 +106,7 @@
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <icon value="netflix1.png"/>
+          <icon value="2504929 (1).png"/>
           <text value=""/>
         </properties>
       </component>
