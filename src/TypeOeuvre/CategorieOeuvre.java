@@ -1,35 +1,35 @@
 package TypeOeuvre;
-public abstract class CategorieOeuvre
+
+public class CategorieOeuvre
 {
-    static public final String CATEGORIE_HORREUR;
-    static public final String CATEGORIE_DRAME;
-    static public final String CATEGORIE_AVENTURE;
-    static public final String CATEGORIE_SCIENCEFICTION;
-    static public final String CATEGORIE_ACTION;
+    private String nom;
 
-    //d'autre thème à rajouter
-
-
-    static
+    public CategorieOeuvre()
     {
-        CATEGORIE_HORREUR = "Horreur";
-        CATEGORIE_DRAME = "Drame";
-        CATEGORIE_AVENTURE = "Aventure";
-        CATEGORIE_SCIENCEFICTION = "Science-Fiction";
-        CATEGORIE_ACTION = "Action";
+        nom = "PAS DE CATEGORIE";
     }
+    public CategorieOeuvre(String n)
+    {
+        nom = n;
+    }
+    public String getNom()
+    {
+        return nom;
+    }
+    public void setNom(String nom)
+    {
+        this.nom = nom;
+    }
+    public static final CategorieOeuvre HORREUR = new CategorieOeuvre("Horreur");
+    public static final CategorieOeuvre ACTION = new CategorieOeuvre("Action");
+    public static final CategorieOeuvre SCIENCEFICTION = new CategorieOeuvre("Science-Fiction");
+    public static final CategorieOeuvre AVENTURE = new CategorieOeuvre("Aventure");
+    public static final CategorieOeuvre DRAME = new CategorieOeuvre("Drame");
 
-    /*public static boolean estChampValide(String champ) {
-        switch (champ) {
-            case CATEGORIE_HORREUR:
-            case CATEGORIE_DRAME:
-            case CATEGORIE_AVENTURE:
-            case CATEGORIE_SCIENCEFICTION:
-            case CATEGORIE_ACTION:
-                return true;
-            default:
-                return false;
-        }
-    }*/
-
+    @Override
+    public String toString() {
+        return "CategorieOeuvre{" +
+                "nom='" + nom + '\'' +
+                '}';
+    }
 }

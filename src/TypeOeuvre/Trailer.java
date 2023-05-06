@@ -1,7 +1,6 @@
 package TypeOeuvre;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 public class Trailer extends Oeuvre
 {
@@ -11,48 +10,95 @@ public class Trailer extends Oeuvre
     {
         super();
     }
-    public Trailer(String n , int t, int i, LocalDate d, String desc, String e,String a, String st /*, CategorieOeuvre o, ClassificationOeuvre oe*/)
+    public Trailer(String n , int t, int i, LocalDate d, String desc, String e,String a, String st , String o, int oe)
     {
         super(n, t, i, d, desc, e, a, st);
-        //setCategorieTrailer(o);
-        //setClassificationTrailer(oe);
+        setCategorieTrailer(o);
+        setClassificationTrailer(oe);
     }
-    public ClassificationOeuvre getClassificationTrailer()
+    public int getClassificationTrailer()
     {
-        return classificationTrailer;
+        return classificationTrailer.getNom();
     }
-    public CategorieOeuvre getCategorieTrailer()
+    public String getCategorieTrailer()
     {
-        return categorieTrailer;
+        return categorieTrailer.getNom();
     }
-    public void setClassificationTrailer(ClassificationOeuvre classificationSerie)
+    public void setClassificationTrailer(int classification)
     {
-        if(classificationSerie.equals(ClassificationOeuvre.ALL) || classificationSerie.equals(ClassificationOeuvre.pegi6) || classificationSerie.equals(ClassificationOeuvre.pegi9) || classificationSerie.equals(ClassificationOeuvre.pegi12) || classificationSerie.equals(ClassificationOeuvre.pegi14) || classificationSerie.equals(ClassificationOeuvre.pegi16) || classificationSerie.equals(ClassificationOeuvre.pegi18))
-            this.classificationTrailer = classificationSerie;
-        else
-            System.out.println("Classification inexistante !");
+        switch(classification)
+        {
+            case 0:
+                classificationTrailer = ClassificationOeuvre.ALL;
+                break;
+            case 6:
+                classificationTrailer = ClassificationOeuvre.PEGI6;
+                break;
+            case 9:
+                classificationTrailer = ClassificationOeuvre.PEGI9;
+                break;
+            case 12:
+                classificationTrailer = ClassificationOeuvre.PEGI12;
+                break;
+            case 14:
+                classificationTrailer = ClassificationOeuvre.PEGI14;
+                break;
+            case 16:
+                classificationTrailer = ClassificationOeuvre.PEGI16;
+                break;
+            case 18:
+                classificationTrailer = ClassificationOeuvre.PEGI18;
+                break;
+            default:
+                System.out.println("Classification inexistante !");
+                break;
+        }
     }
-    public void setCategorieTrailer(CategorieOeuvre categorieSerie)
+    public void setCategorieTrailer(String categorie)
     {
-        if(categorieSerie.equals(CategorieOeuvre.CATEGORIE_AVENTURE) || categorieSerie.equals(CategorieOeuvre.CATEGORIE_ACTION) || categorieSerie.equals(CategorieOeuvre.CATEGORIE_DRAME) || categorieSerie.equals(CategorieOeuvre.CATEGORIE_HORREUR) || categorieSerie.equals(CategorieOeuvre.CATEGORIE_SCIENCEFICTION))
-            this.categorieTrailer = categorieSerie;
-        else
-            System.out.println("Categorie invalide !");
+        switch(categorie)
+        {
+            case "Horreur":
+                categorieTrailer = CategorieOeuvre.HORREUR;
+                break;
+            case "Drame":
+                categorieTrailer = CategorieOeuvre.DRAME;
+                break;
+            case "Action":
+                categorieTrailer = CategorieOeuvre.ACTION;
+                break;
+            case "Aventure":
+                categorieTrailer = CategorieOeuvre.AVENTURE;
+                break;
+            case "Science-Fiction":
+                categorieTrailer = CategorieOeuvre.SCIENCEFICTION;
+                break;
+            default:
+                System.out.println("Categorie inexistante !");
+                break;
+        }
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Trailer trailer)) return false;
-        return Objects.equals(getClassificationTrailer(), trailer.getClassificationTrailer()) && Objects.equals(getCategorieTrailer(), trailer.getCategorieTrailer());
+    public String toString() {
+        return "Trailer{" +
+                "classificationTrailer=" + getClassificationTrailer() +
+                ", categorieTrailer=" + getCategorieTrailer() +
+                ", nom='" + nom + '\'' +
+                ", temps=" + temps +
+                ", identifiant=" + identifiant +
+                ", dateSortie=" + dateSortie +
+                ", description='" + description + '\'' +
+                ", audio=" + audio +
+                ", sousTitre=" + sousTitre +
+                ", editeur='" + editeur + '\'' +
+                '}';
     }
-
-
 
     public static void main(String[] args)
     {
         LocalDate dateSortie = LocalDate.of(2022, 3, 15);
-        Trailer trailer1 = new Trailer("Titre du film", 120, 123456, dateSortie, "Description du film", "Nom de l'éditeur", "Danois", "Polonais");
+        Trailer trailer1 = new Trailer("Titre du film", 120, 123456, dateSortie, "Description du film", "Nom de l'éditeur", "Danois", "Polonais","Aventure",14);
         System.out.println(trailer1.toString());
     }
 }

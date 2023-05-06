@@ -10,9 +10,9 @@ public class ListeFavoris implements AUnIdentifiant
         setIdentifiant(idFilm);
     }
     @Override
-    public int getIdentifiant()
+    public boolean getIdentifiant()
     {
-        return identifiantFilm;
+        return true;
     }
 
     @Override

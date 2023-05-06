@@ -8,9 +8,9 @@ public class Administrateur extends Personne
         
     }
 
-    public Administrateur(String nomPersonne,String prenomPersonne,String login,String motDePasse)
+    public Administrateur(String nomPersonne,String prenomPersonne,String login,String motDePasse,int id)
     {
-        super(nomPersonne, prenomPersonne, login, motDePasse);
+        super(nomPersonne, prenomPersonne, login, motDePasse,id);
 
     }
 
@@ -22,6 +22,7 @@ public class Administrateur extends Personne
         return "Administrateur{" +
                 "Nompersonne='" + Nompersonne + '\'' +
                 ", PrenomPersonne='" + PrenomPersonne + '\'' +
+                ", identifiant=" + identifiant +
                 ", Login='" + Login + '\'' +
                 ", MotDePasse='" + MotDePasse + '\'' +
                 '}';
@@ -36,7 +37,7 @@ public class Administrateur extends Personne
 
     public static void main(String[] args)
     {
-        Administrateur admin= new Administrateur("Castellani", "Josue", "Sparkwillo", "Jcast05");
+        Administrateur admin= new Administrateur("Castellani", "Josue", "Sparkwillo", "Jcast05",123456);
         System.out.println(admin.toString());
     }
 

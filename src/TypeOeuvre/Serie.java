@@ -1,10 +1,7 @@
 package TypeOeuvre;
-import Interface.AUneCotation;
-
 
 import java.time.LocalDate;
-import java.util.Objects;
-
+import Interface.AUneCotation;
 public class Serie extends Oeuvre implements AUneCotation
 {
     int coteSerie;
@@ -16,12 +13,12 @@ public class Serie extends Oeuvre implements AUneCotation
         super();
         coteSerie = 0;
     }
-    public Serie(String n , int t, int i, LocalDate d, String desc, String e, String a, String st /*CategorieOeuvre o, ClassificationOeuvre oe*/)
+    public Serie(String n , int t, int i, LocalDate d, String desc, String e, String a, String st, String o, int oe)
     {
         super(n, t, i, d, desc, e, a, st);
         setCotation(0);
-        //setCategorieSerie(o);
-        //setClassificationSerie(oe);
+        setCategorieSerie(o);
+        setClassificationSerie(oe);
     }
     //getter et setter
     @Override
@@ -29,40 +26,80 @@ public class Serie extends Oeuvre implements AUneCotation
     {
         return coteSerie;
     }
-    public ClassificationOeuvre getClassificationSerie()
+    public int getClassificationSerie()
     {
-        return classificationSerie;
+        return classificationSerie.getNom();
     }
-    public CategorieOeuvre getCategorieSerie()
+    public String getCategorieSerie()
     {
-        return categorieSerie;
+        return categorieSerie.getNom();
     }
     @Override
     public void setCotation(int coteSerie)
     {
         this.coteSerie = coteSerie;
     }
-    public void setClassificationSerie(ClassificationOeuvre classificationSerie)
+    public void setClassificationSerie(int classification)
     {
-        if(classificationSerie.equals(ClassificationOeuvre.ALL) || classificationSerie.equals(ClassificationOeuvre.pegi6) || classificationSerie.equals(ClassificationOeuvre.pegi9) || classificationSerie.equals(ClassificationOeuvre.pegi12) || classificationSerie.equals(ClassificationOeuvre.pegi14) || classificationSerie.equals(ClassificationOeuvre.pegi16) || classificationSerie.equals(ClassificationOeuvre.pegi18))
-            this.classificationSerie = classificationSerie;
-        else
-            System.out.println("Classification inexistante !");
+        switch(classification)
+        {
+            case 0:
+                classificationSerie = ClassificationOeuvre.ALL;
+                break;
+            case 6:
+                classificationSerie = ClassificationOeuvre.PEGI6;
+                break;
+            case 9:
+                classificationSerie = ClassificationOeuvre.PEGI9;
+                break;
+            case 12:
+                classificationSerie = ClassificationOeuvre.PEGI12;
+                break;
+            case 14:
+                classificationSerie = ClassificationOeuvre.PEGI14;
+                break;
+            case 16:
+                classificationSerie = ClassificationOeuvre.PEGI16;
+                break;
+            case 18:
+                classificationSerie = ClassificationOeuvre.PEGI18;
+                break;
+            default:
+                System.out.println("Classification inexistante !");
+                break;
+        }
     }
-    public void setCategorieSerie(CategorieOeuvre categorieSerie)
+    public void setCategorieSerie(String categorie)
     {
-        if(categorieSerie.equals(CategorieOeuvre.CATEGORIE_AVENTURE) || categorieSerie.equals(CategorieOeuvre.CATEGORIE_ACTION) || categorieSerie.equals(CategorieOeuvre.CATEGORIE_DRAME) || categorieSerie.equals(CategorieOeuvre.CATEGORIE_HORREUR) || categorieSerie.equals(CategorieOeuvre.CATEGORIE_SCIENCEFICTION))
-            this.categorieSerie = categorieSerie;
-        else
-            System.out.println("Categorie invalide !");
+        switch(categorie)
+        {
+            case "Horreur":
+                categorieSerie = CategorieOeuvre.HORREUR;
+                break;
+            case "Drame":
+                categorieSerie = CategorieOeuvre.DRAME;
+                break;
+            case "Action":
+                categorieSerie = CategorieOeuvre.ACTION;
+                break;
+            case "Aventure":
+                categorieSerie = CategorieOeuvre.AVENTURE;
+                break;
+            case "Science-Fiction":
+                categorieSerie = CategorieOeuvre.SCIENCEFICTION;
+                break;
+            default:
+                System.out.println("Categorie inexistante !");
+                break;
+        }
     }
 
     @Override
     public String toString() {
         return "TypeOeuvre.Serie{" +
                 "coteSerie=" + coteSerie +
-                ", classificationSerie=" + classificationSerie +
-                ", categorieSerie=" + categorieSerie +
+                ", classificationSerie=" + getClassificationSerie() +
+                ", categorieSerie=" + getCategorieSerie() +
                 ", nom='" + nom + '\'' +
                 ", temps=" + temps +
                 ", identifiant=" + identifiant +
@@ -74,19 +111,10 @@ public class Serie extends Oeuvre implements AUneCotation
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Serie serie)) return false;
-        return coteSerie == serie.coteSerie && Objects.equals(getClassificationSerie(), serie.getClassificationSerie()) && Objects.equals(getCategorieSerie(), serie.getCategorieSerie());
-    }
-
-
-
     public static void main(String[] args)
     {
         LocalDate dateSortie = LocalDate.of(2022, 3, 15);
-        Serie serie1 = new Serie("Titre du film", 120, 123456, dateSortie, "Description du film", "Nom de l'éditeur", "Anglais", "Japonais");
+        Serie serie1 = new Serie("Titre du film", 120, 123456, dateSortie, "Description du film", "Nom de l'éditeur", "Anglais", "Japonais","Science-Fiction",18);
         System.out.println(serie1.toString());
     }
 }

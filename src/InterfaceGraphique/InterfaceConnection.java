@@ -6,9 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class InterfaceConnection  extends JDialog
 {
-
-
-
+    
         private String login;
         private String motDePasse;
         private boolean Confirmer;

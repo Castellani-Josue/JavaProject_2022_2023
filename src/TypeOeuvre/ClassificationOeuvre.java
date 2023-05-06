@@ -1,37 +1,38 @@
 package TypeOeuvre;
-public abstract class ClassificationOeuvre
-{
-    static public final int ALL;
-    static public final int pegi6;
-    static public final int pegi9;
-    static public final int pegi12;
-    static public final int pegi14;
-    static public final int pegi16;
-    static public final int pegi18;
-    static
-    {
-        ALL = 0;
-        pegi6 = 6;
-        pegi9 = 9;
-        pegi12 = 12;
-        pegi14 = 14;
-        pegi16 = 16;
-        pegi18 = 18;
-    }
 
-    /*public static boolean estValeurValide(int valeur) {
-        switch (valeur) {
-            case 0:
-            case 6:
-            case 9:
-            case 12:
-            case 14:
-            case pegi16:
-            case pegi18:
-                return true;
-            default:
-                return false;
-        }
-    }*/
+public class ClassificationOeuvre
+{
+    private int pegi;
+
+    public ClassificationOeuvre()
+    {
+        pegi = -1;
+    }
+    public ClassificationOeuvre(int n)
+    {
+        pegi = n;
+    }
+    public int getNom()
+    {
+        return pegi;
+    }
+    public void setNom(int nom)
+    {
+        this.pegi = nom;
+    }
+    public static final ClassificationOeuvre ALL = new ClassificationOeuvre(0);
+    public static final ClassificationOeuvre PEGI6 = new ClassificationOeuvre(6);
+    public static final ClassificationOeuvre PEGI9 = new ClassificationOeuvre(9);
+    public static final ClassificationOeuvre PEGI12 = new ClassificationOeuvre(12);
+    public static final ClassificationOeuvre PEGI14 = new ClassificationOeuvre(14);
+    public static final ClassificationOeuvre PEGI16 = new ClassificationOeuvre(16);
+    public static final ClassificationOeuvre PEGI18 = new ClassificationOeuvre(18);
+
+    @Override
+    public String toString() {
+        return "ClassificationOeuvre{" +
+                "pegi=" + pegi +
+                '}';
+    }
 }
 

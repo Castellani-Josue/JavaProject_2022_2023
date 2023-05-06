@@ -1,14 +1,17 @@
 package Utilisateur;
 
+import Interface.AUnIdentifiant;
+
 import java.util.Objects;
 
-public abstract class Personne
+public abstract class Personne implements AUnIdentifiant
 {
 
     protected String Nompersonne;
     protected   String  PrenomPersonne;
     protected String Login;
     protected String MotDePasse;
+    protected int identifiant;
 
     public Personne()
     {
@@ -16,13 +19,15 @@ public abstract class Personne
         PrenomPersonne = " ";
         Login = " ";
         MotDePasse = null;
+        identifiant = 0;
     }
-    public Personne(String nompersonne, String prenomPersonne , String  login , String motDePasse)
+    public Personne(String nompersonne, String prenomPersonne , String  login , String motDePasse,int id)
     {
         Nompersonne = nompersonne;
         PrenomPersonne = prenomPersonne;
         Login = login;
         MotDePasse = motDePasse;
+        setIdentifiant(id);
     }
 
     @Override
@@ -37,6 +42,16 @@ public abstract class Personne
         return Objects.hash(getNompersonne(), getPrenomPersonne(), getLogin(), getMotDePasse());
     }
 
+    @Override
+    public boolean getIdentifiant()
+    {
+        return true;
+    }
+    @Override
+    public void setIdentifiant(int i)
+    {
+        identifiant = i;
+    }
     public String getNompersonne()
     {
         return Nompersonne;
@@ -61,6 +76,7 @@ public abstract class Personne
     {
         return Login;
     }
+
 
     public void setLogin(String login)
     {

@@ -1,10 +1,9 @@
 package TypeOeuvre;
-import Interface.AUnIdentifiant;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-
-public class Oeuvre  implements AUnIdentifiant
+import Interface.AUnIdentifiant;
+public abstract class Oeuvre implements AUnIdentifiant
 {
     protected String nom;
     protected int temps;
@@ -47,9 +46,9 @@ public class Oeuvre  implements AUnIdentifiant
         return temps;
     }
     @Override
-    public int getIdentifiant()
+    public boolean getIdentifiant()
     {
-        return identifiant;
+        return true;
     }
     public LocalDate getDateSortie()
     {
@@ -88,4 +87,5 @@ public class Oeuvre  implements AUnIdentifiant
     {
         editeur = e;
     }
+
 }

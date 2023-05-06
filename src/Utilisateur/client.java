@@ -1,24 +1,20 @@
 package Utilisateur;
 
 import java.util.ArrayList;
-
 public class client extends Personne
 {
     private String Telephone;
-
     private ArrayList<String> Preference =  new ArrayList<String>();
-
     private ArrayList<ListeFavoris> oeuvreFavorite;
-    //private  int IdClient;
 
     public client()
     {
         String Telephone = " ";
 
     }
-    public client(String nomPersonne, String prenomPersonne, String login, String motDePasse, String telephone , String preference, ArrayList<ListeFavoris> l)
+    public client(String nomPersonne, String prenomPersonne, String login, String motDePasse, String telephone , String preference, ArrayList<ListeFavoris> l, int id)
     {
-        super(nomPersonne, prenomPersonne, login, motDePasse);
+        super(nomPersonne, prenomPersonne, login, motDePasse,id);
         Telephone = telephone;
         Preference.add(preference);
         oeuvreFavorite = l;
@@ -44,9 +40,16 @@ public class client extends Personne
         Preference = preference;
     }
 
-    public void setFavoris (ListeFavoris favori)
+    public void setFavoris ()
     {
 
+    }
+
+    public void ajoutFavoris(int test)
+    {
+        ListeFavoris Test = new ListeFavoris(test);
+        oeuvreFavorite.add(Test);
+        System.out.println(this.toString());
     }
 
     public void ResetMotDePasse()
@@ -65,6 +68,7 @@ public class client extends Personne
                 ", oeuvreFavorite=" + oeuvreFavorite +
                 ", Nompersonne='" + Nompersonne + '\'' +
                 ", PrenomPersonne='" + PrenomPersonne + '\'' +
+                ", Identifiant = '" + identifiant +
                 ", Login='" + Login + '\'' +
                 ", MotDePasse='" + MotDePasse + '\'' +
                 '}';
@@ -88,7 +92,8 @@ public class client extends Personne
         test1.add(test2);
         test1.add(test3);
         test1.add(test4);
-        client client1= new client("Castellani", "Josue", "Sparkwillo", "Jcast05","0479/044211" ,"Horreur", test1);
-        System.out.println(client1.toString());
+        client client1= new client("Castellani", "Josue", "Sparkwillo", "Jcast05","0479/044211" ,"Horreur", test1,145398);
+        //System.out.println(client1.toString());
+        client1.ajoutFavoris(200);
     }
 }
