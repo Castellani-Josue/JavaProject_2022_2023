@@ -1,5 +1,7 @@
 package InterfaceGraphique;
 
+import Controleur.controleur;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -66,6 +68,7 @@ public class InterfaceCreate_Account extends JDialog
     {
         setContentPane(Main);
         setLocationRelativeTo(null);
+        setModal(true);
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1200,700);
@@ -114,6 +117,7 @@ public class InterfaceCreate_Account extends JDialog
         {
             return Confirmer;
         }
+
 
 
 }

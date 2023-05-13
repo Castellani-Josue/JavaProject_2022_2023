@@ -176,7 +176,7 @@
         </constraints>
         <properties>
           <foreground color="-4711132"/>
-          <text value="Button"/>
+          <text value="Créer"/>
         </properties>
       </component>
       <vspacer id="eb473">

@@ -1,6 +1,7 @@
 package InterfaceGraphique;
 
 import ComposantInterfaceGraphique.MonTreeModele;
+import Controleur.controleur;
 
 import javax.swing.*;
 import javax.swing.JTree;
@@ -20,6 +21,15 @@ public class InterfacePrincipale extends JFrame
     private JPanel PanelTree;
     private JPanel PanelList;
     private JScrollPane ScrollList;
+
+    JMenuItem jMenuItem1 = new JMenuItem();
+    JMenuItem jMenuItem2 = new JMenuItem();
+    JMenuItem jMenuItem3 = new JMenuItem();
+    JMenuItem jMenuItem4 = new JMenuItem();
+    JMenuItem jMenuItem5 = new JMenuItem();
+    JMenuItem jMenuItem6 = new JMenuItem();
+    JMenuItem jMenuItem7 = new JMenuItem();
+    JMenuItem jMenuItem8 = new JMenuItem();
 
 
 
@@ -43,14 +53,7 @@ public class InterfacePrincipale extends JFrame
         JMenu jMenu1 = new JMenu();
         JMenu jMenu2 = new JMenu();
         JMenu jMenu3 = new JMenu();
-        JMenuItem jMenuItem1 = new JMenuItem();
-        JMenuItem jMenuItem2 = new JMenuItem();
-        JMenuItem jMenuItem3 = new JMenuItem();
-        JMenuItem jMenuItem4 = new JMenuItem();
-        JMenuItem jMenuItem5 = new JMenuItem();
-        JMenuItem jMenuItem6 = new JMenuItem();
-        JMenuItem jMenuItem7 = new JMenuItem();
-        JMenuItem jMenuItem8 = new JMenuItem();
+
 
         jMenu1.setText("Connexion");
         jMenu2.setText("Ajouter");
@@ -173,64 +176,6 @@ public class InterfacePrincipale extends JFrame
         PanelList.add(TypeOeuvre.Trailer);*/
 
 
-        jMenuItem1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                InterfaceConnection interfaceConnection = new InterfaceConnection(null,true,"Entrée en session...");
-                interfaceConnection.setVisible(true);
-                if (interfaceConnection.isConfirmer())
-                {
-                    System.out.println("Login = " + interfaceConnection.getLogin());
-                    System.out.println("Mot de passe = " + interfaceConnection.getMotDePasse());
-                }
-                interfaceConnection.dispose();
-
-            }
-        });
-
-        jMenuItem8.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                InterfaceCreate_Account interfaceCreate_Account = new InterfaceCreate_Account(null,true,"Session de connexion");
-                interfaceCreate_Account.setVisible(true);
-                if(interfaceCreate_Account.isConfirmer())
-                {
-                    System.out.println("Login = " + interfaceCreate_Account.getLogin());
-                    System.out.println("Mot de passe = " + interfaceCreate_Account.getMotDePasse());
-                }
-                interfaceCreate_Account.dispose();
-            }
-        });
-
-        jMenuItem4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InterfaceFilmSerieAnime film = new InterfaceFilmSerieAnime();
-                film.setVisible(true);
-            }
-        });
-
-        jMenuItem5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InterfaceFilmSerieAnime serie = new InterfaceFilmSerieAnime();
-                serie.setVisible(true);
-            }
-        });
-
-        jMenuItem6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                InterfaceFilmSerieAnime anime = new InterfaceFilmSerieAnime();
-                anime.setVisible(true);
-            }
-        });
-
-
-
-
     }
     public static void main(String[] args)
     {
@@ -240,4 +185,15 @@ public class InterfacePrincipale extends JFrame
 
     }
 
+    public void setControleur(controleur controleur1)
+    {
+        jMenuItem1.addActionListener(controleur1);
+        jMenuItem4.addActionListener(controleur1);
+        jMenuItem5.addActionListener(controleur1);
+        jMenuItem6.addActionListener(controleur1);
+        jMenuItem7.addActionListener(controleur1);
+        jMenuItem8.addActionListener(controleur1);
+
+        this.addWindowListener(controleur1);
+    }
 }
