@@ -188,6 +188,7 @@ public class InterfacePrincipale extends JFrame
     public void setControleur(controleur controleur1)
     {
         jMenuItem1.addActionListener(controleur1);
+        jMenuItem3.addActionListener(controleur1);
         jMenuItem4.addActionListener(controleur1);
         jMenuItem5.addActionListener(controleur1);
         jMenuItem6.addActionListener(controleur1);

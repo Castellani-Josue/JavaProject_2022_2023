@@ -1,4 +1,5 @@
 import Controleur.controleur;
+import Controleur.controleurCreateAcc;
 import InterfaceGraphique.InterfaceConnection;
 import InterfaceGraphique.InterfaceCreate_Account;
 import InterfaceGraphique.InterfaceFilmSerieAnime;
@@ -12,9 +13,13 @@ public class Main
     {
 
         InterfacePrincipale fenetreprincipale= new InterfacePrincipale();
+        //InterfaceCreate_Account fenetreCreate = new InterfaceCreate_Account(null, true, "Session de connexion");
+
 
         controleur controleur1 = new controleur(fenetreprincipale);
         fenetreprincipale.setVisible(true);
+
+
 
 
     }

@@ -1,6 +1,6 @@
 package InterfaceGraphique;
 
-import Controleur.controleur;
+import Utilisateur.client;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class InterfaceConnection  extends JDialog
 {
+    private client cli;
     
         private String login;
         private String motDePasse;
@@ -28,6 +29,7 @@ public class InterfaceConnection  extends JDialog
             setContentPane(Main);
             setLocationRelativeTo(null);
             pack();
+            setModal(true);
             Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             setSize(1000,700);
@@ -40,9 +42,28 @@ public class InterfaceConnection  extends JDialog
                 public void actionPerformed(ActionEvent e)
                 {
                     login = Logintextfield.getText();
+                    boolean isValidLogin = cli.isValidLogin(login);
                     motDePasse = new String(mdpfield.getPassword());
+                    boolean isValidPassword = cli.isValidPassword(motDePasse);
                     Confirmer = true;
                     setVisible(false);
+
+                    if (isValidLogin && isValidPassword) {
+                        Confirmer = true;
+                        setVisible(false);
+                    } else {
+                        //System.out.println("Erreur(s) d'encodation");
+                        if (!isValidLogin && isValidPassword) {
+                            JOptionPane.showMessageDialog(InterfaceConnection.this, "login incorrect", "Erreur d'authentification", JOptionPane.INFORMATION_MESSAGE, null);
+                            setVisible(true);
+                        } else if (!isValidPassword && isValidLogin) {
+                            JOptionPane.showMessageDialog(InterfaceConnection.this, "Password incorrect", "Erreur d'authentification", JOptionPane.INFORMATION_MESSAGE, null);
+                            setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(InterfaceConnection.this, "Login et password incorect", "Erreur d'authentification", JOptionPane.INFORMATION_MESSAGE, null);
+                            setVisible(true);
+                        }
+                    }
                 }
             });
 
@@ -50,7 +71,7 @@ public class InterfaceConnection  extends JDialog
 
         }
 
-    public InterfaceConnection()
+    /*public InterfaceConnection()
     {
         setContentPane(Main);
         setLocationRelativeTo(null);
@@ -76,7 +97,7 @@ public class InterfaceConnection  extends JDialog
 
 
 
-    }
+    }*/
 
 
 

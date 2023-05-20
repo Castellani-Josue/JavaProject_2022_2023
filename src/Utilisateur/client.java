@@ -83,6 +83,25 @@ public class client extends Personne
 
     }
 
+    public static boolean isValidPassword(String motDePasse)
+    {
+        String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{5,}$";
+        return motDePasse.matches(passwordRegex);
+    }
+
+    public static boolean isValidLogin(String login)
+    {
+
+        return login.length() >= 5;
+    }
+
+    public static boolean isValidTelephone(String telephone)
+    {
+        // Utilisation d'une expression régulière pour vérifier l'encodage du numéro de téléphone
+        String regex = "^\\+32 \\(\\d{3}\\) \\d{3}-\\d{4}$";
+        return telephone.matches(regex);
+    }
+
     public static void main(String[] args)
     {
         ArrayList<ListeFavoris> test1 = new ArrayList<>();

@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InterfaceFilmSerieAnime extends JFrame
+public class InterfaceFilmSerieAnime extends JDialog
 {
     private JTextField idTextField ;
     private String id;
@@ -59,6 +59,7 @@ public class InterfaceFilmSerieAnime extends JFrame
 
         setContentPane(PanelMain);
         setLocationRelativeTo(null);
+        setModal(true);
         pack();
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
