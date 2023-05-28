@@ -58,6 +58,8 @@ public class InterfaceCreate_Account extends JDialog
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             setSize(1200,700);
             setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
+            ImageIcon logoIcon = new ImageIcon("C:\\Users\\josue\\OneDrive\\Documents\\HEPL\\B2\\q2\\Java\\Labo\\netflix.png");
+            setIconImage(logoIcon.getImage());
 
             cli = new client();
             Confirmer = false;

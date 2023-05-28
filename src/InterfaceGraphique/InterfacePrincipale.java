@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
+import javax.swing.ImageIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -44,6 +45,9 @@ public class InterfacePrincipale extends JFrame
         setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
         //PanelTree = new JPanel();
         //ScrollList = new JScrollPane();
+
+        ImageIcon logoIcon = new ImageIcon("C:\\Users\\josue\\OneDrive\\Documents\\HEPL\\B2\\q2\\Java\\Labo\\netflix.png");
+        setIconImage(logoIcon.getImage());
 
         //mainPanel.add(PanelTree);
         //mainPanel.add(ScrollList);

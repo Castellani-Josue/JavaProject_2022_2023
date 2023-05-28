@@ -31,4 +31,20 @@ public class ListeOeuvre
             instance = new ListeOeuvre();
         return instance;
     }
+
+    public void ajouterFilm(Film film) {
+        listeFilm.add(film);
+    }
+
+    public void ajouterSerie(Serie serie) {
+        listeSerie.add(serie);
+    }
+
+    public void ajouterAnime(Anime anime) {
+        listeAnime.add(anime);
+    }
+
+    public void ajouterTrailer(Trailer trailer) {
+        listeTrailer.add(trailer);
+    }
 }

@@ -1,10 +1,14 @@
 package InterfaceGraphique;
 
+import Singleton.ListeOeuvre;
+import TypeOeuvre.Film;
+
 import javax.swing.*;
 import javax.swing.JComboBox;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 public class InterfaceFilmSerieAnime extends JDialog
 {
@@ -66,6 +70,8 @@ public class InterfaceFilmSerieAnime extends JDialog
         setSize(1200, 700);
         setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
 
+        ImageIcon logoIcon = new ImageIcon("C:\\Users\\josue\\OneDrive\\Documents\\HEPL\\B2\\q2\\Java\\Labo\\netflix.png");
+        setIconImage(logoIcon.getImage());
 
         Confirmer = false;
         genre = false;
@@ -123,6 +129,13 @@ public class InterfaceFilmSerieAnime extends JDialog
 
                 if (pegi && isValidId(id) && isValidTitre(titre) && genre && isValidDescription(description) && isValidDuree(duree)) {
                     Confirmer = true;
+                    if (e.getActionCommand().equals("Film")) {
+                        Film film1 = new Film("Titre du film", 120, 123456, LocalDate.of(2022, 3, 15), "Description du film",
+                                "Nom de l'éditeur", "Français", "Espagnol", "Drame", 9);
+
+
+                        ListeOeuvre.getInstance().ajouterFilm(film1);
+                    }
                     setVisible(false);
                 } else
                 {

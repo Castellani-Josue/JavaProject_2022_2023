@@ -34,6 +34,8 @@ public class InterfaceConnection  extends JDialog
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             setSize(1000,700);
             setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
+            ImageIcon logoIcon = new ImageIcon("C:\\Users\\josue\\OneDrive\\Documents\\HEPL\\B2\\q2\\Java\\Labo\\netflix.png");
+            setIconImage(logoIcon.getImage());
 
             Confirmer = false;
             ButtonConfirmer.addActionListener(new ActionListener()

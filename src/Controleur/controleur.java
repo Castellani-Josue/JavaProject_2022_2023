@@ -43,7 +43,7 @@ public class controleur extends Component implements ActionListener, WindowListe
             }
             interfaceConnection.dispose();
         } else if (e.getActionCommand().equals("Créer un compte")) {
-            InterfaceCreate_Account fenetreCreationCompte = new InterfaceCreate_Account(null, true, "Session de connexion");
+            InterfaceCreate_Account fenetreCreationCompte = new InterfaceCreate_Account(null, true, "Session de création");
             fenetreCreationCompte.setVisible(true);
             if (fenetreCreationCompte.isConfirmer()) {
                 System.out.println("Nom = " + fenetreCreationCompte.getNompersonne());
