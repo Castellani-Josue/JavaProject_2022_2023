@@ -63,7 +63,7 @@
           <background color="-13356237"/>
           <foreground color="-4711132"/>
           <hideActionText value="false"/>
-          <text value="Button"/>
+          <text value="Connexion"/>
         </properties>
       </component>
       <vspacer id="525f7">

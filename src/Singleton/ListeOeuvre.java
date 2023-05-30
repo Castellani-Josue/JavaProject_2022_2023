@@ -32,7 +32,9 @@ public class ListeOeuvre
         return instance;
     }
 
-    public void ajouterFilm(Film film) {
+    public void ajouterFilm(Film film)
+    {
+
         listeFilm.add(film);
     }
 

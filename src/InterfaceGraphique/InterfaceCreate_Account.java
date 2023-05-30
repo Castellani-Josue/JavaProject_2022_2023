@@ -1,9 +1,8 @@
 package InterfaceGraphique;
 
 
-import Controleur.controleurCreateAcc;
+import Controleur.controleur;
 import Utilisateur.client;
-import Utilisateur.Personne;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +16,7 @@ public class InterfaceCreate_Account extends JDialog
 
 
     private client cli;
-    private controleurCreateAcc controleurCreateAcc;
+
 
         private String login;
         private String motDePasse;
@@ -63,7 +62,7 @@ public class InterfaceCreate_Account extends JDialog
 
             cli = new client();
             Confirmer = false;
-            ButtonCreate.addActionListener(new ActionListener()
+            /*ButtonCreate.addActionListener(new ActionListener()
             {
                 @Override
                 public void actionPerformed(ActionEvent e)
@@ -106,7 +105,7 @@ public class InterfaceCreate_Account extends JDialog
 
                     }
                 }
-            });
+            });*/
 
 
 
@@ -153,28 +152,28 @@ public class InterfaceCreate_Account extends JDialog
             interfaceCreate_Account.dispose();
         }
 
-        public String getLogin()
+        public JTextField getLogin()
         {
-            return login;
+            return LoginTextfield;
         }
 
-        public String getMotDePasse()
+        public JPasswordField getMotDePasse()
         {
-            return motDePasse;
+            return Mdpfield;
         }
 
-        public String getTelephone()
+        public JTextField getTelephone()
     {
-        return Telephone;
+        return TeltextField;
     }
-         public String getNompersonne()
+         public JTextField getNompersonne()
     {
-        return Nompersonne;
+        return NomTextField;
     }
 
-        public String getPrenomPersonne()
+        public JTextField getPrenomPersonne()
     {
-        return PrenomPersonne;
+        return PrenomTextField;
     }
 
 
@@ -184,19 +183,16 @@ public class InterfaceCreate_Account extends JDialog
         }
 
 
-    public JPasswordField getMdpfield()
-    {
-        return Mdpfield;
-    }
-
-
-    public JTextField getLoginTextfield()
-    {
-        return  LoginTextfield;
-    }
 
     public JButton getButtonCreate() {
         return ButtonCreate;
+    }
+
+    public void setControleur(controleur controleur1)
+    {
+        ButtonCreate.addActionListener(controleur1);
+
+
     }
 }
 

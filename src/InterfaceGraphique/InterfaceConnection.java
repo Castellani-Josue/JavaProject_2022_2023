@@ -1,5 +1,6 @@
 package InterfaceGraphique;
 
+import Controleur.controleur;
 import Utilisateur.client;
 
 import javax.swing.*;
@@ -38,7 +39,7 @@ public class InterfaceConnection  extends JDialog
             setIconImage(logoIcon.getImage());
 
             Confirmer = false;
-            ButtonConfirmer.addActionListener(new ActionListener()
+           /* ButtonConfirmer.addActionListener(new ActionListener()
             {
                 @Override
                 public void actionPerformed(ActionEvent e)
@@ -67,7 +68,7 @@ public class InterfaceConnection  extends JDialog
                         }
                     }
                 }
-            });
+            });*/
 
 
 
@@ -115,20 +116,28 @@ public class InterfaceConnection  extends JDialog
             interfaceConnection.dispose();
         }
 
-        public String getLogin()
+        public JTextField getLogin()
         {
-            return login;
+            return Logintextfield;
         }
 
-        public String getMotDePasse()
+        public JPasswordField getMotDePasse()
         {
-            return motDePasse;
+            return mdpfield;
         }
 
         public boolean isConfirmer()
         {
             return Confirmer;
         }
+
+    public void setControleur(controleur controleur1)
+    {
+        ButtonConfirmer.addActionListener(controleur1);
+
+
+
+    }
 
 
 }
