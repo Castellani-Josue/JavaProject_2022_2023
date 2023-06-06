@@ -15,8 +15,16 @@ public class ListeOeuvre
     private ArrayList<Serie> listeSerie = new ArrayList<Serie>();
     private ArrayList<Anime> listeAnime = new ArrayList<Anime>();
     private ArrayList<Trailer> listeTrailer = new ArrayList<Trailer>();
-    private Administrateur Admin;
-    private client Client;
+
+    private ArrayList<client> listeClient = new ArrayList<client>();
+
+    private ArrayList<Administrateur> listeAdmin = new ArrayList<Administrateur>();
+    private Administrateur AdminCourant;
+    private client ClientCourant;
+
+
+
+
 
     //utilisateur à rajouter
     private static ListeOeuvre instance = null;
@@ -49,4 +57,8 @@ public class ListeOeuvre
     public void ajouterTrailer(Trailer trailer) {
         listeTrailer.add(trailer);
     }
+
+    public void ajouterClient(client client1) {listeClient.add(client1);}
+
+    public void ajouterAdmin( Administrateur administrateur) {listeAdmin.add(administrateur);}
 }
