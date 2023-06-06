@@ -40,6 +40,14 @@ public class ListeOeuvre
         return instance;
     }
 
+    public void AffichageClient()
+    {
+        for (client clienttmp : listeClient)
+        {
+            System.out.println("Nom :" + clienttmp.getNompersonne() + "Prenom : " + clienttmp.getNompersonne() + "LOgin : " + clienttmp.getLogin() + "Mdp :" + clienttmp.getMotDePasse() + "Tel : " + clienttmp.getTelephone() + "Pref : "+ clienttmp.getPreference()+ "Id :" + clienttmp.getIdentifiant());
+        }
+    }
+
     public void ajouterFilm(Film film)
     {
 

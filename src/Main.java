@@ -13,9 +13,9 @@ public class Main
     {
 
         InterfacePrincipale fenetreprincipale= new InterfacePrincipale();
-        InterfaceCreate_Account fenetreCreate = new InterfaceCreate_Account(null, true, "Create Account");
-        InterfaceFilmSerieAnime fenF = new InterfaceFilmSerieAnime(null,true,"Ajout Oeuvre");
-        InterfaceConnection fenC = new InterfaceConnection(null,true,"dc");
+        InterfaceCreate_Account fenetreCreate = new InterfaceCreate_Account(fenetreprincipale, true, "Create Account");
+        InterfaceFilmSerieAnime fenF = new InterfaceFilmSerieAnime(fenetreprincipale,true,"Ajout Oeuvre");
+        InterfaceConnection fenC = new InterfaceConnection(fenetreprincipale,true,"dc");
         controleur controleur1 = new controleur(fenetreprincipale,fenC , fenetreCreate ,fenF);
         fenetreprincipale.setControleur(controleur1);
         fenetreCreate.setControleur(controleur1);

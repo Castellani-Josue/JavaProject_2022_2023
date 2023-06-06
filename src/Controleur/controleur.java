@@ -10,6 +10,8 @@ import Utilisateur.Administrateur;
 import Utilisateur.client;
 
 import javax.swing.*;
+import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowListener;
@@ -19,7 +21,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
-public class controleur extends Component implements ActionListener, WindowListener
+public class controleur extends Component implements ActionListener, WindowListener , ListDataListener
 {
 
     private InterfacePrincipale fenetrePrincipale;
@@ -50,6 +52,12 @@ public class controleur extends Component implements ActionListener, WindowListe
         fenetreCreationCompte = fcr;
 
     }
+    public void contentsChanged(ListDataEvent e)
+    {
+
+    }
+
+
 
     public void actionPerformed(ActionEvent e) {
 
@@ -180,10 +188,11 @@ public class controleur extends Component implements ActionListener, WindowListe
 
         }
         else if (e.getActionCommand().equals("Creer")) {
+            //+32 (123) 456-7890
             System.out.println("création");
             String login = fenetreCreationCompte.getLogin().getText();
             boolean isValidLogin = client.isValidLogin(login);
-            String motDePasse = Arrays.toString(fenetreCreationCompte.getMotDePasse().getPassword());
+            String motDePasse = String.valueOf(fenetreCreationCompte.getMotDePasse().getPassword());
             boolean isValidPassword = client.isValidPassword(motDePasse);
             String Nompersonne = fenetreCreationCompte.getNompersonne().getText();
             String PrenomPersonne = fenetreCreationCompte.getPrenomPersonne().getText();
@@ -201,11 +210,19 @@ public class controleur extends Component implements ActionListener, WindowListe
                     Administrateur AdminTempo = new Administrateur(Nompersonne,PrenomPersonne,login,motDePasse,1);
                     System.out.println(AdminTempo.toString());
                     ListeOeuvre.getInstance().ajouterAdmin(AdminTempo);
+                    fenetreCreationCompte.setVisible(false);
 
                 }
-                client clienttempo = new client(Nompersonne,PrenomPersonne,login,motDePasse,Telephone,null,null,0);
-                System.out.println((clienttempo.toString()));
-                ListeOeuvre.getInstance().ajouterClient(clienttempo);
+                else
+                {
+                    client clienttempo = new client(Nompersonne,PrenomPersonne,login,motDePasse,Telephone,null,null,6);
+                    System.out.println((clienttempo.toString()));
+                    ListeOeuvre.getInstance().ajouterClient(clienttempo);
+                    ListeOeuvre.getInstance().AffichageClient();
+                    fenetreCreationCompte.setVisible(false);
+
+                }
+
             } else {
                 //System.out.println("Erreur(s) d'encodation");
                 if (!isValidLogin && isValidPassword) {
@@ -260,6 +277,11 @@ public class controleur extends Component implements ActionListener, WindowListe
     public void windowDeiconified(WindowEvent we) {}
     public void windowActivated(WindowEvent we) {}
     public void windowDeactivated(WindowEvent we) {}
+
+    public void intervalAdded(ListDataEvent e) {}
+
+    @Override
+    public void intervalRemoved(ListDataEvent e) {}
 
 
 
