@@ -23,6 +23,14 @@ public class controleur extends Component implements ActionListener, WindowListe
 
     private InterfacePrincipale fenetrePrincipale;
 
+    private InterfaceConnection fenetreConnexion;
+
+    private  InterfaceCreate_Account fenetreCreationCompte;
+
+    private InterfaceFilmSerieAnime fenetreFilm;
+
+
+
     private  String Genre;
     private  int Pegi;
 
@@ -31,54 +39,65 @@ public class controleur extends Component implements ActionListener, WindowListe
 
     private client cli;
 
-    public controleur(InterfacePrincipale fp,client cl)
+    public controleur(InterfacePrincipale fp,InterfaceConnection fc ,InterfaceCreate_Account fcr ,  InterfaceFilmSerieAnime fA )
     {
         /*this.fenetrePrincipale = fenetrePrincipale;
         this.fenetrePrincipale.setControleur(this);*/
         fenetrePrincipale = fp;
-        cli = cl;
+        fenetreFilm = fA;
+        fenetreConnexion = fc;
+        fenetreCreationCompte = fcr;
 
+        //initializeListeners();
+
+
+    }
+
+    private void initializeListeners() {
+       // fenetrePrincipale.getSeConnecterButton().addActionListener(this);
+        //fenetrePrincipale.getCreerCompteButton().addActionListener(this);
     }
 
 
 
     public void actionPerformed(ActionEvent e) {
 
-
+        System.out.println("Hello");
+        Confirmer = false;
         if (e.getActionCommand().equals("Se connecter")) {
-            InterfaceConnection interfaceConnection = new InterfaceConnection(null, true, "Entrée en session...");
-            interfaceConnection.setVisible(true);
-            if (e.getActionCommand().equals("Connexion")) {
-                String login = interfaceConnection.getLogin().getText();
+            //fenetreConnexion = new InterfaceConnection(null, true, "Entrée en session...");
+            fenetreConnexion.setVisible(true);
+            /*if (e.getActionCommand().equals("Connexion")) {
+                String login = fenetreConnexion.getLogin().getText();
                 boolean isValidLogin = client.isValidLogin(login);
-                String motDePasse = Arrays.toString(interfaceConnection.getMotDePasse().getPassword());
+                String motDePasse = Arrays.toString(fenetreConnexion.getMotDePasse().getPassword());
                 boolean isValidPassword = client.isValidPassword(motDePasse);
-                interfaceConnection.setVisible(false);
+                fenetreConnexion.setVisible(false);
 
                 if (isValidLogin && isValidPassword) {
 
-                    interfaceConnection.setVisible(false);
+                    fenetreConnexion.setVisible(false);
                 } else {
                     //System.out.println("Erreur(s) d'encodation");
                     if (!isValidLogin && isValidPassword) {
-                        JOptionPane.showMessageDialog(interfaceConnection, "login incorrect", "Erreur d'authentification", JOptionPane.INFORMATION_MESSAGE, null);
-                        interfaceConnection.setVisible(true);
+                        JOptionPane.showMessageDialog(fenetreConnexion, "login incorrect", "Erreur d'authentification", JOptionPane.INFORMATION_MESSAGE, null);
+                        fenetreConnexion.setVisible(true);
                     } else if (!isValidPassword && isValidLogin) {
-                        JOptionPane.showMessageDialog(interfaceConnection, "Password incorrect", "Erreur d'authentification", JOptionPane.INFORMATION_MESSAGE, null);
-                        interfaceConnection.setVisible(true);
+                        JOptionPane.showMessageDialog(fenetreConnexion, "Password incorrect", "Erreur d'authentification", JOptionPane.INFORMATION_MESSAGE, null);
+                        fenetreConnexion.setVisible(true);
                     } else {
-                        JOptionPane.showMessageDialog(interfaceConnection, "Login et password incorect", "Erreur d'authentification", JOptionPane.INFORMATION_MESSAGE, null);
-                        interfaceConnection.setVisible(true);
+                        JOptionPane.showMessageDialog(fenetreConnexion, "Login et password incorect", "Erreur d'authentification", JOptionPane.INFORMATION_MESSAGE, null);
+                        fenetreConnexion.setVisible(true);
                     }
                 }
                 //setInteractionsEnabled(true);
-            }
-            interfaceConnection.dispose();
+            }*/
+            fenetreConnexion.dispose();
         } else if (e.getActionCommand().equals("Créer un compte")) {
-            InterfaceCreate_Account fenetreCreationCompte = new InterfaceCreate_Account(null, true, "Session de création");
+            //fenetreCreationCompte = new InterfaceCreate_Account(null, true, "Session de création");
             fenetreCreationCompte.setVisible(true);
-            Confirmer = false;
-            if (e.getSource().equals("Créer")) {
+            //Confirmer = false;
+            /*if (e.getSource().equals("Créer")) {
                 String login = fenetreCreationCompte.getLogin().getText();
                 boolean isValidLogin = client.isValidLogin(login);
                 String motDePasse = Arrays.toString(fenetreCreationCompte.getMotDePasse().getPassword());
@@ -113,131 +132,141 @@ public class controleur extends Component implements ActionListener, WindowListe
                 }
                 fenetreCreationCompte.dispose();
 
+            }*/
+            fenetreCreationCompte.dispose();
+
 
             } else if (e.getActionCommand().equals("Film")) {
-                InterfaceFilmSerieAnime fenetreFilm = new InterfaceFilmSerieAnime(null, true, "Ajout d'1 film");
-                fenetreFilm.setVisible(true);
+            fenetreFilm.setTitle("Film");
+
+            fenetreFilm.setVisible(true);
+            System.out.println("Bonjour");
+
+
+           /* if (e.getSource().equals("Confirmer")) {
                 Pegi = 0;
                 Genre = String.valueOf(false);
+                String id = fenetreFilm.getId().getText();
+                int id2 = Integer.parseInt(id);
+                String Titre = fenetreFilm.getTitre().getText();
+                String description = fenetreFilm.getDescription().getText();
+                String Duree = fenetreFilm.getDuree().getText();
+                int duree = Integer.parseInt(Duree);
+                String editeur = fenetreFilm.getEditeur().getText();
+                String audio = fenetreFilm.getAudio().getText();
+                String Soustitre = fenetreFilm.getSoustitre().getText();
+                String dateSaisie = fenetreFilm.getDate().getText();
+                LocalDate date = LocalDate.parse(dateSaisie, DateTimeFormatter.ISO_LOCAL_DATE);
 
-                if (e.getSource().equals("Confirmer")) {
-                    String id = fenetreFilm.getId().getText();
-                    int id2 = Integer.parseInt(id);
-                    String Titre = fenetreFilm.getTitre().getText();
-                    String description = fenetreFilm.getDescription().getText();
-                    String Duree = fenetreFilm.getDuree().getText();
-                    int duree = Integer.parseInt(Duree);
-                    String editeur = fenetreFilm.getEditeur().getText();
-                    String audio = fenetreFilm.getAudio().getText();
-                    String Soustitre = fenetreFilm.getSoustitre().getText();
-                    String dateSaisie = fenetreFilm.getDate().getText();
-                    LocalDate date = LocalDate.parse(dateSaisie, DateTimeFormatter.ISO_LOCAL_DATE);
-
-                    if (fenetreFilm.getPegi10Button().isSelected()) {
+                if (fenetreFilm.getPegi10Button().isSelected()) {
 
 
-                        Pegi = 1;
-                    } else if (fenetreFilm.getPegi12Button().isSelected()) {
+                    Pegi = 1;
+                } else if (fenetreFilm.getPegi12Button().isSelected()) {
 
 
-                        Pegi = 1;
-                    } else if (fenetreFilm.getPegi16Button().isSelected()) {
+                    Pegi = 1;
+                } else if (fenetreFilm.getPegi16Button().isSelected()) {
 
 
-                        Pegi = 1;
-                    } else if (fenetreFilm.getPegi18Button().isSelected()) {
+                    Pegi = 1;
+                } else if (fenetreFilm.getPegi18Button().isSelected()) {
 
 
-                        Pegi = 1;
-                    } else {
+                    Pegi = 1;
+                } else {
 
 
-                        Pegi = 0;
-
-                    }
-
-                    if (fenetreFilm.getGenreComédie().isSelected()) {
-                        Genre = String.valueOf(true);
-                    } else if (fenetreFilm.getGenreAction().isSelected()) {
-                        Genre = String.valueOf(true);
-                    } else if (fenetreFilm.getGenreHorreur().isSelected()) {
-                        Genre = String.valueOf(true);
-                    } else if (fenetreFilm.getGenreThriller().isSelected()) {
-                        Genre = String.valueOf(true);
-                    } else {
-                        Genre = String.valueOf(false);
-                    }
+                    Pegi = 0;
 
                 }
+
+                if (fenetreFilm.getGenreComedie().isSelected()) {
+                    Genre = String.valueOf(true);
+                } else if (fenetreFilm.getGenreAction().isSelected()) {
+                    Genre = String.valueOf(true);
+                } else if (fenetreFilm.getGenreHorreur().isSelected()) {
+                    Genre = String.valueOf(true);
+                } else if (fenetreFilm.getGenreThriller().isSelected()) {
+                    Genre = String.valueOf(true);
+                } else {
+                    Genre = String.valueOf(false);
+                }
+
+            }*/
 
                 /*Film film = new Film(fenetreFilm.getTitre(),fenetreFilm.getDuree(),fenetreFilm.getId(), fenetreFilm.getDate(),fenetreFilm.getDescription(),fenetreFilm.getEditeur(),fenetreFilm.getAudio(), fenetreFilm.getSoustitre(),fenetreFilm.getGenre(),fenetreFilm.getPegi());
                 ListeOeuvre.getInstance().ajouterFilm(film);*/
 
-                fenetreFilm.setVisible(false);
-                fenetreFilm.dispose();
+            //fenetreFilm.setVisible(false);
+            fenetreFilm.dispose();
+
+
 
             } else if (e.getActionCommand().equals("Anime")) {
-                InterfaceFilmSerieAnime fenetreAnime = new InterfaceFilmSerieAnime(null, true, "Ajout d'1 Anime");
-                fenetreAnime.setVisible(true);
+            fenetreFilm.setTitle("Anime");
+            fenetreFilm.setVisible(true);
 
-                Pegi = 0;
-                Genre = String.valueOf(false);
+           /* Pegi = 0;
+            Genre = String.valueOf(false);
 
-                if (e.getSource().equals("Confirmer")) {
-                    String id = fenetreAnime.getId().getText();
-                    int id2 = Integer.parseInt(id);
-                    String Titre = fenetreAnime.getTitre().getText();
-                    String description = fenetreAnime.getDescription().getText();
-                    String Duree = fenetreAnime.getDuree().getText();
-                    int duree = Integer.parseInt(Duree);
-                    String editeur = fenetreAnime.getEditeur().getText();
-                    String audio = fenetreAnime.getAudio().getText();
-                    String Soustitre = fenetreAnime.getSoustitre().getText();
-                    String dateSaisie = fenetreAnime.getDate().getText();
-                    LocalDate date = LocalDate.parse(dateSaisie, DateTimeFormatter.ISO_LOCAL_DATE);
+            if (e.getSource().equals("Confirmer")) {
+                String id = fenetreAnime.getId().getText();
+                int id2 = Integer.parseInt(id);
+                String Titre = fenetreAnime.getTitre().getText();
+                String description = fenetreAnime.getDescription().getText();
+                String Duree = fenetreAnime.getDuree().getText();
+                int duree = Integer.parseInt(Duree);
+                String editeur = fenetreAnime.getEditeur().getText();
+                String audio = fenetreAnime.getAudio().getText();
+                String Soustitre = fenetreAnime.getSoustitre().getText();
+                String dateSaisie = fenetreAnime.getDate().getText();
+                LocalDate date = LocalDate.parse(dateSaisie, DateTimeFormatter.ISO_LOCAL_DATE);
 
-                    if (fenetreAnime.getPegi10Button().isSelected()) {
-
-
-                        Pegi = 1;
-                    } else if (fenetreAnime.getPegi12Button().isSelected()) {
+                if (fenetreAnime.getPegi10Button().isSelected()) {
 
 
-                        Pegi = 1;
-                    } else if (fenetreAnime.getPegi16Button().isSelected()) {
+                    Pegi = 1;
+                } else if (fenetreAnime.getPegi12Button().isSelected()) {
 
 
-                        Pegi = 1;
-                    } else if (fenetreAnime.getPegi18Button().isSelected()) {
+                    Pegi = 1;
+                } else if (fenetreAnime.getPegi16Button().isSelected()) {
 
 
-                        Pegi = 1;
-                    } else {
+                    Pegi = 1;
+                } else if (fenetreAnime.getPegi18Button().isSelected()) {
 
 
-                        Pegi = 0;
+                    Pegi = 1;
+                } else {
 
-                    }
 
-                    if (fenetreAnime.getGenreComédie().isSelected()) {
-                        Genre = String.valueOf(true);
-                    } else if (fenetreAnime.getGenreAction().isSelected()) {
-                        Genre = String.valueOf(true);
-                    } else if (fenetreAnime.getGenreHorreur().isSelected()) {
-                        Genre = String.valueOf(true);
-                    } else if (fenetreAnime.getGenreThriller().isSelected()) {
-                        Genre = String.valueOf(true);
-                    } else {
-                        Genre = String.valueOf(false);
-                    }
+                    Pegi = 0;
 
                 }
-                fenetreAnime.dispose();
-            } else if (e.getActionCommand().equals("Série")) {
-                InterfaceFilmSerieAnime fenetreSerie = new InterfaceFilmSerieAnime(null, true, "Ajout d'1 Série");
-                fenetreSerie.setVisible(true);
 
-                Pegi = 0;
+                if (fenetreAnime.getGenreComedie().isSelected()) {
+                    Genre = String.valueOf(true);
+                } else if (fenetreAnime.getGenreAction().isSelected()) {
+                    Genre = String.valueOf(true);
+                } else if (fenetreAnime.getGenreHorreur().isSelected()) {
+                    Genre = String.valueOf(true);
+                } else if (fenetreAnime.getGenreThriller().isSelected()) {
+                    Genre = String.valueOf(true);
+                } else {
+                    Genre = String.valueOf(false);
+                }
+
+            }*/
+            fenetreFilm.dispose();
+
+
+            } else if (e.getActionCommand().equals("Série")) {
+                fenetreFilm.setTitle("Serie");
+                fenetreFilm.setVisible(true);
+
+                /*Pegi = 0;
                 Genre = String.valueOf(false);
 
                 if (e.getSource().equals("Confirmer")) {
@@ -276,7 +305,7 @@ public class controleur extends Component implements ActionListener, WindowListe
 
                     }
 
-                    if (fenetreSerie.getGenreComédie().isSelected()) {
+                    if (fenetreSerie.getGenreComedie().isSelected()) {
                         Genre = String.valueOf(true);
                     } else if (fenetreSerie.getGenreAction().isSelected()) {
                         Genre = String.valueOf(true);
@@ -288,12 +317,12 @@ public class controleur extends Component implements ActionListener, WindowListe
                         Genre = String.valueOf(false);
                     }
 
-                }
-                fenetreSerie.dispose();
+                }*/
+                fenetreFilm.dispose();
             } else if (e.getActionCommand().equals("Trailer")) {
-                InterfaceFilmSerieAnime fenetreTrailer = new InterfaceFilmSerieAnime(null, true, "Ajout d'1 Trailer");
-                fenetreTrailer.setVisible(true);
-                Pegi = 0;
+                fenetreFilm.setTitle("Trailer");
+                fenetreFilm.setVisible(true);
+                /*Pegi = 0;
                 Genre = String.valueOf(false);
 
                 if (e.getSource().equals("Confirmer")) {
@@ -332,7 +361,7 @@ public class controleur extends Component implements ActionListener, WindowListe
 
                     }
 
-                    if (fenetreTrailer.getGenreComédie().isSelected()) {
+                    if (fenetreTrailer.getGenreComedie().isSelected()) {
                         Genre = String.valueOf(true);
                     } else if (fenetreTrailer.getGenreAction().isSelected()) {
                         Genre = String.valueOf(true);
@@ -344,16 +373,135 @@ public class controleur extends Component implements ActionListener, WindowListe
                         Genre = String.valueOf(false);
                     }
 
-                }
-                fenetreTrailer.dispose();
+                }*/
+                fenetreFilm.dispose();
             } else if (e.getActionCommand().equals("Reset mot de passe")) {
-                cli.ResetMotDePasse();
+                //ResetMotDePasse();
                 JOptionPane.showMessageDialog(this, "Mot de passe a été reset", "ResetMotDePasse", JOptionPane.INFORMATION_MESSAGE, null);
             }
+            else if (e.getActionCommand().equals("CONFIRMER")) {
+                System.out.println("Bonsoir");
+            Pegi = 0;
+            Genre = String.valueOf(false);
+            String id = fenetreFilm.getId().getText();
+            int id2 = Integer.parseInt(id);
+            String Titre = fenetreFilm.getTitre().getText();
+            String description = fenetreFilm.getDescription().getText();
+            String Duree = fenetreFilm.getDuree().getText();
+            int duree = Integer.parseInt(Duree);
+            String editeur = fenetreFilm.getEditeur().getText();
+            String audio = fenetreFilm.getAudio().getText();
+            String Soustitre = fenetreFilm.getSoustitre().getText();
+            String dateSaisie = fenetreFilm.getDate().getText();
+            LocalDate date = LocalDate.parse(dateSaisie, DateTimeFormatter.ISO_LOCAL_DATE);
+
+            if (fenetreFilm.getPegi10Button().isSelected()) {
+
+
+                Pegi = 1;
+            } else if (fenetreFilm.getPegi12Button().isSelected()) {
+
+
+                Pegi = 1;
+            } else if (fenetreFilm.getPegi16Button().isSelected()) {
+
+
+                Pegi = 1;
+            } else if (fenetreFilm.getPegi18Button().isSelected()) {
+
+
+                Pegi = 1;
+            } else {
+
+
+                Pegi = 0;
+
+            }
+
+            if (fenetreFilm.getGenreComedie().isSelected()) {
+                Genre = String.valueOf(true);
+            } else if (fenetreFilm.getGenreAction().isSelected()) {
+                Genre = String.valueOf(true);
+            } else if (fenetreFilm.getGenreHorreur().isSelected()) {
+                Genre = String.valueOf(true);
+            } else if (fenetreFilm.getGenreThriller().isSelected()) {
+                Genre = String.valueOf(true);
+            } else {
+                Genre = String.valueOf(false);
+            }
+
+            if(fenetreFilm.getTitle().equals("Film"))
+            {
+
+            }
+            //fenetreFilm.dispose();
+
+        }
+        else if (e.getActionCommand().equals("Creer")) {
+            System.out.println("création");
+            String login = fenetreCreationCompte.getLogin().getText();
+            boolean isValidLogin = client.isValidLogin(login);
+            String motDePasse = Arrays.toString(fenetreCreationCompte.getMotDePasse().getPassword());
+            boolean isValidPassword = client.isValidPassword(motDePasse);
+            String Nompersonne = fenetreCreationCompte.getNompersonne().getText();
+            String PrenomPersonne = fenetreCreationCompte.getPrenomPersonne().getText();
+            String Telephone = fenetreCreationCompte.getTelephone().getText();
+            boolean isValidTelephone = client.isValidTelephone(Telephone);
+            Confirmer = true;
+            fenetreCreationCompte.setVisible(false);
+
+
+            if (isValidLogin && isValidPassword && isValidTelephone) {
+
+                Confirmer = true;
+                fenetreCreationCompte.setVisible(false);
+            } else {
+                //System.out.println("Erreur(s) d'encodation");
+                if (!isValidLogin && isValidPassword) {
+                    JOptionPane.showMessageDialog(fenetreCreationCompte, "login incorrect", "Erreur(s) d'encodation", JOptionPane.INFORMATION_MESSAGE, null);
+                    fenetreCreationCompte.setVisible(true);
+                } else if (!isValidPassword && isValidLogin) {
+                    JOptionPane.showMessageDialog(fenetreCreationCompte, "Password incorrect", "Erreur(s) d'encodation", JOptionPane.INFORMATION_MESSAGE, null);
+                    fenetreCreationCompte.setVisible(true);
+                } else if (!isValidTelephone) {
+                    JOptionPane.showMessageDialog(fenetreCreationCompte, "N° telephone incorrect", "Erreur(s) d'encodation", JOptionPane.INFORMATION_MESSAGE, null);
+                } else {
+                    JOptionPane.showMessageDialog(fenetreCreationCompte, "Login et password incorect", "Erreur(s) d'encodation", JOptionPane.INFORMATION_MESSAGE, null);
+                    fenetreCreationCompte.setVisible(true);
+                }
+
+            }
+        }
+        else if (e.getActionCommand().equals("Connexion")) {
+            System.out.println("connexion");
+            String login = fenetreConnexion.getLogin().getText();
+            boolean isValidLogin = client.isValidLogin(login);
+            String motDePasse = Arrays.toString(fenetreConnexion.getMotDePasse().getPassword());
+            boolean isValidPassword = client.isValidPassword(motDePasse);
+
+
+            if (isValidLogin && isValidPassword) {
+
+                fenetreConnexion.setVisible(false);
+            } else {
+                //System.out.println("Erreur(s) d'encodation");
+                if (!isValidLogin && isValidPassword) {
+                    JOptionPane.showMessageDialog(fenetreConnexion, "login incorrect", "Erreur d'authentification", JOptionPane.INFORMATION_MESSAGE, null);
+                    fenetreConnexion.setVisible(true);
+                } else if (!isValidPassword && isValidLogin) {
+                    JOptionPane.showMessageDialog(fenetreConnexion, "Password incorrect", "Erreur d'authentification", JOptionPane.INFORMATION_MESSAGE, null);
+                    fenetreConnexion.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(fenetreConnexion, "Login et password incorect", "Erreur d'authentification", JOptionPane.INFORMATION_MESSAGE, null);
+                    fenetreConnexion.setVisible(true);
+                }
+            }
+            //setInteractionsEnabled(true);
+        }
 
         }
 
-    }
+
 
 
 

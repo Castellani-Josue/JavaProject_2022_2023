@@ -83,9 +83,9 @@ public class InterfaceFilmSerieAnime extends JDialog
         ImageIcon logoIcon = new ImageIcon("C:\\Users\\josue\\OneDrive\\Documents\\HEPL\\B2\\q2\\Java\\Labo\\netflix.png");
         setIconImage(logoIcon.getImage());
 
-        Confirmer = false;
-        genre = false;
-        Pegi = 0;
+        //Confirmer = false;
+        //genre = false;
+        //Pegi = 0;
         /*ButtonConfrimer.addActionListener(new ActionListener()
         {
             @Override
@@ -239,7 +239,7 @@ public class InterfaceFilmSerieAnime extends JDialog
         return Date_SortieTextField;
     }
 
-    public JRadioButton getGenreComédie(){return GenreComédie;}
+    public JRadioButton getGenreComedie(){return GenreComédie;}
     public JRadioButton getGenreHorreur(){return GenreHorreur;}
     public JRadioButton getGenreThriller(){return GenreThriller;}
     public JRadioButton getGenreAction(){return GenreAction;}
@@ -269,6 +269,7 @@ public class InterfaceFilmSerieAnime extends JDialog
     public void setControleur(controleur controleur1)
     {
         ButtonConfrimer.addActionListener(controleur1);
+        this.addWindowListener(controleur1);
 
 
     }
