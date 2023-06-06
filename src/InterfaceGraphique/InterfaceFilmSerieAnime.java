@@ -35,12 +35,12 @@ public class InterfaceFilmSerieAnime extends JDialog
 
 
 
-    private JRadioButton Pegi10Button;
+    private JRadioButton Pegi6Button;
     private boolean pegi;
     private  int Pegi;
     private JRadioButton Pegi12Button;
+    private JRadioButton Pegi14Button;
     private JRadioButton Pegi16Button;
-    private JRadioButton Pegi18Button;
     private JRadioButton GenreSCIENCEFICTION;
     private JRadioButton GenreDrame;
     private JRadioButton GenreHorreur;
@@ -60,6 +60,7 @@ public class InterfaceFilmSerieAnime extends JDialog
 
     private JTextField AudioTextField;
     private JRadioButton GenreAventure;
+    private JRadioButton Pegi18Button;
 
 
     public InterfaceFilmSerieAnime(JFrame parent, boolean modal,String titre)
@@ -111,8 +112,8 @@ public class InterfaceFilmSerieAnime extends JDialog
         return idTextField;
     }
 
-   public JRadioButton getPegi10Button() {
-        return Pegi10Button;
+   public JRadioButton getPegi6Button() {
+        return Pegi6Button;
     }
 
     public JRadioButton getPegi12Button() {
@@ -120,12 +121,14 @@ public class InterfaceFilmSerieAnime extends JDialog
     }
 
     public JRadioButton getPegi16Button() {
-        return Pegi16Button;
+        return Pegi14Button;
     }
 
     public JRadioButton getPegi18Button() {
-        return Pegi18Button;
+        return Pegi16Button;
     }
+
+    public  JRadioButton getPegi14Button(){return Pegi14Button;}
 
        public JTextField getTitre() {
         return TitreTextField;

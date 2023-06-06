@@ -124,14 +124,17 @@ public class controleur extends Component implements ActionListener, WindowListe
             String dateSaisie = fenetreFilm.getDate().getText();
             LocalDate date = LocalDate.parse(dateSaisie, DateTimeFormatter.ISO_LOCAL_DATE);
 
-            if (fenetreFilm.getPegi10Button().isSelected()) {
+            if (fenetreFilm.getPegi6Button().isSelected()) {
 
 
-                Pegi = 14;
+                Pegi = 6;
             } else if (fenetreFilm.getPegi12Button().isSelected()) {
 
 
                 Pegi = 12;
+            } else if (fenetreFilm.getPegi14Button().isSelected()) {
+
+                Pegi = 14;
             } else if (fenetreFilm.getPegi16Button().isSelected()) {
 
 
