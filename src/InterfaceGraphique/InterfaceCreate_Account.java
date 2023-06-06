@@ -6,8 +6,6 @@ import Utilisateur.client;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 
 public class InterfaceCreate_Account extends JDialog
@@ -43,6 +41,14 @@ public class InterfaceCreate_Account extends JDialog
     private JLabel TelLabel;
     private JTextField TeltextField;
     private JLabel LogoLabel;
+    private JTextField idtextfield;
+    private JLabel IdLabel;
+    private JRadioButton GenreSCIENCEFICTION;
+    private JRadioButton GenreDrame;
+    private JRadioButton GenreAction;
+    private JRadioButton GenreHorreur;
+    private JRadioButton GenreAventure;
+    private JLabel Preferencelabel;
 
 
     public InterfaceCreate_Account(JFrame parent, boolean modal,String titre)
@@ -111,31 +117,6 @@ public class InterfaceCreate_Account extends JDialog
 
         }
 
-    /*public InterfaceCreate_Account()
-    {
-        setContentPane(Main);
-        setLocationRelativeTo(null);
-        setModal(true);
-        Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(1200,700);
-        setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
-
-        Confirmer = false;
-        ButtonCreate.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                login = LoginTextfield.getText();
-                motDePasse = new String(Mdpfield.getPassword());
-                Confirmer = true;
-                setVisible(false);
-            }
-        });
-
-
-    }*/
 
 
 
@@ -175,6 +156,13 @@ public class InterfaceCreate_Account extends JDialog
     {
         return PrenomTextField;
     }
+
+    public JRadioButton getGenreSF(){return GenreSCIENCEFICTION;}
+    public JRadioButton getGenreHorreur(){return GenreHorreur;}
+    public JRadioButton getGenreDrame(){return GenreDrame;}
+    public JRadioButton getGenreAction(){return GenreAction;}
+
+    public JRadioButton getGenreAventure(){return GenreAventure;}
 
 
         public boolean isConfirmer()

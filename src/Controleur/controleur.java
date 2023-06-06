@@ -35,6 +35,10 @@ public class controleur extends Component implements ActionListener, WindowListe
     private  ListeOeuvre InstanceCourante;
 
     private  String Genre;
+
+    private String Preference;
+
+
     private  int Pegi;
 
     private  boolean Confirmer;
@@ -143,15 +147,18 @@ public class controleur extends Component implements ActionListener, WindowListe
 
             }
 
-            if (fenetreFilm.getGenreComedie().isSelected()) {
-                Genre = "Drame";
+            if (fenetreFilm.getGenreSF().isSelected()) {
+                Genre = "Science Fiction";
 
             } else if (fenetreFilm.getGenreAction().isSelected()) {
                 Genre = "Action";
-            } else if (fenetreFilm.getGenreHorreur().isSelected()) {
-                Genre = "Horreur";
-            } else if (fenetreFilm.getGenreThriller().isSelected()) {
+            } else if (fenetreFilm.getGenreAventure().isSelected()) {
                 Genre = "Aventure";
+            }
+            else if (fenetreFilm.getGenreHorreur().isSelected()) {
+                Genre = "Horreur";
+            } else if (fenetreFilm.getGenreDrame().isSelected()) {
+                Genre = "Drame";
             } else {
                 Genre = String.valueOf(false);
             }
@@ -200,7 +207,19 @@ public class controleur extends Component implements ActionListener, WindowListe
             boolean isValidTelephone = client.isValidTelephone(Telephone);
 
 
+            if (fenetreCreationCompte.getGenreSF().isSelected()) {
+                Preference = "Science Fiction";
 
+            } else if (fenetreCreationCompte.getGenreAction().isSelected()) {
+                Preference = "Action";
+            } else if (fenetreCreationCompte.getGenreAventure().isSelected()) {
+                Preference = "Aventure";
+            }
+            else if (fenetreCreationCompte.getGenreHorreur().isSelected()) {
+                Preference = "Horreur";
+            } else if (fenetreCreationCompte.getGenreDrame().isSelected()) {
+                Preference = "Drame";
+            }
 
             if (isValidLogin && isValidPassword && isValidTelephone) {
 
@@ -215,7 +234,7 @@ public class controleur extends Component implements ActionListener, WindowListe
                 }
                 else
                 {
-                    client clienttempo = new client(Nompersonne,PrenomPersonne,login,motDePasse,Telephone,null,null,6);
+                    client clienttempo = new client(Nompersonne,PrenomPersonne,login,motDePasse,Telephone,Preference,null,6);
                     System.out.println((clienttempo.toString()));
                     ListeOeuvre.getInstance().ajouterClient(clienttempo);
                     ListeOeuvre.getInstance().AffichageClient();

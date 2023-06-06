@@ -1,15 +1,9 @@
 package InterfaceGraphique;
 
 import Controleur.controleur;
-import Singleton.ListeOeuvre;
-import TypeOeuvre.Film;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class InterfaceFilmSerieAnime extends JDialog
 {
@@ -47,10 +41,11 @@ public class InterfaceFilmSerieAnime extends JDialog
     private JRadioButton Pegi12Button;
     private JRadioButton Pegi16Button;
     private JRadioButton Pegi18Button;
-    private JRadioButton GenreComédie;
-    private JRadioButton GenreThriller;
+    private JRadioButton GenreSCIENCEFICTION;
+    private JRadioButton GenreDrame;
     private JRadioButton GenreHorreur;
     private JRadioButton GenreAction;
+
 
     private boolean genre;
     private  String Genre;
@@ -64,6 +59,7 @@ public class InterfaceFilmSerieAnime extends JDialog
     private JTextField SousTitreTextField;
 
     private JTextField AudioTextField;
+    private JRadioButton GenreAventure;
 
 
     public InterfaceFilmSerieAnime(JFrame parent, boolean modal,String titre)
@@ -154,10 +150,12 @@ public class InterfaceFilmSerieAnime extends JDialog
         return Date_SortieTextField;
     }
 
-    public JRadioButton getGenreComedie(){return GenreComédie;}
+    public JRadioButton getGenreSF(){return GenreSCIENCEFICTION;}
     public JRadioButton getGenreHorreur(){return GenreHorreur;}
-    public JRadioButton getGenreThriller(){return GenreThriller;}
+    public JRadioButton getGenreDrame(){return GenreDrame;}
     public JRadioButton getGenreAction(){return GenreAction;}
+
+    public JRadioButton getGenreAventure(){return GenreAventure;}
 
 
    public JTextField getAudio() {
