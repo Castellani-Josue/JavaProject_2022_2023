@@ -81,7 +81,7 @@ public class Trailer extends Oeuvre
 
     @Override
     public String toString() {
-        return "Trailer{" +
+        /*return "Trailer{" +
                 "classificationTrailer=" + getClassificationTrailer() +
                 ", categorieTrailer=" + getCategorieTrailer() +
                 ", nom='" + nom + '\'' +
@@ -92,7 +92,8 @@ public class Trailer extends Oeuvre
                 ", audio=" + audio +
                 ", sousTitre=" + sousTitre +
                 ", editeur='" + editeur + '\'' +
-                '}';
+                '}';*/
+        return nom;
     }
 
     public static void main(String[] args)

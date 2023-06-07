@@ -97,7 +97,7 @@ public class Anime extends Oeuvre implements AUneCotation
 
     @Override
     public String toString() {
-        return "Anime{" +
+        /*return "Anime{" +
                 "coteAnime=" + coteAnime +
                 ", classificationAnime=" + getClassificationAnime() +
                 ", categorieAnime=" + getCategorieAnime() +
@@ -109,7 +109,8 @@ public class Anime extends Oeuvre implements AUneCotation
                 ", audio=" + audio +
                 ", sousTitre=" + sousTitre +
                 ", editeur='" + editeur + '\'' +
-                '}';
+                '}';*/
+        return nom;
     }
 
     public static void main(String[] args)

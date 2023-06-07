@@ -19,8 +19,8 @@ public class ListeOeuvre
     private ArrayList<client> listeClient = new ArrayList<client>();
 
     private ArrayList<Administrateur> listeAdmin = new ArrayList<Administrateur>();
-    private Administrateur AdminCourant;
-    private client ClientCourant;
+    private Administrateur AdminCourant = null;
+    private client ClientCourant = null;
 
 
 
@@ -40,12 +40,112 @@ public class ListeOeuvre
         return instance;
     }
 
+    public ArrayList<client> getInstanceClient()
+    {
+        return listeClient;
+    }
+
+    public client getClientCourant()
+    {
+        return ClientCourant;
+    }
+
+    public Administrateur getAdminCourant()
+    {
+        return AdminCourant;
+    }
+
+
+    public  client rechercherLoginClient(ArrayList<client> listeClient,String loginRecherche)
+    {
+        for(client clientrch : listeClient)
+        {
+            if(clientrch.getLogin().equals(loginRecherche))
+            {
+                return clientrch;
+            }
+        }
+
+        return null;
+    }
+
+    public  client rechercherMdpClient(ArrayList<client> listeClient,String mdpRecherche)
+    {
+        for(client clientrch : listeClient)
+        {
+            if(clientrch.getMotDePasse().equals(mdpRecherche))
+            {
+                return clientrch;
+            }
+        }
+
+        return null;
+    }
+
+    public  Administrateur rechercherMdpAdmin(ArrayList<Administrateur> listeAdmin,String mdpRecherche)
+    {
+        for(Administrateur AdminRch : listeAdmin)
+        {
+            if(AdminRch.getMotDePasse().equals(mdpRecherche))
+            {
+                return AdminRch;
+            }
+        }
+
+        return null;
+    }
+
+    public  Administrateur rechercherLoginAdmin(ArrayList<Administrateur> listeAdmin,String LoginRecherche)
+    {
+        for(Administrateur AdminRch : listeAdmin)
+        {
+            if(AdminRch.getLogin().equals(LoginRecherche))
+            {
+                return AdminRch;
+            }
+        }
+
+        return null;
+    }
+
+    public ArrayList<Administrateur> getInstanceAdmin()
+    {
+        return listeAdmin;
+    }
+
+
+    public ArrayList<Film> getInstanceFilm() {
+        return listeFilm;
+    }
+
+    public ArrayList<Anime> getInstanceAnime(){
+        return listeAnime;
+    }
+
+    public ArrayList<Serie> getInstanceSerie(){
+        return listeSerie;
+    }
+
+    public ArrayList<Trailer> getInstanceTrailer(){
+        return listeTrailer;
+    }
+
     public void AffichageClient()
     {
         for (client clienttmp : listeClient)
         {
             System.out.println("Nom :" + clienttmp.getNompersonne() + "Prenom : " + clienttmp.getNompersonne() + "LOgin : " + clienttmp.getLogin() + "Mdp :" + clienttmp.getMotDePasse() + "Tel : " + clienttmp.getTelephone() + "Pref : "+ clienttmp.getPreference()+ "Id :" + clienttmp.getIdentifiant());
         }
+    }
+
+    public void AffichageClientCourant()
+    {
+        System.out.println(ClientCourant.toString());
+    }
+
+    public void AffichageAdminCourant()
+    {
+        System.out.println(AdminCourant.toString());
     }
 
     public void ajouterFilm(Film film)
@@ -68,5 +168,30 @@ public class ListeOeuvre
 
     public void ajouterClient(client client1) {listeClient.add(client1);}
 
+    public void ajoutClientCourant(client clienttmp){ClientCourant =clienttmp;}
+
+
     public void ajouterAdmin( Administrateur administrateur) {listeAdmin.add(administrateur);}
+
+    public void ajoutAdminCourant(Administrateur administrateurtmp){AdminCourant = administrateurtmp;}
+
+    public void DeconnectClient()
+    {
+        if(ClientCourant != null)
+        {
+            ClientCourant = null;
+        }
+
+    }
+
+    public void DeconnectAdmin()
+    {
+        if(AdminCourant != null)
+        {
+            AdminCourant = null;
+        }
+
+    }
+
+
 }

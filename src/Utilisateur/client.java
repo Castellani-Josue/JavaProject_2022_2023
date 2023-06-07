@@ -1,6 +1,8 @@
 package Utilisateur;
 
 import java.util.ArrayList;
+import java.util.Objects;
+
 public class client extends Personne
 {
     private String Telephone;
@@ -59,6 +61,19 @@ public class client extends Personne
             MotDePasse = null;
         }
     }
+
+   /* @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof client client)) return false;
+        if (!super.equals(o)) return false;
+
+        if (getTelephone() != null ? !getTelephone().equals(client.getTelephone()) : client.getTelephone() != null)
+            return false;
+        if (getPreference() != null ? !getPreference().equals(client.getPreference()) : client.getPreference() != null)
+            return false;
+        return Objects.equals(oeuvreFavorite, client.oeuvreFavorite);
+    }*/
 
     @Override
     public String toString() {

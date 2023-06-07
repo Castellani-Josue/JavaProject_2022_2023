@@ -2,6 +2,7 @@ package InterfaceGraphique;
 
 import ComposantInterfaceGraphique.MonTreeModele;
 import Controleur.controleur;
+import Singleton.ListeOeuvre;
 
 import javax.swing.*;
 import javax.swing.JTree;
@@ -184,6 +185,10 @@ public class InterfacePrincipale extends JFrame
     public static void main(String[] args)
     {
         InterfacePrincipale dlm = new InterfacePrincipale();
+        dlm.Film.setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
+        dlm.Anime.setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
+        dlm.Serie.setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
+        dlm.Trailer.setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
         dlm.setVisible(true);
 
 
@@ -193,6 +198,7 @@ public class InterfacePrincipale extends JFrame
     {
         //Film.addListDataListener(controleur1);
         jMenuItem1.addActionListener(controleur1);
+        jMenuItem2.addActionListener(controleur1);
         jMenuItem3.addActionListener(controleur1);
         jMenuItem4.addActionListener(controleur1);
         jMenuItem5.addActionListener(controleur1);
@@ -201,5 +207,25 @@ public class InterfacePrincipale extends JFrame
         jMenuItem8.addActionListener(controleur1);
 
         this.addWindowListener(controleur1);
+    }
+
+    public JList getSerieIp()
+    {
+        return Serie;
+    }
+
+    public JList getAnimeIp()
+    {
+        return Anime;
+    }
+
+    public JList getFilmIp()
+    {
+        return Film;
+    }
+
+    public JList getTrailerIp()
+    {
+        return Trailer;
     }
 }

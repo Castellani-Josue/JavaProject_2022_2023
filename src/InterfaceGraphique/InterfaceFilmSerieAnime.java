@@ -54,6 +54,10 @@ public class InterfaceFilmSerieAnime extends JDialog
 
     private JLabel AudioLabel;
 
+    private ButtonGroup buttonGroupGenre;
+
+    private ButtonGroup buttonGroupPegi;
+
     private JLabel SousTitreLabel;
     private JButton ButtonConfrimer;
     private JTextField SousTitreTextField;
@@ -61,6 +65,7 @@ public class InterfaceFilmSerieAnime extends JDialog
     private JTextField AudioTextField;
     private JRadioButton GenreAventure;
     private JRadioButton Pegi18Button;
+
 
 
     public InterfaceFilmSerieAnime(JFrame parent, boolean modal,String titre)
@@ -79,6 +84,21 @@ public class InterfaceFilmSerieAnime extends JDialog
 
         ImageIcon logoIcon = new ImageIcon("C:\\Users\\josue\\OneDrive\\Documents\\HEPL\\B2\\q2\\Java\\Labo\\netflix.png");
         setIconImage(logoIcon.getImage());
+
+        buttonGroupGenre = new ButtonGroup();
+        buttonGroupGenre.add(GenreAction);
+        buttonGroupGenre.add(GenreAventure);
+        buttonGroupGenre.add(GenreDrame);
+        buttonGroupGenre.add(GenreSCIENCEFICTION);
+        buttonGroupGenre.add(GenreHorreur);
+
+        buttonGroupPegi = new ButtonGroup();
+        buttonGroupPegi.add(Pegi6Button);
+        buttonGroupPegi.add(Pegi12Button);
+        buttonGroupPegi.add(Pegi14Button);
+        buttonGroupPegi.add(Pegi16Button);
+        buttonGroupPegi.add(Pegi18Button);
+
 
 
     }
@@ -169,6 +189,10 @@ public class InterfaceFilmSerieAnime extends JDialog
         return EditeurTextField;
     }
 
+    public ButtonGroup getButtonGrp1(){return buttonGroupGenre;}
+
+    public ButtonGroup getButtonGroupPegi(){return buttonGroupPegi;}
+
     public boolean isConfirmerFSA()
     {
         return Confirmer;
@@ -185,7 +209,7 @@ public class InterfaceFilmSerieAnime extends JDialog
     public void setControleur(controleur controleur1)
     {
         ButtonConfrimer.addActionListener(controleur1);
-        this.addWindowListener(controleur1);
+        //this.addWindowListener(controleur1);
 
 
     }

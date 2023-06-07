@@ -97,7 +97,7 @@ public class Film extends Oeuvre implements AUneCotation
 
     @Override
     public String toString() {
-        return "Film{" +
+        /*return "Film{" +
                 "coteFilm=" + coteFilm +
                 ", classificationFilm=" + getClassificationFilm() +
                 ", categorieFilm='" + getCategorieFilm() + '\'' +
@@ -109,8 +109,14 @@ public class Film extends Oeuvre implements AUneCotation
                 ", audio=" + audio +
                 ", sousTitre=" + sousTitre +
                 ", editeur='" + editeur + '\'' +
-                '}';
+                '}';*/
+
+        return nom;
+
+
     }
+
+
 
     public static void main(String[] args)
     {

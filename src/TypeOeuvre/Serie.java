@@ -96,7 +96,7 @@ public class Serie extends Oeuvre implements AUneCotation
 
     @Override
     public String toString() {
-        return "TypeOeuvre.Serie{" +
+        /*return "TypeOeuvre.Serie{" +
                 "coteSerie=" + coteSerie +
                 ", classificationSerie=" + getClassificationSerie() +
                 ", categorieSerie=" + getCategorieSerie() +
@@ -108,7 +108,9 @@ public class Serie extends Oeuvre implements AUneCotation
                 ", audio=" + audio +
                 ", sousTitre=" + sousTitre +
                 ", editeur='" + editeur + '\'' +
-                '}';
+                '}';*/
+
+        return nom;
     }
 
     public static void main(String[] args)

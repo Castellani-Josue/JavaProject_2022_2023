@@ -436,10 +436,10 @@
     </group>
     <group name="buttonGroup1">
       <member id="ff007"/>
-      <member id="51cdb"/>
       <member id="c9570"/>
       <member id="5c9f1"/>
       <member id="c7b86"/>
+      <member id="51cdb"/>
     </group>
   </buttonGroups>
 </form>

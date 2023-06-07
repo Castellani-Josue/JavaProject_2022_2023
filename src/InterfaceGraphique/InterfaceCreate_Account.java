@@ -50,6 +50,8 @@ public class InterfaceCreate_Account extends JDialog
     private JRadioButton GenreAventure;
     private JLabel Preferencelabel;
 
+    private  ButtonGroup buttonGroupGenre;
+
 
     public InterfaceCreate_Account(JFrame parent, boolean modal,String titre)
         {
@@ -68,6 +70,13 @@ public class InterfaceCreate_Account extends JDialog
 
             cli = new client();
             Confirmer = false;
+
+            buttonGroupGenre = new ButtonGroup();
+            buttonGroupGenre.add(GenreAction);
+            buttonGroupGenre.add(GenreAventure);
+            buttonGroupGenre.add(GenreDrame);
+            buttonGroupGenre.add(GenreSCIENCEFICTION);
+            buttonGroupGenre.add(GenreHorreur);
             /*ButtonCreate.addActionListener(new ActionListener()
             {
                 @Override
@@ -156,6 +165,10 @@ public class InterfaceCreate_Account extends JDialog
     {
         return PrenomTextField;
     }
+
+    public ButtonGroup getButtonGroupGenre(){return buttonGroupGenre;}
+
+    public  JTextField getId(){return idtextfield;}
 
     public JRadioButton getGenreSF(){return GenreSCIENCEFICTION;}
     public JRadioButton getGenreHorreur(){return GenreHorreur;}

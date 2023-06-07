@@ -66,6 +66,7 @@ public class controleur extends Component implements ActionListener, WindowListe
     public void actionPerformed(ActionEvent e) {
 
         System.out.println("Hello");
+        //+32 (123) 456-7890
         if (e.getActionCommand().equals("Se connecter")) {
             //fenetreConnexion = new InterfaceConnection(null, true, "Entrée en session...");
             fenetreConnexion.setVisible(true);
@@ -104,8 +105,21 @@ public class controleur extends Component implements ActionListener, WindowListe
 
                 fenetreFilm.dispose();
             } else if (e.getActionCommand().equals("Reset mot de passe")) {
-                //ResetMotDePasse();
-                JOptionPane.showMessageDialog(this, "Mot de passe a été reset", "ResetMotDePasse", JOptionPane.INFORMATION_MESSAGE, null);
+            String userInput = JOptionPane.showInputDialog(null, "Vérification du mot de passe actuel", "Reset du mot de passe", JOptionPane.QUESTION_MESSAGE);
+            if (userInput != null) {
+
+
+                if (userInput.equals("Admin1")) {
+                    JOptionPane.showMessageDialog(null, "Impossible de reset ce mot de passe!!", "Error", JOptionPane.INFORMATION_MESSAGE, null);
+                } else if (userInput.equals(ListeOeuvre.getInstance().getClientCourant().getMotDePasse())) {
+                    String user = JOptionPane.showInputDialog(null, "Veuillez entrer votre nouveau mot de passe", "Nouveau mot de passe", JOptionPane.QUESTION_MESSAGE);
+                    ListeOeuvre.getInstance().getClientCourant().setMotDePasse(user);
+                    System.out.println(ListeOeuvre.getInstance().getClientCourant().toString());
+                }
+            }
+            else {
+                System.out.println("Valeur non saisie");
+            }
             }
             else if (e.getActionCommand().equals("CONFIRMER")) {
                 System.out.println("Bonsoir");
@@ -128,21 +142,26 @@ public class controleur extends Component implements ActionListener, WindowListe
 
 
                 Pegi = 6;
+                fenetreFilm.getPegi6Button().setSelected(false);
             } else if (fenetreFilm.getPegi12Button().isSelected()) {
 
 
                 Pegi = 12;
+                fenetreFilm.getPegi12Button().setSelected(false);
             } else if (fenetreFilm.getPegi14Button().isSelected()) {
 
                 Pegi = 14;
+                fenetreFilm.getPegi14Button().setSelected(false);
             } else if (fenetreFilm.getPegi16Button().isSelected()) {
 
 
                 Pegi = 16;
+                fenetreFilm.getPegi16Button().setSelected(false);
             } else if (fenetreFilm.getPegi18Button().isSelected()) {
 
 
                 Pegi = 18;
+                fenetreFilm.getPegi18Button().setSelected(false);
             } else {
 
 
@@ -151,17 +170,22 @@ public class controleur extends Component implements ActionListener, WindowListe
             }
 
             if (fenetreFilm.getGenreSF().isSelected()) {
-                Genre = "Science Fiction";
+                Genre = "Science-Fiction";
+                fenetreFilm.getGenreSF().setSelected(false);
 
             } else if (fenetreFilm.getGenreAction().isSelected()) {
                 Genre = "Action";
+                fenetreFilm.getGenreAction().setSelected(false);
             } else if (fenetreFilm.getGenreAventure().isSelected()) {
                 Genre = "Aventure";
+                fenetreFilm.getGenreAventure().setSelected(false);
             }
             else if (fenetreFilm.getGenreHorreur().isSelected()) {
                 Genre = "Horreur";
+                fenetreFilm.getGenreHorreur().setSelected(false);
             } else if (fenetreFilm.getGenreDrame().isSelected()) {
                 Genre = "Drame";
+                fenetreFilm.getGenreDrame().setSelected(false);
             } else {
                 Genre = String.valueOf(false);
             }
@@ -171,6 +195,8 @@ public class controleur extends Component implements ActionListener, WindowListe
                 Film filmtemporaire = new Film(Titre,duree,id2,date,description,editeur,audio,Soustitre,Genre,Pegi);
                 System.out.println(filmtemporaire.toString());
                 ListeOeuvre.getInstance().ajouterFilm(filmtemporaire);
+                fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
+
 
             }
             else if(fenetreFilm.getTitle().equals("Anime"))
@@ -178,6 +204,7 @@ public class controleur extends Component implements ActionListener, WindowListe
                 Anime Animetempo = new Anime(Titre,duree,id2,date,description,editeur,audio,Soustitre,Genre,Pegi);
                 System.out.println(Animetempo.toString());
                 ListeOeuvre.getInstance().ajouterAnime(Animetempo);
+                fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
 
             }
             else if(fenetreFilm.getTitle().equals("Serie"))
@@ -185,6 +212,7 @@ public class controleur extends Component implements ActionListener, WindowListe
                 Serie serietemporaire = new Serie(Titre,duree,id2,date,description,editeur,audio,Soustitre,Genre,Pegi);
                 System.out.println(serietemporaire.toString());
                 ListeOeuvre.getInstance().ajouterSerie(serietemporaire);
+                fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
 
             }
             else if(fenetreFilm.getTitle().equals("Trailer"))
@@ -192,14 +220,28 @@ public class controleur extends Component implements ActionListener, WindowListe
                 Trailer trailertempo = new Trailer(Titre,duree,id2,date,description,editeur,audio,Soustitre,Genre,Pegi);
                 System.out.println(trailertempo.toString());
                 ListeOeuvre.getInstance().ajouterTrailer(trailertempo);
+                fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
             }
 
             //fenetreFilm.dispose();
+            fenetreFilm.getId().setText("");
+            fenetreFilm.getTitre().setText("");
+            fenetreFilm.getDescription().setText("");
+            fenetreFilm.getDuree().setText("");
+            fenetreFilm.getSoustitre().setText("");
+            fenetreFilm.getAudio().setText("");
+            fenetreFilm.getEditeur().setText("");
+            fenetreFilm.getDate().setText("");
+            fenetreFilm.getButtonGrp1().clearSelection();
+            fenetreFilm.getButtonGroupPegi().clearSelection();
+            fenetreFilm.setVisible(false);
 
         }
         else if (e.getActionCommand().equals("Creer")) {
             //+32 (123) 456-7890
             System.out.println("création");
+            String id = fenetreCreationCompte.getId().getText();
+            int Id = Integer.parseInt(id);
             String login = fenetreCreationCompte.getLogin().getText();
             boolean isValidLogin = client.isValidLogin(login);
             String motDePasse = String.valueOf(fenetreCreationCompte.getMotDePasse().getPassword());
@@ -229,7 +271,7 @@ public class controleur extends Component implements ActionListener, WindowListe
 
                 if(motDePasse.equals("Admin1"))
                 {
-                    Administrateur AdminTempo = new Administrateur(Nompersonne,PrenomPersonne,login,motDePasse,1);
+                    Administrateur AdminTempo = new Administrateur(Nompersonne,PrenomPersonne,login,motDePasse,Id);
                     System.out.println(AdminTempo.toString());
                     ListeOeuvre.getInstance().ajouterAdmin(AdminTempo);
                     fenetreCreationCompte.setVisible(false);
@@ -237,7 +279,7 @@ public class controleur extends Component implements ActionListener, WindowListe
                 }
                 else
                 {
-                    client clienttempo = new client(Nompersonne,PrenomPersonne,login,motDePasse,Telephone,Preference,null,6);
+                    client clienttempo = new client(Nompersonne,PrenomPersonne,login,motDePasse,Telephone,Preference,null,Id);
                     System.out.println((clienttempo.toString()));
                     ListeOeuvre.getInstance().ajouterClient(clienttempo);
                     ListeOeuvre.getInstance().AffichageClient();
@@ -261,37 +303,146 @@ public class controleur extends Component implements ActionListener, WindowListe
                 }
 
             }
+            fenetreCreationCompte.dispose();
+            fenetreCreationCompte.getTelephone().setText("");
+            fenetreCreationCompte.getNompersonne().setText("");
+            fenetreCreationCompte.getPrenomPersonne().setText("");
+            fenetreCreationCompte.getId().setText("");
+            fenetreCreationCompte.getLogin().setText("");
+            fenetreCreationCompte.getMotDePasse().setText("");
+            fenetreCreationCompte.getButtonGroupGenre().clearSelection();
+
         }
         else if (e.getActionCommand().equals("Connexion")) {
             System.out.println("connexion");
             String login = fenetreConnexion.getLogin().getText();
             boolean isValidLogin = client.isValidLogin(login);
-            String motDePasse = Arrays.toString(fenetreConnexion.getMotDePasse().getPassword());
+            String motDePasse = String.valueOf(fenetreConnexion.getMotDePasse().getPassword());
             boolean isValidPassword = client.isValidPassword(motDePasse);
 
+                boolean loginVerif = false;
+                boolean mdpVerif =false;
+                if(motDePasse.equals("Admin1"))
+                {
+                    String loginRechercheAdmin = login;
+                    //Administrateur administrateur = new Administrateur();
+                    Administrateur administrateur = ListeOeuvre.getInstance().rechercherLoginAdmin(ListeOeuvre.getInstance().getInstanceAdmin(),loginRechercheAdmin);
+                    if(administrateur != null)
+                    {
+                        System.out.println("L'Administrateur recherché  " + loginRechercheAdmin +   "est trouvé." );
+                        loginVerif = true;
+                    }
+                    else
+                    {
+                        System.out.println("L'Administrateur recherché" + loginRechercheAdmin + " n'est  pas trouvé. " );
+                    }
 
-            if (isValidLogin && isValidPassword) {
+                    String MdpRechercheAdmin = motDePasse;
+                    administrateur = ListeOeuvre.getInstance().rechercherMdpAdmin(ListeOeuvre.getInstance().getInstanceAdmin(),MdpRechercheAdmin);
+                    if(administrateur != null)
+                    {
+                        System.out.println("L'Administrateur recherché  " + MdpRechercheAdmin +   "est trouvé." );
+                        mdpVerif = true;
+                    }
+                    else
+                    {
+                        System.out.println("L'Administrateur recherché" + MdpRechercheAdmin + " n'est  pas trouvé. " );
+                    }
+
+                    if(mdpVerif  && loginVerif)
+                    {
+                        JOptionPane.showMessageDialog(fenetreConnexion, " N'oubliez pas d'enlever vos chaussures", "Bienvenue", JOptionPane.INFORMATION_MESSAGE, null);
+                        ListeOeuvre.getInstance().ajoutAdminCourant(administrateur);
+                        ListeOeuvre.getInstance().AffichageAdminCourant();
+
+                    }
+                    else
+                    {
+                        if(!mdpVerif)
+                        {
+                            JOptionPane.showMessageDialog(fenetreConnexion, " Mot De passe incorrect", "Error", JOptionPane.INFORMATION_MESSAGE, null);
+                        } else{
+                            JOptionPane.showMessageDialog(fenetreConnexion, " Login incorrect", "Error", JOptionPane.INFORMATION_MESSAGE, null);
+
+                        }
+                    }
+
+                }
+                else
+                {
+                    String loginRecherche = login;
+                    client clientTrouve = new client();
+                    clientTrouve = ListeOeuvre.getInstance().rechercherLoginClient(ListeOeuvre.getInstance().getInstanceClient(),loginRecherche );
+                    //int index = ListeOeuvre.getInstance().getInstanceClient().indexOf(ListeOeuvre.getInstance().getClientCourant());
+                    if(clientTrouve != null)
+                    {
+                        System.out.println("Le client recherché  " + loginRecherche +   "est trouvé." );
+                        loginVerif = true;
+                    }
+                    else
+                    {
+                        System.out.println("Le client recherché  " + loginRecherche + " n'est  pas trouvé. " );
+                    }
+
+                    String MdpRch = motDePasse;
+                    clientTrouve = ListeOeuvre.getInstance().rechercherMdpClient(ListeOeuvre.getInstance().getInstanceClient(),MdpRch );
+                    //int index = ListeOeuvre.getInstance().getInstanceClient().indexOf(ListeOeuvre.getInstance().getClientCourant());
+                    if(clientTrouve != null)
+                    {
+                        System.out.println("Le client recherché  " + MdpRch +   "est trouvé." );
+                        mdpVerif = true;
+                        //System.out.println(clientTrouve.toString());
+                    }
+                    else
+                    {
+                        System.out.println("Le client recherché  " + MdpRch + " n'est  pas trouvé. " );
+                    }
+
+                    if(mdpVerif  && loginVerif)
+                    {
+                        JOptionPane.showMessageDialog(fenetreConnexion, " N'oubliez pas d'enlever vos chaussures", "Bienvenue", JOptionPane.INFORMATION_MESSAGE, null);
+                        ListeOeuvre.getInstance().ajoutClientCourant(clientTrouve);
+                        ListeOeuvre.getInstance().AffichageClientCourant();
+                    }
+                    else
+                    {
+                        if(!mdpVerif)
+                        {
+                            JOptionPane.showMessageDialog(fenetreConnexion, " Mot De passe incorrect", "Error", JOptionPane.INFORMATION_MESSAGE, null);
+                        } else{
+                            JOptionPane.showMessageDialog(fenetreConnexion, " Login incorrect", "Error", JOptionPane.INFORMATION_MESSAGE, null);
+
+                        }
+                    }
+                }
 
                 fenetreConnexion.setVisible(false);
-            } else {
-                //System.out.println("Erreur(s) d'encodation");
-                if (!isValidLogin && isValidPassword) {
-                    JOptionPane.showMessageDialog(fenetreConnexion, "login incorrect", "Erreur d'authentification", JOptionPane.INFORMATION_MESSAGE, null);
-                    fenetreConnexion.setVisible(true);
-                } else if (!isValidPassword && isValidLogin) {
-                    JOptionPane.showMessageDialog(fenetreConnexion, "Password incorrect", "Erreur d'authentification", JOptionPane.INFORMATION_MESSAGE, null);
-                    fenetreConnexion.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(fenetreConnexion, "Login et password incorect", "Erreur d'authentification", JOptionPane.INFORMATION_MESSAGE, null);
-                    fenetreConnexion.setVisible(true);
-                }
-            }
+            fenetreConnexion.getLogin().setText("");
+            fenetreConnexion.getMotDePasse().setText("");
             //setInteractionsEnabled(true);
-        }
+        } else if (e.getActionCommand().equals("Se déconnecter")) {
+            System.out.println("ok");
+            if(ListeOeuvre.getInstance().getClientCourant() != null)
+            {
+
+                ListeOeuvre.getInstance().DeconnectClient();
+                JOptionPane.showMessageDialog(fenetreConnexion, "Vous avez été déconnecté avec succès !", "Deconnexion", JOptionPane.INFORMATION_MESSAGE, null);
+            } else if (ListeOeuvre.getInstance().getAdminCourant() != null) {
+
+                ListeOeuvre.getInstance().DeconnectAdmin();
+                JOptionPane.showMessageDialog(fenetreConnexion, "Vous avez été déconnecté avec succès !", "Deconnexion", JOptionPane.INFORMATION_MESSAGE, null);
+
+            }
+            else{
+                JOptionPane.showMessageDialog(fenetreConnexion, "Aucune personne connecté", "Error", JOptionPane.INFORMATION_MESSAGE, null);
+            }
 
         }
+
+    }
 
     public void windowClosing(WindowEvent we) { System.exit(0); }
+
 
     public void windowOpened(WindowEvent we) {}
     public void windowClosed(WindowEvent we) {}
