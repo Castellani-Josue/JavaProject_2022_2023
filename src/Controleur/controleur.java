@@ -1,5 +1,6 @@
 package Controleur;
 
+import CompareMethod.MultiTypeComparator;
 import InterfaceGraphique.InterfaceConnection;
 import InterfaceGraphique.InterfaceCreate_Account;
 import InterfaceGraphique.InterfaceFilmSerieAnime;
@@ -14,14 +15,18 @@ import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowListener;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.Arrays;
+import java.util.Collections;
 
-public class controleur extends Component implements ActionListener, WindowListener , ListDataListener
+public class controleur extends Component implements ActionListener, WindowListener , ListDataListener , MouseListener
 {
 
     private InterfacePrincipale fenetrePrincipale;
@@ -315,101 +320,79 @@ public class controleur extends Component implements ActionListener, WindowListe
         }
         else if (e.getActionCommand().equals("Connexion")) {
             System.out.println("connexion");
-            String login = fenetreConnexion.getLogin().getText();
-            boolean isValidLogin = client.isValidLogin(login);
-            String motDePasse = String.valueOf(fenetreConnexion.getMotDePasse().getPassword());
-            boolean isValidPassword = client.isValidPassword(motDePasse);
+            if (ListeOeuvre.getInstance().getAdminCourant() == null && ListeOeuvre.getInstance().getClientCourant() == null) {
+                String login = fenetreConnexion.getLogin().getText();
+                boolean isValidLogin = client.isValidLogin(login);
+                String motDePasse = String.valueOf(fenetreConnexion.getMotDePasse().getPassword());
+                boolean isValidPassword = client.isValidPassword(motDePasse);
 
                 boolean loginVerif = false;
-                boolean mdpVerif =false;
-                if(motDePasse.equals("Admin1"))
-                {
+                boolean mdpVerif = false;
+                if (motDePasse.equals("Admin1")) {
                     String loginRechercheAdmin = login;
                     //Administrateur administrateur = new Administrateur();
-                    Administrateur administrateur = ListeOeuvre.getInstance().rechercherLoginAdmin(ListeOeuvre.getInstance().getInstanceAdmin(),loginRechercheAdmin);
-                    if(administrateur != null)
-                    {
-                        System.out.println("L'Administrateur recherché  " + loginRechercheAdmin +   "est trouvé." );
+                    Administrateur administrateur = ListeOeuvre.getInstance().rechercherLoginAdmin(ListeOeuvre.getInstance().getInstanceAdmin(), loginRechercheAdmin);
+                    if (administrateur != null) {
+                        System.out.println("L'Administrateur recherché  " + loginRechercheAdmin + "est trouvé.");
                         loginVerif = true;
-                    }
-                    else
-                    {
-                        System.out.println("L'Administrateur recherché" + loginRechercheAdmin + " n'est  pas trouvé. " );
+                    } else {
+                        System.out.println("L'Administrateur recherché" + loginRechercheAdmin + " n'est  pas trouvé. ");
                     }
 
                     String MdpRechercheAdmin = motDePasse;
-                    administrateur = ListeOeuvre.getInstance().rechercherMdpAdmin(ListeOeuvre.getInstance().getInstanceAdmin(),MdpRechercheAdmin);
-                    if(administrateur != null)
-                    {
-                        System.out.println("L'Administrateur recherché  " + MdpRechercheAdmin +   "est trouvé." );
+                    administrateur = ListeOeuvre.getInstance().rechercherMdpAdmin(ListeOeuvre.getInstance().getInstanceAdmin(), MdpRechercheAdmin);
+                    if (administrateur != null) {
+                        System.out.println("L'Administrateur recherché  " + MdpRechercheAdmin + "est trouvé.");
                         mdpVerif = true;
-                    }
-                    else
-                    {
-                        System.out.println("L'Administrateur recherché" + MdpRechercheAdmin + " n'est  pas trouvé. " );
+                    } else {
+                        System.out.println("L'Administrateur recherché" + MdpRechercheAdmin + " n'est  pas trouvé. ");
                     }
 
-                    if(mdpVerif  && loginVerif)
-                    {
+                    if (mdpVerif && loginVerif) {
                         JOptionPane.showMessageDialog(fenetreConnexion, " N'oubliez pas d'enlever vos chaussures", "Bienvenue", JOptionPane.INFORMATION_MESSAGE, null);
                         ListeOeuvre.getInstance().ajoutAdminCourant(administrateur);
                         ListeOeuvre.getInstance().AffichageAdminCourant();
 
-                    }
-                    else
-                    {
-                        if(!mdpVerif)
-                        {
+                    } else {
+                        if (!mdpVerif) {
                             JOptionPane.showMessageDialog(fenetreConnexion, " Mot De passe incorrect", "Error", JOptionPane.INFORMATION_MESSAGE, null);
-                        } else{
+                        } else {
                             JOptionPane.showMessageDialog(fenetreConnexion, " Login incorrect", "Error", JOptionPane.INFORMATION_MESSAGE, null);
 
                         }
                     }
 
-                }
-                else
-                {
+                } else {
                     String loginRecherche = login;
                     client clientTrouve = new client();
-                    clientTrouve = ListeOeuvre.getInstance().rechercherLoginClient(ListeOeuvre.getInstance().getInstanceClient(),loginRecherche );
+                    clientTrouve = ListeOeuvre.getInstance().rechercherLoginClient(ListeOeuvre.getInstance().getInstanceClient(), loginRecherche);
                     //int index = ListeOeuvre.getInstance().getInstanceClient().indexOf(ListeOeuvre.getInstance().getClientCourant());
-                    if(clientTrouve != null)
-                    {
-                        System.out.println("Le client recherché  " + loginRecherche +   "est trouvé." );
+                    if (clientTrouve != null) {
+                        System.out.println("Le client recherché  " + loginRecherche + "est trouvé.");
                         loginVerif = true;
-                    }
-                    else
-                    {
-                        System.out.println("Le client recherché  " + loginRecherche + " n'est  pas trouvé. " );
+                    } else {
+                        System.out.println("Le client recherché  " + loginRecherche + " n'est  pas trouvé. ");
                     }
 
                     String MdpRch = motDePasse;
-                    clientTrouve = ListeOeuvre.getInstance().rechercherMdpClient(ListeOeuvre.getInstance().getInstanceClient(),MdpRch );
+                    clientTrouve = ListeOeuvre.getInstance().rechercherMdpClient(ListeOeuvre.getInstance().getInstanceClient(), MdpRch);
                     //int index = ListeOeuvre.getInstance().getInstanceClient().indexOf(ListeOeuvre.getInstance().getClientCourant());
-                    if(clientTrouve != null)
-                    {
-                        System.out.println("Le client recherché  " + MdpRch +   "est trouvé." );
+                    if (clientTrouve != null) {
+                        System.out.println("Le client recherché  " + MdpRch + "est trouvé.");
                         mdpVerif = true;
                         //System.out.println(clientTrouve.toString());
-                    }
-                    else
-                    {
-                        System.out.println("Le client recherché  " + MdpRch + " n'est  pas trouvé. " );
+                    } else {
+                        System.out.println("Le client recherché  " + MdpRch + " n'est  pas trouvé. ");
                     }
 
-                    if(mdpVerif  && loginVerif)
-                    {
+                    if (mdpVerif && loginVerif) {
                         JOptionPane.showMessageDialog(fenetreConnexion, " N'oubliez pas d'enlever vos chaussures", "Bienvenue", JOptionPane.INFORMATION_MESSAGE, null);
                         ListeOeuvre.getInstance().ajoutClientCourant(clientTrouve);
                         ListeOeuvre.getInstance().AffichageClientCourant();
-                    }
-                    else
-                    {
-                        if(!mdpVerif)
-                        {
+                    } else {
+                        if (!mdpVerif) {
                             JOptionPane.showMessageDialog(fenetreConnexion, " Mot De passe incorrect", "Error", JOptionPane.INFORMATION_MESSAGE, null);
-                        } else{
+                        } else {
                             JOptionPane.showMessageDialog(fenetreConnexion, " Login incorrect", "Error", JOptionPane.INFORMATION_MESSAGE, null);
 
                         }
@@ -417,9 +400,14 @@ public class controleur extends Component implements ActionListener, WindowListe
                 }
 
                 fenetreConnexion.setVisible(false);
-            fenetreConnexion.getLogin().setText("");
-            fenetreConnexion.getMotDePasse().setText("");
-            //setInteractionsEnabled(true);
+                fenetreConnexion.getLogin().setText("");
+                fenetreConnexion.getMotDePasse().setText("");
+                //setInteractionsEnabled(true)
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(fenetreConnexion, "Il y a déjà un compte connecté", "Connexion", JOptionPane.INFORMATION_MESSAGE, null);
+            }
         } else if (e.getActionCommand().equals("Se déconnecter")) {
             System.out.println("ok");
             if(ListeOeuvre.getInstance().getClientCourant() != null)
@@ -441,6 +429,221 @@ public class controleur extends Component implements ActionListener, WindowListe
 
     }
 
+    public void mouseClicked(MouseEvent e)
+    {
+        TreePath path = fenetrePrincipale.getArbre().getPathForLocation(e.getX(), e.getY());
+
+        if (path != null && path.getLastPathComponent() != null && !fenetrePrincipale.getArbre().getModel().isLeaf(path.getLastPathComponent())) {
+
+        }
+        else
+        {
+            DefaultMutableTreeNode nodefinal = (DefaultMutableTreeNode) path.getLastPathComponent();
+            String nodeNameFinal = nodefinal.toString();
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getPathComponent(path.getPathCount() - 3);
+            String nodeName = node.toString();
+            if (nodeName.equals("Film"))
+            {
+                if(nodeNameFinal.equals("6+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("9+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("12+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("14+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("16+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("18+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Horreur"))
+                {
+                    MultiTypeComparator comparator = new MultiTypeComparator();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceFilm(), comparator);
+                    fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
+                }
+                if(nodeNameFinal.equals("Science-Fiction"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Aventure"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Drame"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Action"))
+                {
+
+                }
+            }
+
+            if (nodeName.equals("Serie"))
+            {
+                if(nodeNameFinal.equals("6+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("9+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("12+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("14+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("16+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("18+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Horreur"))
+                {
+                    MultiTypeComparator comparator = new MultiTypeComparator();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceSerie(), comparator);
+                    fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
+                }
+                if(nodeNameFinal.equals("Science-Fiction"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Aventure"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Drame"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Action"))
+                {
+
+                }
+            }
+
+            if (nodeName.equals("Anime"))
+            {
+                if(nodeNameFinal.equals("6+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("9+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("12+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("14+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("16+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("18+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Horreur"))
+                {
+                    MultiTypeComparator comparator = new MultiTypeComparator();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceAnime(), comparator);
+                    fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
+                }
+                if(nodeNameFinal.equals("Science-Fiction"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Aventure"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Drame"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Action"))
+                {
+
+                }
+            }
+
+            if (nodeName.equals("Trailer"))
+            {
+                if(nodeNameFinal.equals("6+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("9+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("12+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("14+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("16+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("18+"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Horreur"))
+                {
+                    MultiTypeComparator comparator = new MultiTypeComparator();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceTrailer(), comparator);
+                    fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
+                }
+                if(nodeNameFinal.equals("Science-Fiction"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Aventure"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Drame"))
+                {
+
+                }
+                if(nodeNameFinal.equals("Action"))
+                {
+
+                }
+            }
+        }
+    }
+
     public void windowClosing(WindowEvent we) { System.exit(0); }
 
 
@@ -452,11 +655,10 @@ public class controleur extends Component implements ActionListener, WindowListe
     public void windowDeactivated(WindowEvent we) {}
 
     public void intervalAdded(ListDataEvent e) {}
-
-    @Override
     public void intervalRemoved(ListDataEvent e) {}
 
-
-
-
+    public void mouseEntered(MouseEvent e){}
+    public void mouseExited(MouseEvent e){}
+    public void mouseReleased(MouseEvent e){}
+    public void mousePressed(MouseEvent e){}
 }

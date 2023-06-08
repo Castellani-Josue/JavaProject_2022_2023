@@ -205,7 +205,7 @@ public class InterfacePrincipale extends JFrame
         jMenuItem6.addActionListener(controleur1);
         jMenuItem7.addActionListener(controleur1);
         jMenuItem8.addActionListener(controleur1);
-
+        arbre.addMouseListener(controleur1);
         this.addWindowListener(controleur1);
     }
 
@@ -228,4 +228,6 @@ public class InterfacePrincipale extends JFrame
     {
         return Trailer;
     }
+
+    public JTree getArbre() { return arbre; }
 }

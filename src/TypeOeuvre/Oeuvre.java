@@ -86,6 +86,4 @@ public abstract class Oeuvre implements AUnIdentifiant
     public void setEditeur(String e)
     {
         editeur = e;
-    }
-
-}
+    }}
