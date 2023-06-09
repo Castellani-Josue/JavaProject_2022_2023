@@ -1,7 +1,10 @@
 import Controleur.controleur;
 import InterfaceGraphique.*;
+import Serialisation.Serializer;
 import Singleton.ListeOeuvre;
 import Utilisateur.client;
+
+import java.io.File;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
@@ -23,6 +26,17 @@ public class Main
         fenC.setControleur(controleur1);
         fenF.setControleur(controleur1);
         fenetreprincipale.setVisible(true);
+        if(new File("Oeuvre.bin").exists())
+        {
+            Serializer.deserializeObjectOeuvre("Oeuvre.bin");
+            System.out.println("ça fonctionne");
+        }
+        if(new File("Personne.bin").exists())
+        {
+            Serializer.deserializeObjectPersonne("Personne.bin");
+            System.out.println("ça fonctionne aussi");
+        }
+
 
 
 
