@@ -1,5 +1,6 @@
 package TypeOeuvre;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import Interface.AUneCotation;
 

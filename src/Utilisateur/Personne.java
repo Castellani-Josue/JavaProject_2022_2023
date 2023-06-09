@@ -2,6 +2,7 @@ package Utilisateur;
 
 import Interface.AUnIdentifiant;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 public abstract class Personne implements AUnIdentifiant

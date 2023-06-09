@@ -1,4 +1,7 @@
 package Utilisateur;
+
+import java.io.Serializable;
+
 public class Administrateur extends Personne
 {
 

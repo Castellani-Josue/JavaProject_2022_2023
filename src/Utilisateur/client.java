@@ -1,7 +1,9 @@
 package Utilisateur;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
+
 
 public class client extends Personne
 {

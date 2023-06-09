@@ -7,10 +7,12 @@ import TypeOeuvre.Trailer;
 import Utilisateur.Administrateur;
 import Utilisateur.client;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ListeOeuvre
+public class ListeOeuvre implements Serializable
 {
+    private static final long serialVersionUID = 1L;
     private ArrayList<Film> listeFilm = new ArrayList<Film>();
     private ArrayList<Serie> listeSerie = new ArrayList<Serie>();
     private ArrayList<Anime> listeAnime = new ArrayList<Anime>();
@@ -39,6 +41,8 @@ public class ListeOeuvre
             instance = new ListeOeuvre();
         return instance;
     }
+
+
 
     public ArrayList<client> getInstanceClient()
     {
@@ -191,6 +195,11 @@ public class ListeOeuvre
             AdminCourant = null;
         }
 
+    }
+
+    //Cela permet de garantir qu'une nouvelle instance n'est pas créée lors de la désérialisation.
+    protected Object readResolve() {
+        return getInstance();
     }
 
 
