@@ -5,7 +5,7 @@ import Interface.AUnIdentifiant;
 import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Personne implements AUnIdentifiant
+public abstract class Personne implements AUnIdentifiant , Serializable
 {
 
     protected String Nompersonne;

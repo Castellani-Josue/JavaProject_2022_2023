@@ -2,7 +2,7 @@ package Utilisateur;
 
 import java.io.Serializable;
 
-public class Administrateur extends Personne
+public class Administrateur extends Personne implements Serializable
 {
 
     //Ajoiuteer dans classe métier "AfficherOeuvre"

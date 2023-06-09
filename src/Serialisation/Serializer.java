@@ -9,10 +9,13 @@ public class Serializer
 
     //Ces méthodes prennent en paramètre le chemin du fichier dans lequel sérialiser/désérialiser l'objet.
     public static void serializeObjectOeuvre(ListeOeuvre object, String filePath) {
-        try (FileOutputStream fileOut = new FileOutputStream(filePath);
-             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
+        try {
+
+            FileOutputStream fileOut = new FileOutputStream(filePath);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
             objectOut.writeObject(object);
+            fileOut.flush();
             System.out.println("L'objet a été sérialisé avec succès.");
 
         }
@@ -27,10 +30,12 @@ public class Serializer
     }
 
     public static Object deserializeObjectOeuvre(String filePath) {
-        try (FileInputStream fileIn = new FileInputStream(filePath);
-             ObjectInputStream objectIn = new ObjectInputStream(fileIn)) {
+        try {
 
+            FileInputStream fileIn = new FileInputStream(filePath);
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
             Object object = objectIn.readObject();
+            System.out.println("obj Oeuvre" + object);
             ListeOeuvre listeOeuvre = (ListeOeuvre)object;
             System.out.println("L'objet a été désérialisé avec succès.");
             return listeOeuvre;
@@ -53,10 +58,13 @@ public class Serializer
 
 
     public static void serializeObjectPersonne(ListeOeuvre object, String filePath) {
-        try (FileOutputStream fileOut = new FileOutputStream(filePath);
-             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
+        try {
+
+            FileOutputStream fileOut = new FileOutputStream(filePath);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
             objectOut.writeObject(object);
+            fileOut.flush();
 
             System.out.println("L'objet client a été sérialisé avec succès.");
 
@@ -69,10 +77,12 @@ public class Serializer
 
 
     public static Object deserializeObjectPersonne(String filePath) {
-        try (FileInputStream fileIn = new FileInputStream(filePath);
-             ObjectInputStream objectIn = new ObjectInputStream(fileIn)) {
+        try {
 
+            FileInputStream fileIn = new FileInputStream(filePath);
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
             Object object = objectIn.readObject();
+            System.out.println("obj Personne" + object);
             ListeOeuvre listeOeuvre = (ListeOeuvre)object;
 
             System.out.println("L'objet Personne a été désérialisé avec succès.");

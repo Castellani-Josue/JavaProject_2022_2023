@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import Interface.AUnIdentifiant;
-public abstract class Oeuvre implements AUnIdentifiant
+public abstract class Oeuvre implements AUnIdentifiant ,Serializable
 {
     protected String nom;
     protected int temps;

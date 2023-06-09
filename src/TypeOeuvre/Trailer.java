@@ -1,9 +1,11 @@
 package TypeOeuvre;
 
+import Serialisation.Serializer;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Trailer extends Oeuvre
+public class Trailer extends Oeuvre implements Serializable
 {
     private ClassificationOeuvre classificationTrailer;
     private CategorieOeuvre categorieTrailer;

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class client extends Personne
+public class client extends Personne implements Serializable
 {
     private String Telephone;
     private ArrayList<String> Preference =  new ArrayList<String>();
