@@ -1,6 +1,7 @@
 package Serialisation;
 
 import Singleton.ListeOeuvre;
+import TypeOeuvre.Oeuvre;
 
 import java.io.*;
 
@@ -8,13 +9,18 @@ public class Serializer
 {
 
     //Ces méthodes prennent en paramètre le chemin du fichier dans lequel sérialiser/désérialiser l'objet.
-    public static void serializeObjectOeuvre(ListeOeuvre object, String filePath) {
+    public static void serializeObjectOeuvre( String filePath) {
         try {
 
             FileOutputStream fileOut = new FileOutputStream(filePath);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(ListeOeuvre.getInstance().getInstanceAnime());
+            objectOut.writeObject(ListeOeuvre.getInstance().getInstanceFilm());
+            objectOut.writeObject(ListeOeuvre.getInstance().getInstanceSerie());
+            objectOut.writeObject(ListeOeuvre.getInstance().getInstanceTrailer());
 
-            objectOut.writeObject(object);
+            ListeOeuvre listeOeuvretmp;
+
             fileOut.flush();
             System.out.println("L'objet a été sérialisé avec succès.");
 
@@ -36,9 +42,10 @@ public class Serializer
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
             Object object = objectIn.readObject();
             System.out.println("obj Oeuvre" + object);
-            ListeOeuvre listeOeuvre = (ListeOeuvre)object;
+            //Oeuvre oeuvretmp = (Oeuvre)object;
+            //ListeOeuvre listeOeuvre = (ListeOeuvre)object;
             System.out.println("L'objet a été désérialisé avec succès.");
-            return listeOeuvre;
+            return object;
 
         }
         catch (FileNotFoundException e) {
@@ -83,10 +90,10 @@ public class Serializer
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
             Object object = objectIn.readObject();
             System.out.println("obj Personne" + object);
-            ListeOeuvre listeOeuvre = (ListeOeuvre)object;
+            //ListeOeuvre listeOeuvre = (ListeOeuvre)object;
 
             System.out.println("L'objet Personne a été désérialisé avec succès.");
-            return listeOeuvre;
+            return object;
 
         } catch (FileNotFoundException e) {
             System.out.println("Fichier Non Trouvé !");
@@ -98,6 +105,8 @@ public class Serializer
 
         return null;
     }
+
+
 
 
 

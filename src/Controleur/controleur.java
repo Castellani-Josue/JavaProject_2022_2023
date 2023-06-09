@@ -645,7 +645,7 @@ public class controleur extends Component implements ActionListener, WindowListe
     }
 
     public void windowClosing(WindowEvent we) {
-        Serializer.serializeObjectOeuvre(ListeOeuvre.getInstance(),"Oeuvre.bin");
+        Serializer.serializeObjectOeuvre("Oeuvre.bin");
         Serializer.serializeObjectPersonne(ListeOeuvre.getInstance(),"Personne.bin");
         System.out.println("fini 1 ");
         System.exit(0);
