@@ -17,7 +17,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="51465" layout-manager="GridLayoutManager" row-count="9" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="51465" layout-manager="GridLayoutManager" row-count="10" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints/>
             <properties>
@@ -234,6 +234,28 @@
                   <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
               </hspacer>
+              <component id="6f4eb" class="javax.swing.JTextField" binding="textfieldCote">
+                <constraints>
+                  <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <background color="-14541025"/>
+                  <editable value="false"/>
+                  <foreground color="-4711132"/>
+                  <text value="Cote : "/>
+                </properties>
+              </component>
+              <component id="e5cd1" class="javax.swing.JLabel" binding="LabelCote">
+                <constraints>
+                  <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <foreground color="-4711132"/>
+                  <text value="Label"/>
+                </properties>
+              </component>
             </children>
           </grid>
         </children>
@@ -243,6 +265,8 @@
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-14541025"/>
+          <foreground color="-4711132"/>
           <horizontalTextPosition value="10"/>
           <text value="Favoris ?"/>
         </properties>
@@ -252,11 +276,12 @@
           <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
-      <component id="c46eb" class="javax.swing.JLabel" binding="LabelCote">
+      <component id="c46eb" class="javax.swing.JLabel" binding="LabelCote2">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <foreground color="-4711132"/>
           <text value="Cote:"/>
         </properties>
       </component>
@@ -267,6 +292,7 @@
           </grid>
         </constraints>
         <properties>
+          <background color="-14541025"/>
           <enabled value="true"/>
           <extent value="0"/>
           <inverted value="false"/>

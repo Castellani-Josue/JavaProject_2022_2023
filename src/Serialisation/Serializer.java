@@ -1,7 +1,8 @@
 package Serialisation;
 
+import Controleur.ObjectInputStreamPerso;
 import Singleton.ListeOeuvre;
-import TypeOeuvre.Oeuvre;
+
 
 import java.io.*;
 
@@ -9,17 +10,13 @@ public class Serializer
 {
 
     //Ces méthodes prennent en paramètre le chemin du fichier dans lequel sérialiser/désérialiser l'objet.
-    public static void serializeObjectOeuvre( String filePath) {
+    /*public static void serializeObjectOeuvre(ListeOeuvre object, String filePath) {
         try {
 
             FileOutputStream fileOut = new FileOutputStream(filePath);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(ListeOeuvre.getInstance().getInstanceAnime());
-            objectOut.writeObject(ListeOeuvre.getInstance().getInstanceFilm());
-            objectOut.writeObject(ListeOeuvre.getInstance().getInstanceSerie());
-            objectOut.writeObject(ListeOeuvre.getInstance().getInstanceTrailer());
 
-            ListeOeuvre listeOeuvretmp;
+            objectOut.writeObject(object);
 
             fileOut.flush();
             System.out.println("L'objet a été sérialisé avec succès.");
@@ -42,7 +39,6 @@ public class Serializer
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
             Object object = objectIn.readObject();
             System.out.println("obj Oeuvre" + object);
-            //Oeuvre oeuvretmp = (Oeuvre)object;
             //ListeOeuvre listeOeuvre = (ListeOeuvre)object;
             System.out.println("L'objet a été désérialisé avec succès.");
             return object;
@@ -60,18 +56,34 @@ public class Serializer
 
 
         return null;
-    }
+    }*/
 
 
 
-    public static void serializeObjectPersonne(ListeOeuvre object, String filePath) {
+    /*public static void serializeObject(ListeOeuvre object, String filePath) {
         try {
 
-            FileOutputStream fileOut = new FileOutputStream(filePath);
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
-            objectOut.writeObject(object);
-            fileOut.flush();
+            File file = new File(filePath);
+            FileOutputStream fileOut = new FileOutputStream(filePath,true);
+            if(file.length() == 0)
+            {
+                ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+
+                objectOut.writeObject(object);
+                //objectOut.flush();
+                objectOut.close();
+
+            }
+            else
+            {
+                ObjectInputStreamPerso objectInputStreamPerso = new ObjectInputStreamPerso(fileOut);
+
+                objectInputStreamPerso.writeObject(object);
+
+                //objectInputStreamPerso.flush();
+                objectInputStreamPerso.close();
+            }
 
             System.out.println("L'objet client a été sérialisé avec succès.");
 
@@ -80,19 +92,20 @@ public class Serializer
         } catch (IOException e) {
             System.out.println("Erreur IO");
         }
-    }
+    }*/
 
 
-    public static Object deserializeObjectPersonne(String filePath) {
+    /*public static ListeOeuvre deserializeObject(String filePath) {
         try {
+
 
             FileInputStream fileIn = new FileInputStream(filePath);
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-            Object object = objectIn.readObject();
-            System.out.println("obj Personne" + object);
-            //ListeOeuvre listeOeuvre = (ListeOeuvre)object;
+            ListeOeuvre object = (ListeOeuvre) objectIn.readObject();
+            System.out.println("obj " + object);
+             objectIn.close();
 
-            System.out.println("L'objet Personne a été désérialisé avec succès.");
+            System.out.println("L'objet a été désérialisé avec succès.");
             return object;
 
         } catch (FileNotFoundException e) {
@@ -104,7 +117,7 @@ public class Serializer
         }
 
         return null;
-    }
+    }*/
 
 
 

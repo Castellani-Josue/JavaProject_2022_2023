@@ -352,6 +352,7 @@ public class controleur extends Component implements ActionListener, WindowListe
                         JOptionPane.showMessageDialog(fenetreConnexion, " N'oubliez pas d'enlever vos chaussures", "Bienvenue", JOptionPane.INFORMATION_MESSAGE, null);
                         ListeOeuvre.getInstance().ajoutAdminCourant(administrateur);
                         ListeOeuvre.getInstance().AffichageAdminCourant();
+                        ListeOeuvre.getInstance().writerCSVadmin("ConnexionAdmin.txt","Connexion Admin : ");
 
                     } else {
                         if (!mdpVerif) {
@@ -389,6 +390,7 @@ public class controleur extends Component implements ActionListener, WindowListe
                         JOptionPane.showMessageDialog(fenetreConnexion, " N'oubliez pas d'enlever vos chaussures", "Bienvenue", JOptionPane.INFORMATION_MESSAGE, null);
                         ListeOeuvre.getInstance().ajoutClientCourant(clientTrouve);
                         ListeOeuvre.getInstance().AffichageClientCourant();
+                        ListeOeuvre.getInstance().writeCSVClient("ConnexionClient.txt","Connexion Client :");
                     } else {
                         if (!mdpVerif) {
                             JOptionPane.showMessageDialog(fenetreConnexion, " Mot De passe incorrect", "Error", JOptionPane.INFORMATION_MESSAGE, null);
@@ -415,10 +417,12 @@ public class controleur extends Component implements ActionListener, WindowListe
 
                 ListeOeuvre.getInstance().DeconnectClient();
                 JOptionPane.showMessageDialog(fenetreConnexion, "Vous avez été déconnecté avec succès !", "Deconnexion", JOptionPane.INFORMATION_MESSAGE, null);
+                ListeOeuvre.getInstance().writeCSVClient("DeconnexionClient.txt","Deconnexion Client : ");
             } else if (ListeOeuvre.getInstance().getAdminCourant() != null) {
 
                 ListeOeuvre.getInstance().DeconnectAdmin();
                 JOptionPane.showMessageDialog(fenetreConnexion, "Vous avez été déconnecté avec succès !", "Deconnexion", JOptionPane.INFORMATION_MESSAGE, null);
+                ListeOeuvre.getInstance().writerCSVadmin("DeconnexionAdmin.txt","Deconnexion Admin : ");
 
             }
             else{
@@ -645,8 +649,9 @@ public class controleur extends Component implements ActionListener, WindowListe
     }
 
     public void windowClosing(WindowEvent we) {
-        Serializer.serializeObjectOeuvre("Oeuvre.bin");
-        Serializer.serializeObjectPersonne(ListeOeuvre.getInstance(),"Personne.bin");
+
+        //Serializer.serializeObject(ListeOeuvre.getInstance(),"Mesdonnees.bin");
+        //ListeOeuvre.getInstance().Serialise("Mesdonnees.dat");
         System.out.println("fini 1 ");
         System.exit(0);
 

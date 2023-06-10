@@ -1,6 +1,8 @@
 package TypeOeuvre;
 
-public class ClassificationOeuvre
+import java.io.Serializable;
+
+public class ClassificationOeuvre implements Serializable
 {
     private int pegi;
 

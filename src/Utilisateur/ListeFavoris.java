@@ -2,7 +2,9 @@ package  Utilisateur;
 
 import Interface.AUnIdentifiant;
 
-public class ListeFavoris implements AUnIdentifiant
+import java.io.Serializable;
+
+public class ListeFavoris implements AUnIdentifiant , Serializable
 {
     protected int identifiantFilm;
     public ListeFavoris(int idFilm)

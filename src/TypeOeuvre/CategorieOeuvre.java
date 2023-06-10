@@ -1,6 +1,8 @@
 package TypeOeuvre;
 
-public class CategorieOeuvre
+import java.io.Serializable;
+
+public class CategorieOeuvre implements Serializable
 {
     private String nom;
 

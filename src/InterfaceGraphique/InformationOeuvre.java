@@ -26,6 +26,8 @@ public class InformationOeuvre extends JDialog
     private JTextField dureeTextField;
     private JLabel LabelTitre;
     private JTextField TitreTextfield;
+    private JLabel LabelCote2;
+    private JTextField textfieldCote;
     private JLabel LabelCote;
 
     public InformationOeuvre()
