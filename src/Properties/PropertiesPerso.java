@@ -1,20 +1,32 @@
 package Properties;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Properties;
 
 public class PropertiesPerso
 {
-   public static void PropertiesTest()
+    private static  final String CONFIG_FILE = "Image.properties";
+
+
+    public static String PropertiesTest()
    {
+
        try {
 
            Properties prop = new Properties();
-           prop.load(new FileInputStream("Image.properties"));
-           prop.list(System.out);
+           FileInputStream fis =  new FileInputStream(CONFIG_FILE);
+           prop.load(fis);
+           //prop.list(System.out);
+
+
+
+           String imagePath2 = prop.getProperty("image2.path");
+
+           return imagePath2;
+
+
+
+
        }
        catch(FileNotFoundException e)
        {
@@ -24,5 +36,12 @@ public class PropertiesPerso
        {
            System.out.println("Erreur IO !");
        }
+
+       return null;
    }
+
+
+
+
+
 }

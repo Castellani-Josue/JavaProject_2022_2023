@@ -1,13 +1,12 @@
 package Controleur;
 
-import CompareMethod.MultiTypeComparator;
-import InterfaceGraphique.InterfaceConnection;
-import InterfaceGraphique.InterfaceCreate_Account;
-import InterfaceGraphique.InterfaceFilmSerieAnime;
-import InterfaceGraphique.InterfacePrincipale;
+import CompareMethod.*;
+import InterfaceGraphique.*;
+import Serialisation.Serializer;
 import Singleton.ListeOeuvre;
 import TypeOeuvre.*;
 import Utilisateur.Administrateur;
+import Utilisateur.ListeFavoris;
 import Utilisateur.client;
 
 import javax.swing.*;
@@ -16,6 +15,8 @@ import javax.swing.event.ListDataListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 import java.awt.event.WindowListener;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
@@ -23,10 +24,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.DefaultMutableTreeNode;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class controleur extends Component implements ActionListener, WindowListener , ListDataListener , MouseListener
+public class controleur extends Component implements ActionListener, WindowListener , ListDataListener , MouseListener , ListSelectionListener
 {
 
     private InterfacePrincipale fenetrePrincipale;
@@ -36,6 +38,10 @@ public class controleur extends Component implements ActionListener, WindowListe
     private  InterfaceCreate_Account fenetreCreationCompte;
 
     private InterfaceFilmSerieAnime fenetreFilm;
+
+    private InformationOeuvre infosOeuvre;
+    
+    private InterfaceFavoris favoris;
 
     private  ListeOeuvre InstanceCourante;
 
@@ -51,7 +57,7 @@ public class controleur extends Component implements ActionListener, WindowListe
 
     private client cli;
 
-    public controleur(InterfacePrincipale fp,InterfaceConnection fc ,InterfaceCreate_Account fcr ,  InterfaceFilmSerieAnime fA )
+    public controleur(InterfacePrincipale fp,InterfaceConnection fc ,InterfaceCreate_Account fcr ,  InterfaceFilmSerieAnime fA , InformationOeuvre fI , InterfaceFavoris fav )
     {
 
         //InstanceCourante = ListeOeuvre.getInstance();
@@ -59,7 +65,8 @@ public class controleur extends Component implements ActionListener, WindowListe
         fenetreFilm = fA;
         fenetreConnexion = fc;
         fenetreCreationCompte = fcr;
-
+        infosOeuvre=  fI;
+        favoris = fav;
     }
     public void contentsChanged(ListDataEvent e)
     {
@@ -429,8 +436,38 @@ public class controleur extends Component implements ActionListener, WindowListe
                 JOptionPane.showMessageDialog(fenetreConnexion, "Aucune personne connecté", "Error", JOptionPane.INFORMATION_MESSAGE, null);
             }
 
+        } else if(e.getActionCommand().equals("Voir Favoris")) {
+            if (ListeOeuvre.getInstance().getClientCourant() != null) {
+                ArrayList<Object> listeObjet = new ArrayList<>();
+                for (ListeFavoris favorisTmp : ListeOeuvre.getInstance().getClientCourant().getListeFavoris()) {
+                    for (Anime animetmp : ListeOeuvre.getInstance().getInstanceAnime()) {
+                        if (animetmp.getIdentifiant() == favorisTmp.getIdentifiant()) {
+                            listeObjet.add(animetmp);
+                            break;
+                        }
+                    }
+                    for (Serie serieTmp : ListeOeuvre.getInstance().getInstanceSerie()) {
+                        if (serieTmp.getIdentifiant() == favorisTmp.getIdentifiant()) {
+                            listeObjet.add(serieTmp);
+                            break;
+                        }
+                    }
+                    for (Film filmTmp : ListeOeuvre.getInstance().getInstanceFilm()) {
+                        if (filmTmp.getIdentifiant() == favorisTmp.getIdentifiant()) {
+                            listeObjet.add(filmTmp);
+                            break;
+                        }
+                    }
+                }
+                favoris.getListeFavoris().setListData(listeObjet.toArray());
+                favoris.setVisible(true);
+                favoris.dispose();
+            }
         }
-
+        else
+        {
+            JOptionPane.showMessageDialog(fenetreConnexion, "Aucun client connecté", "Erreur", JOptionPane.INFORMATION_MESSAGE, null);
+        }
     }
 
     public void mouseClicked(MouseEvent e)
@@ -450,27 +487,39 @@ public class controleur extends Component implements ActionListener, WindowListe
             {
                 if(nodeNameFinal.equals("6+"))
                 {
-
+                    Comparator0 comparator = new Comparator0();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceFilm(), comparator);
+                    fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
                 }
                 if(nodeNameFinal.equals("9+"))
                 {
-
+                    Comparator9 comparator = new Comparator9();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceFilm(), comparator);
+                    fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
                 }
                 if(nodeNameFinal.equals("12+"))
                 {
-
+                    Comparator12 comparator = new Comparator12();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceFilm(), comparator);
+                    fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
                 }
                 if(nodeNameFinal.equals("14+"))
                 {
-
+                    Comparator14 comparator = new Comparator14();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceFilm(), comparator);
+                    fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
                 }
                 if(nodeNameFinal.equals("16+"))
                 {
-
+                    Comparator16 comparator = new Comparator16();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceFilm(), comparator);
+                    fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
                 }
                 if(nodeNameFinal.equals("18+"))
                 {
-
+                    Comparator18 comparator = new Comparator18();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceFilm(), comparator);
+                    fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
                 }
                 if(nodeNameFinal.equals("Horreur"))
                 {
@@ -480,19 +529,27 @@ public class controleur extends Component implements ActionListener, WindowListe
                 }
                 if(nodeNameFinal.equals("Science-Fiction"))
                 {
-
+                    ComparatorSF comparator = new ComparatorSF();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceFilm(), comparator);
+                    fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
                 }
                 if(nodeNameFinal.equals("Aventure"))
                 {
-
+                    ComparatorAventure comparator = new ComparatorAventure();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceFilm(), comparator);
+                    fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
                 }
                 if(nodeNameFinal.equals("Drame"))
                 {
-
+                    ComparatorDrame comparator = new ComparatorDrame();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceFilm(), comparator);
+                    fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
                 }
                 if(nodeNameFinal.equals("Action"))
                 {
-
+                    ComparatorAction comparator = new ComparatorAction();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceFilm(), comparator);
+                    fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
                 }
             }
 
@@ -500,27 +557,39 @@ public class controleur extends Component implements ActionListener, WindowListe
             {
                 if(nodeNameFinal.equals("6+"))
                 {
-
+                    Comparator0 comparator = new Comparator0();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceSerie(), comparator);
+                    fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
                 }
                 if(nodeNameFinal.equals("9+"))
                 {
-
+                    Comparator9 comparator = new Comparator9();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceSerie(), comparator);
+                    fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
                 }
                 if(nodeNameFinal.equals("12+"))
                 {
-
+                    Comparator12 comparator = new Comparator12();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceSerie(), comparator);
+                    fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
                 }
                 if(nodeNameFinal.equals("14+"))
                 {
-
+                    Comparator14 comparator = new Comparator14();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceSerie(), comparator);
+                    fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
                 }
                 if(nodeNameFinal.equals("16+"))
                 {
-
+                    Comparator16 comparator = new Comparator16();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceSerie(), comparator);
+                    fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
                 }
                 if(nodeNameFinal.equals("18+"))
                 {
-
+                    Comparator18 comparator = new Comparator18();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceSerie(), comparator);
+                    fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
                 }
                 if(nodeNameFinal.equals("Horreur"))
                 {
@@ -530,19 +599,27 @@ public class controleur extends Component implements ActionListener, WindowListe
                 }
                 if(nodeNameFinal.equals("Science-Fiction"))
                 {
-
+                    ComparatorSF comparator = new ComparatorSF();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceSerie(), comparator);
+                    fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
                 }
                 if(nodeNameFinal.equals("Aventure"))
                 {
-
+                    ComparatorAventure comparator = new ComparatorAventure();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceSerie(), comparator);
+                    fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
                 }
                 if(nodeNameFinal.equals("Drame"))
                 {
-
+                    ComparatorDrame comparator = new ComparatorDrame();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceSerie(), comparator);
+                    fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
                 }
                 if(nodeNameFinal.equals("Action"))
                 {
-
+                    ComparatorAction comparator = new ComparatorAction();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceSerie(), comparator);
+                    fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
                 }
             }
 
@@ -550,27 +627,39 @@ public class controleur extends Component implements ActionListener, WindowListe
             {
                 if(nodeNameFinal.equals("6+"))
                 {
-
+                    Comparator0 comparator = new Comparator0();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceAnime(), comparator);
+                    fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
                 }
                 if(nodeNameFinal.equals("9+"))
                 {
-
+                    Comparator9 comparator = new Comparator9();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceAnime(), comparator);
+                    fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
                 }
                 if(nodeNameFinal.equals("12+"))
                 {
-
+                    Comparator12 comparator = new Comparator12();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceAnime(), comparator);
+                    fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
                 }
                 if(nodeNameFinal.equals("14+"))
                 {
-
+                    Comparator14 comparator = new Comparator14();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceAnime(), comparator);
+                    fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
                 }
                 if(nodeNameFinal.equals("16+"))
                 {
-
+                    Comparator16 comparator = new Comparator16();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceAnime(), comparator);
+                    fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
                 }
                 if(nodeNameFinal.equals("18+"))
                 {
-
+                    Comparator18 comparator = new Comparator18();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceAnime(), comparator);
+                    fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
                 }
                 if(nodeNameFinal.equals("Horreur"))
                 {
@@ -580,19 +669,27 @@ public class controleur extends Component implements ActionListener, WindowListe
                 }
                 if(nodeNameFinal.equals("Science-Fiction"))
                 {
-
+                    ComparatorSF comparator = new ComparatorSF();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceAnime(), comparator);
+                    fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
                 }
                 if(nodeNameFinal.equals("Aventure"))
                 {
-
+                    ComparatorAventure comparator = new ComparatorAventure();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceAnime(), comparator);
+                    fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
                 }
                 if(nodeNameFinal.equals("Drame"))
                 {
-
+                    ComparatorDrame comparator = new ComparatorDrame();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceAnime(), comparator);
+                    fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
                 }
                 if(nodeNameFinal.equals("Action"))
                 {
-
+                    ComparatorAction comparator = new ComparatorAction();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceAnime(), comparator);
+                    fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
                 }
             }
 
@@ -600,27 +697,39 @@ public class controleur extends Component implements ActionListener, WindowListe
             {
                 if(nodeNameFinal.equals("6+"))
                 {
-
+                    Comparator0 comparator = new Comparator0();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceTrailer(), comparator);
+                    fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
                 }
                 if(nodeNameFinal.equals("9+"))
                 {
-
+                    Comparator9 comparator = new Comparator9();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceTrailer(), comparator);
+                    fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
                 }
                 if(nodeNameFinal.equals("12+"))
                 {
-
+                    Comparator12 comparator = new Comparator12();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceTrailer(), comparator);
+                    fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
                 }
                 if(nodeNameFinal.equals("14+"))
                 {
-
+                    Comparator14 comparator = new Comparator14();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceTrailer(), comparator);
+                    fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
                 }
                 if(nodeNameFinal.equals("16+"))
                 {
-
+                    Comparator16 comparator = new Comparator16();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceTrailer(), comparator);
+                    fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
                 }
                 if(nodeNameFinal.equals("18+"))
                 {
-
+                    Comparator18 comparator = new Comparator18();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceTrailer(), comparator);
+                    fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
                 }
                 if(nodeNameFinal.equals("Horreur"))
                 {
@@ -630,28 +739,211 @@ public class controleur extends Component implements ActionListener, WindowListe
                 }
                 if(nodeNameFinal.equals("Science-Fiction"))
                 {
-
+                    ComparatorSF comparator = new ComparatorSF();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceTrailer(), comparator);
+                    fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
                 }
                 if(nodeNameFinal.equals("Aventure"))
                 {
-
+                    ComparatorAventure comparator = new ComparatorAventure();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceTrailer(), comparator);
+                    fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
                 }
                 if(nodeNameFinal.equals("Drame"))
                 {
-
+                    ComparatorDrame comparator = new ComparatorDrame();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceTrailer(), comparator);
+                    fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
                 }
                 if(nodeNameFinal.equals("Action"))
                 {
-
+                    ComparatorAction comparator = new ComparatorAction();
+                    Collections.sort(ListeOeuvre.getInstance().getInstanceTrailer(), comparator);
+                    fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
                 }
             }
+        }
+    }
+
+    public void valueChanged(ListSelectionEvent e)
+    {
+        if(ListeOeuvre.getInstance().getClientCourant() != null) {
+            if (!e.getValueIsAdjusting()) {
+                JList<?> source = (JList<?>) e.getSource();
+                Object selectedValue = source.getSelectedValue();
+                Trailer trailertmp;
+                Serie serieTmp;
+                Film filmtmp;
+                Anime animeTmp;
+                if (selectedValue != null) {
+
+                    if (selectedValue instanceof Trailer) {
+                        trailertmp = (Trailer) selectedValue;
+                        infosOeuvre.getLabelTitre().setText(trailertmp.getNom());
+                        infosOeuvre.getLabelAudio().setText(String.valueOf(trailertmp.getAudio()));
+                        infosOeuvre.getLabelCategorie().setText(trailertmp.getCategorieTrailer());
+                        infosOeuvre.getLabelDate().setText(String.valueOf(trailertmp.getDateSortie()));
+                        infosOeuvre.getLabelDescription().setText(trailertmp.getDescription());
+                        infosOeuvre.getLabelClassification().setText(String.valueOf(trailertmp.getClassificationTrailer()));
+                        infosOeuvre.getLabelDuree().setText(String.valueOf(trailertmp.getTemps()));
+                        infosOeuvre.getLabelSousTitre().setText(String.valueOf(trailertmp.getSousTitre()));
+                        infosOeuvre.getLabelEditeur().setText(trailertmp.getEditeur());
+                        infosOeuvre.getLabelCote().setVisible(false);
+                        infosOeuvre.getSlider1().setVisible(false);
+                        infosOeuvre.getFavorisRadioButton().setVisible(false);
+                        infosOeuvre.getLabelCote1().setText("pas de cote pour un Trailer");
+
+                        infosOeuvre.setVisible(true);
+                        infosOeuvre.getLabelCote().setVisible(true);
+                        infosOeuvre.getSlider1().setVisible(true);
+                        infosOeuvre.getFavorisRadioButton().setVisible(true);
+
+                    }
+                    if (selectedValue instanceof Film) {
+                        filmtmp = (Film) selectedValue;
+                        infosOeuvre.getLabelTitre().setText(filmtmp.getNom());
+                        infosOeuvre.getLabelAudio().setText(String.valueOf(filmtmp.getAudio()));
+                        infosOeuvre.getLabelCategorie().setText(filmtmp.getCategorieFilm());
+                        infosOeuvre.getLabelDate().setText(String.valueOf(filmtmp.getDateSortie()));
+                        infosOeuvre.getLabelDescription().setText(filmtmp.getDescription());
+                        infosOeuvre.getLabelClassification().setText(String.valueOf(filmtmp.getClassificationFilm()));
+                        infosOeuvre.getLabelDuree().setText(String.valueOf(filmtmp.getTemps()));
+                        infosOeuvre.getLabelSousTitre().setText(String.valueOf(filmtmp.getSousTitre()));
+                        infosOeuvre.getLabelEditeur().setText(filmtmp.getEditeur());
+                        if (filmtmp.getCotation() == 0) {
+                            infosOeuvre.getLabelCote1().setText("pas encore de côte");
+                        } else {
+                            infosOeuvre.getLabelCote1().setText(String.valueOf(filmtmp.getCotation()));
+                        }
+
+                        ListeFavoris Test = new ListeFavoris(filmtmp.getIdentifiant());
+
+                        if (ListeOeuvre.getInstance().getClientCourant().getListeFavoris().contains(Test)) {
+                            System.out.println("Favoris present !");
+                            infosOeuvre.getFavorisRadioButton().setSelected(true);
+                        } else {
+                            System.out.println("Favoris non present !");
+                            infosOeuvre.getFavorisRadioButton().setSelected(false);
+                        }
+
+                    /*if(filmtmp.getCotePersonelleFilm() != 0)
+                    {
+                        infosOeuvre.getSlider1().setValue(filmtmp.getCotePersonelleFilm());
+                    }*/
+
+
+                        infosOeuvre.setVisible(true);
+
+                        if (infosOeuvre.getFavorisRadioButton().isSelected() && ListeOeuvre.getInstance().getClientCourant() != null) {
+                            System.out.println("boutton Favoris appuyé");
+                            ListeOeuvre.getInstance().getClientCourant().ajoutFavoris(filmtmp.getIdentifiant());
+                        } else if (!infosOeuvre.getFavorisRadioButton().isSelected() && ListeOeuvre.getInstance().getClientCourant() != null) {
+                            ListeOeuvre.getInstance().getClientCourant().retirerFavoris(filmtmp.getIdentifiant());
+                        }
+
+                        if (infosOeuvre.getSlider1().getValue() != 0) {
+                            //filmtmp.retirerValeur(filmtmp.getCotePersonelleFilm());
+                            filmtmp.calculerMoyenne(infosOeuvre.getSlider1().getValue());
+                            System.out.println(filmtmp.getCotation());
+                            //filmtmp.setCotePersonelleFilm(infosOeuvre.getSlider1().getValue());
+                            infosOeuvre.getSlider1().setValue(0);
+                        }
+                        //else if(infosOeuvre.getSlider1().getValue() != filmtmp.getCotePersonelleFilm() && filmtmp.getCotePersonelleFilm() == 0 )
+                    }
+                    if (selectedValue instanceof Anime) {
+                        animeTmp = (Anime) selectedValue;
+                        infosOeuvre.getLabelTitre().setText(animeTmp.getNom());
+                        infosOeuvre.getLabelAudio().setText(String.valueOf(animeTmp.getAudio()));
+                        infosOeuvre.getLabelCategorie().setText(animeTmp.getCategorieAnime());
+                        infosOeuvre.getLabelDate().setText(String.valueOf(animeTmp.getDateSortie()));
+                        infosOeuvre.getLabelDescription().setText(animeTmp.getDescription());
+                        infosOeuvre.getLabelClassification().setText(String.valueOf(animeTmp.getClassificationAnime()));
+                        infosOeuvre.getLabelDuree().setText(String.valueOf(animeTmp.getTemps()));
+                        infosOeuvre.getLabelSousTitre().setText(String.valueOf(animeTmp.getSousTitre()));
+                        infosOeuvre.getLabelEditeur().setText(animeTmp.getEditeur());
+
+                        ListeFavoris Test = new ListeFavoris(animeTmp.getIdentifiant());
+                        if (ListeOeuvre.getInstance().getClientCourant().getListeFavoris().contains(Test)) {
+                            infosOeuvre.getFavorisRadioButton().setSelected(true);
+                        } else {
+                            infosOeuvre.getFavorisRadioButton().setSelected(false);
+                        }
+
+                        if (animeTmp.getCotePersonelleAnime() != 0) {
+                            infosOeuvre.getSlider1().setValue(animeTmp.getCotePersonelleAnime());
+                        }
+
+                        infosOeuvre.setVisible(true);
+
+                        if (infosOeuvre.getFavorisRadioButton().isSelected() && ListeOeuvre.getInstance().getClientCourant() != null) {
+                            System.out.println("boutton Favoris appuyé");
+                            ListeOeuvre.getInstance().getClientCourant().ajoutFavoris(animeTmp.getIdentifiant());
+                        } else if (!infosOeuvre.getFavorisRadioButton().isSelected() && ListeOeuvre.getInstance().getClientCourant() != null) {
+                            ListeOeuvre.getInstance().getClientCourant().retirerFavoris(animeTmp.getIdentifiant());
+                        }
+
+                        if (infosOeuvre.getSlider1().getValue() != 0) {
+                            animeTmp.calculerMoyenne(infosOeuvre.getSlider1().getValue());
+                            System.out.println(animeTmp.getCotation());
+                            infosOeuvre.getSlider1().setValue(0);
+                        }
+                    }
+                    if (selectedValue instanceof Serie) {
+                        serieTmp = (Serie) selectedValue;
+                        infosOeuvre.getLabelTitre().setText(serieTmp.getNom());
+                        infosOeuvre.getLabelAudio().setText(String.valueOf(serieTmp.getAudio()));
+                        infosOeuvre.getLabelCategorie().setText(serieTmp.getCategorieSerie());
+                        infosOeuvre.getLabelDate().setText(String.valueOf(serieTmp.getDateSortie()));
+                        infosOeuvre.getLabelDescription().setText(serieTmp.getDescription());
+                        infosOeuvre.getLabelClassification().setText(String.valueOf(serieTmp.getClassificationSerie()));
+                        infosOeuvre.getLabelDuree().setText(String.valueOf(serieTmp.getTemps()));
+                        infosOeuvre.getLabelSousTitre().setText(String.valueOf(serieTmp.getSousTitre()));
+                        infosOeuvre.getLabelEditeur().setText(serieTmp.getEditeur());
+
+                        ListeFavoris Test = new ListeFavoris(serieTmp.getIdentifiant());
+                        if (ListeOeuvre.getInstance().getClientCourant().getListeFavoris().contains(Test)) {
+                            infosOeuvre.getFavorisRadioButton().setSelected(true);
+                        } else {
+                            infosOeuvre.getFavorisRadioButton().setSelected(false);
+                        }
+
+                        if (serieTmp.getCotePersonelleSerie() != 0) {
+                            infosOeuvre.getSlider1().setValue(serieTmp.getCotePersonelleSerie());
+                        }
+
+                        infosOeuvre.setVisible(true);
+
+                        if (infosOeuvre.getFavorisRadioButton().isSelected() && ListeOeuvre.getInstance().getClientCourant() != null) {
+                            System.out.println("boutton Favoris appuyé");
+                            ListeOeuvre.getInstance().getClientCourant().ajoutFavoris(serieTmp.getIdentifiant());
+                        } else if (!infosOeuvre.getFavorisRadioButton().isSelected() && ListeOeuvre.getInstance().getClientCourant() != null) {
+                            ListeOeuvre.getInstance().getClientCourant().retirerFavoris(serieTmp.getIdentifiant());
+                        }
+
+                        if (infosOeuvre.getSlider1().getValue() != 0) {
+                            serieTmp.calculerMoyenne(infosOeuvre.getSlider1().getValue());
+                            System.out.println(serieTmp.getCotation());
+                            infosOeuvre.getSlider1().setValue(0);
+                        }
+                    }
+
+                    //mettre toutes les infos de l'objet récuperé dans le bon Jlabel
+                    source.clearSelection();
+                    infosOeuvre.dispose(); //mettre à la fin
+                }
+                //récuperer la valeur du Jslider et du Jbutton et en faire des trucs
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(fenetreConnexion, "Aucun client connecté", "Erreur", JOptionPane.INFORMATION_MESSAGE, null);
         }
     }
 
     public void windowClosing(WindowEvent we) {
 
         //Serializer.serializeObject(ListeOeuvre.getInstance(),"Mesdonnees.bin");
-        //ListeOeuvre.getInstance().Serialise("Mesdonnees.dat");
+        ListeOeuvre.getInstance().Serialise("C:\\Users\\josue\\Java_Project_2022_2023\\JavaProject\\Fichier");
         System.out.println("fini 1 ");
         System.exit(0);
 

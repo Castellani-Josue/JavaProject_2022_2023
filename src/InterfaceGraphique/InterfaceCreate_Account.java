@@ -2,6 +2,7 @@ package InterfaceGraphique;
 
 
 import Controleur.controleur;
+import Properties.PropertiesPerso;
 import Utilisateur.client;
 
 import javax.swing.*;
@@ -50,7 +51,11 @@ public class InterfaceCreate_Account extends JDialog
     private JRadioButton GenreAventure;
     private JLabel Preferencelabel;
 
+    private String Logolabel;
+
     private  ButtonGroup buttonGroupGenre;
+
+    private ImageIcon imageIcon;
 
 
     public InterfaceCreate_Account(JFrame parent, boolean modal,String titre)
@@ -65,11 +70,14 @@ public class InterfaceCreate_Account extends JDialog
             setDefaultCloseOperation(DISPOSE_ON_CLOSE);
             setSize(1200,700);
             setLocation((screen.width - this.getSize().width)/2,(screen.height - this.getSize().height)/2);
-            ImageIcon logoIcon = new ImageIcon("C:\\Users\\josue\\OneDrive\\Documents\\HEPL\\B2\\q2\\Java\\Labo\\netflix.png");
-            setIconImage(logoIcon.getImage());
+            //imageIcon = new ImageIcon(PropertiesPerso.PropertiesTest());
+            //setIconImage(imageIcon.getImage());
 
             cli = new client();
             Confirmer = false;
+
+            Logolabel = LogoLabel.getText();
+            Logolabel = PropertiesPerso.PropertiesTest();
 
             buttonGroupGenre = new ButtonGroup();
             buttonGroupGenre.add(GenreAction);
@@ -165,6 +173,8 @@ public class InterfaceCreate_Account extends JDialog
     {
         return PrenomTextField;
     }
+
+        public JLabel getImageLabel(){return LogoLabel;}
 
     public ButtonGroup getButtonGroupGenre(){return buttonGroupGenre;}
 

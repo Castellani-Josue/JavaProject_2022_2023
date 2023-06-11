@@ -2,6 +2,7 @@ package InterfaceGraphique;
 
 import ComposantInterfaceGraphique.MonTreeModele;
 import Controleur.controleur;
+import Properties.PropertiesPerso;
 import Singleton.ListeOeuvre;
 
 import javax.swing.*;
@@ -32,6 +33,7 @@ public class InterfacePrincipale extends JFrame
     JMenuItem jMenuItem6 = new JMenuItem();
     JMenuItem jMenuItem7 = new JMenuItem();
     JMenuItem jMenuItem8 = new JMenuItem();
+    JMenuItem jMenuItem9 = new JMenuItem();
 
 
 
@@ -47,7 +49,7 @@ public class InterfacePrincipale extends JFrame
         //PanelTree = new JPanel();
         //ScrollList = new JScrollPane();
 
-        ImageIcon logoIcon = new ImageIcon("C:\\Users\\josue\\OneDrive\\Documents\\HEPL\\B2\\q2\\Java\\Labo\\netflix.png");
+        ImageIcon logoIcon = new ImageIcon(PropertiesPerso.PropertiesTest());
         setIconImage(logoIcon.getImage());
 
         //mainPanel.add(PanelTree);
@@ -71,6 +73,7 @@ public class InterfacePrincipale extends JFrame
         jMenuItem6.setText("Anime");
         jMenuItem7.setText("Trailer");
         jMenuItem8.setText("Créer un compte");
+        jMenuItem9.setText("Voir Favoris");
 
         jMenuBar1.add(jMenu1);
         jMenuBar1.add(jMenu2);
@@ -89,6 +92,7 @@ public class InterfacePrincipale extends JFrame
         jMenu2.add(jMenuItem6);
         jMenu2.addSeparator();
         jMenu2.add(jMenuItem7);
+        jMenu3.add(jMenuItem9);
 
         jMenuBar1.setBackground(new Color(184, 29, 36));
 
@@ -197,6 +201,7 @@ public class InterfacePrincipale extends JFrame
     public void setControleur(controleur controleur1)
     {
         //Film.addListDataListener(controleur1);
+        jMenuItem9.addActionListener(controleur1);
         jMenuItem1.addActionListener(controleur1);
         jMenuItem2.addActionListener(controleur1);
         jMenuItem3.addActionListener(controleur1);
@@ -205,6 +210,10 @@ public class InterfacePrincipale extends JFrame
         jMenuItem6.addActionListener(controleur1);
         jMenuItem7.addActionListener(controleur1);
         jMenuItem8.addActionListener(controleur1);
+        Serie.addListSelectionListener(controleur1);
+        Film.addListSelectionListener(controleur1);
+        Trailer.addListSelectionListener(controleur1);
+        Anime.addListSelectionListener(controleur1);
         arbre.addMouseListener(controleur1);
         this.addWindowListener(controleur1);
     }

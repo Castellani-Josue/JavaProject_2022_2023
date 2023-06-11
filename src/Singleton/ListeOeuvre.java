@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ListeOeuvre implements Serializable
@@ -43,16 +44,14 @@ public class ListeOeuvre implements Serializable
         //listeClient = new ArrayList<>();
         //listeFilm = new ArrayList<>();
         //listeAdmin = new ArrayList<>();
-
-
-
-
-
     }
     public static ListeOeuvre getInstance()
     {
-        if(instance == null)
+        if(instance == null) {
             instance = new ListeOeuvre();
+            //ListeOeuvre.getInstance().Deserializer("C:\\Users\\josue\\Java_Project_2022_2023\\JavaProject\\Fichier");
+            System.out.println("je suis dans le constructeur du singelton");
+        }
         return instance;
     }
 
@@ -222,19 +221,24 @@ public class ListeOeuvre implements Serializable
 
     public  void  Deserializer(String filePath)
     {
-        ListeOeuvre listeOeuvre = null;
         try {
 
 
-            FileInputStream fileIn = new FileInputStream(filePath);
+            FileInputStream fileIn = new FileInputStream(filePath + "\\Mesdonnees.data" );
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
-            listeClient = (ArrayList<client>) objectIn.readObject();
+            /*listeClient = (ArrayList<client>) objectIn.readObject();
             listeAdmin = (ArrayList<Administrateur>) objectIn.readObject();
             listeFilm = (ArrayList<Film>) objectIn.readObject();
             listeAnime = (ArrayList<Anime>) objectIn.readObject();
             listeSerie = (ArrayList<Serie>) objectIn.readObject();
-            listeTrailer = (ArrayList<Trailer>) objectIn.readObject();
+            listeTrailer = (ArrayList<Trailer>) objectIn.readObject();*/
+
+            System.out.println("Avant la création du singelton ?");
+            instance = (ListeOeuvre) objectIn.readObject();
+            System.out.println("Après la création du singelton ?");
+            System.out.println("déserialisation");
+            System.out.println(instance.toString());
 
 
             objectIn.close();
@@ -258,15 +262,20 @@ public class ListeOeuvre implements Serializable
     {
         try {
 
-        FileOutputStream fileOut = new FileOutputStream(filePath);
+        FileOutputStream fileOut = new FileOutputStream(filePath + "\\Mesdonnees.data" );
         ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
-        objectOut.writeObject(getInstanceTrailer());
+        /*objectOut.writeObject(getInstanceTrailer());
         objectOut.writeObject(getInstanceSerie());
         objectOut.writeObject(getInstanceFilm());
         objectOut.writeObject(getInstanceAnime());
         objectOut.writeObject(getInstanceAdmin());
-        objectOut.writeObject(getInstanceClient());
+        objectOut.writeObject(getInstanceClient());*/
+
+            objectOut.writeObject(ListeOeuvre.getInstance());
+            System.out.println("sérialisation");
+            System.out.println(instance.toString());
+
 
         objectOut.close();
         fileOut.close();
@@ -284,100 +293,8 @@ public class ListeOeuvre implements Serializable
     }
     }
 
-    public void ReaderCSVclient(String filePath )
-    {
-        try (BufferedReader in = new BufferedReader(new FileReader(filePath))) {
-           filePath = in.readLine(); // Ignorer la première ligne
-
-            String line;
-            while ((line = in.readLine()) != null) {
-                // Diviser la ligne en champs en utilisant  / comme séparateur
-                String[] fields = line.split("/");
-
-                if (fields.length >= 4) { // Vérifier la longueur du tableau
-                    System.out.println(fields[0]);
-                    System.out.println(fields[1]);
-                    System.out.println(fields[2]);
-                    System.out.println(fields[3]);
 
 
-
-
-                    // Extraire les champs individuels et les stocker dans des variables
-                    int Id = Integer.parseInt(fields[0].trim());
-                    String login = fields[1].trim();
-                    String mdp = fields[2].trim();
-                    String dateSaisie = fields[3].trim();
-                    LocalDate date = LocalDate.parse(dateSaisie, DateTimeFormatter.ISO_LOCAL_DATE);
-
-
-
-                    // Créer un objet en utilisant les valeurs extraites
-                    //client objet = new client(nom,prenom,login,mdp,telephone,preference,null,Id);
-
-                    //ListeOeuvre.getInstance().ajouterClient(objet);
-                } else {
-                    System.out.println("La ligne ne contient pas suffisamment de champs.");
-                }
-            }
-        } catch (FileNotFoundException e)
-        {
-            System.out.println("Fichier Non Trouvé !");
-        } catch (IOException e)
-        {
-            System.out.println("Erreur IO");
-        }
-
-    }
-
-    public void ReaderCSVadmin(String filePath )
-    {
-        try (BufferedReader in = new BufferedReader(new FileReader(filePath))) {
-            filePath = in.readLine(); // Ignorer la première ligne
-
-            String line;
-            while ((line = in.readLine()) != null) {
-                // Diviser la ligne en champs en utilisant  / comme séparateur
-                String[] fields = line.split("/");
-
-                if (fields.length >= 6) { // Vérifier la longueur du tableau
-
-                    System.out.println(fields[3]);
-                    System.out.println(fields[4]);
-                    System.out.println(fields[5]);
-
-
-                    // Extraire les champs individuels et les stocker dans des variables
-                    int id = Integer.parseInt(fields[0].trim());
-                    String nom = fields[1].trim();
-                    String prenom = fields[2].trim();
-                    String login = fields[3].trim();
-                    String mdp = fields[4].trim();
-                    String dateSaisie = fields[5].trim();
-                    LocalDate date = LocalDate.parse(dateSaisie, DateTimeFormatter.ISO_LOCAL_DATE);
-                    String heureconnexion = fields[5].trim();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-                    LocalTime heure = LocalTime.parse(heureconnexion,formatter);
-
-
-
-                    // Créer un objet en utilisant les valeurs extraites
-                    //Administrateur objet = new Administrateur(nom,prenom,login,mdp,id);
-
-                    //ListeOeuvre.getInstance().ajouterAdmin(objet);
-                } else {
-                    System.out.println("La ligne ne contient pas suffisamment de champs.");
-                }
-            }
-        } catch (FileNotFoundException e)
-        {
-            System.out.println("Fichier Non Trouvé !");
-        } catch (IOException e)
-        {
-            System.out.println("Erreur IO");
-        }
-
-    }
 
     public void writeCSVClient(String filePath ,String En_tete) {
         try {
@@ -452,12 +369,22 @@ public class ListeOeuvre implements Serializable
     }
 
 
-
+    @Override
+    public String toString() {
+        return "ListeOeuvre{" +
+                "listeFilm=" + listeFilm +
+                ", listeSerie=" + listeSerie +
+                ", listeAnime=" + listeAnime +
+                ", listeTrailer=" + listeTrailer +
+                ", listeClient=" + listeClient +
+                ", listeAdmin=" + listeAdmin +
+                '}';
+    }
 
     public static void main(String[] args)
     {
         //ListeOeuvre.getInstance().writeCSVpersonne("Test.txt");
-        ListeOeuvre.getInstance().ReaderCSVclient("Test.txt");
+        //ListeOeuvre.getInstance().ReaderCSVclient("Test.txt");
     }
 
 

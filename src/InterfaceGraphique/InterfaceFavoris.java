@@ -1,6 +1,7 @@
 package InterfaceGraphique;
 
 import Controleur.controleur;
+import Properties.PropertiesPerso;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +22,8 @@ public class InterfaceFavoris extends JDialog {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(1000, 700);
         setLocation((screen.width - this.getSize().width) / 2, (screen.height - this.getSize().height) / 2);
+        ImageIcon logoIcon = new ImageIcon(PropertiesPerso.PropertiesTest());
+        setIconImage(logoIcon.getImage());
     }
 
     public void setControleur(controleur controleur1)
