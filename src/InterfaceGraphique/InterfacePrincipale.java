@@ -189,10 +189,10 @@ public class InterfacePrincipale extends JFrame
     public static void main(String[] args)
     {
         InterfacePrincipale dlm = new InterfacePrincipale();
-        dlm.Film.setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
+        /*dlm.Film.setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
         dlm.Anime.setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
         dlm.Serie.setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
-        dlm.Trailer.setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
+        dlm.Trailer.setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());*/
         dlm.setVisible(true);
 
 
@@ -200,6 +200,7 @@ public class InterfacePrincipale extends JFrame
 
     public void setControleur(controleur controleur1)
     {
+
         //Film.addListDataListener(controleur1);
         jMenuItem9.addActionListener(controleur1);
         jMenuItem1.addActionListener(controleur1);

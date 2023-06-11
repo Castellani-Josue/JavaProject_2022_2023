@@ -16,6 +16,10 @@ public class Main
 
 
         InterfacePrincipale fenetreprincipale= new InterfacePrincipale();
+        fenetreprincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
+        fenetreprincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
+        fenetreprincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
+        fenetreprincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
         InterfaceCreate_Account fenetreCreate = new InterfaceCreate_Account(fenetreprincipale, true, "Create Account");
         InterfaceFilmSerieAnime fenF = new InterfaceFilmSerieAnime(fenetreprincipale,true,"Ajout Oeuvre");
         InterfaceConnection fenC = new InterfaceConnection(fenetreprincipale,true,"dc");

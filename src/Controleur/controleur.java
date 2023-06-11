@@ -463,11 +463,13 @@ public class controleur extends Component implements ActionListener, WindowListe
                 favoris.setVisible(true);
                 favoris.dispose();
             }
+            else
+            {
+
+                JOptionPane.showMessageDialog(fenetrePrincipale, "Aucun client connecté", "Erreur", JOptionPane.INFORMATION_MESSAGE, null);
+            }
         }
-        else
-        {
-            JOptionPane.showMessageDialog(fenetreConnexion, "Aucun client connecté", "Erreur", JOptionPane.INFORMATION_MESSAGE, null);
-        }
+
     }
 
     public void mouseClicked(MouseEvent e)

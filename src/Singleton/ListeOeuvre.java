@@ -224,25 +224,32 @@ public class ListeOeuvre implements Serializable
         try {
 
 
+
             FileInputStream fileIn = new FileInputStream(filePath + "\\Mesdonnees.data" );
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
-            /*listeClient = (ArrayList<client>) objectIn.readObject();
-            listeAdmin = (ArrayList<Administrateur>) objectIn.readObject();
-            listeFilm = (ArrayList<Film>) objectIn.readObject();
-            listeAnime = (ArrayList<Anime>) objectIn.readObject();
-            listeSerie = (ArrayList<Serie>) objectIn.readObject();
-            listeTrailer = (ArrayList<Trailer>) objectIn.readObject();*/
 
-            System.out.println("Avant la création du singelton ?");
+
+            ListeOeuvre.getInstance().listeClient = (ArrayList<client>) objectIn.readObject();
+            ListeOeuvre.getInstance().listeAdmin = (ArrayList<Administrateur>) objectIn.readObject();
+            ListeOeuvre.getInstance().listeFilm = (ArrayList<Film>) objectIn.readObject();
+            ListeOeuvre.getInstance().listeAnime = (ArrayList<Anime>) objectIn.readObject();
+            ListeOeuvre.getInstance().listeSerie = (ArrayList<Serie>) objectIn.readObject();
+            ListeOeuvre.getInstance().listeTrailer = (ArrayList<Trailer>) objectIn.readObject();
+
+
+
+
+
+            /*System.out.println("Avant la création du singelton ?");
             instance = (ListeOeuvre) objectIn.readObject();
             System.out.println("Après la création du singelton ?");
             System.out.println("déserialisation");
-            System.out.println(instance.toString());
+            System.out.println(instance.toString());*/
 
 
-            objectIn.close();
-            fileIn.close();
+            //objectIn.close();
+            //fileIn.close();
 
 
             System.out.println("L'objet a été désérialisé avec succès.");
@@ -265,20 +272,22 @@ public class ListeOeuvre implements Serializable
         FileOutputStream fileOut = new FileOutputStream(filePath + "\\Mesdonnees.data" );
         ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 
-        /*objectOut.writeObject(getInstanceTrailer());
-        objectOut.writeObject(getInstanceSerie());
-        objectOut.writeObject(getInstanceFilm());
-        objectOut.writeObject(getInstanceAnime());
-        objectOut.writeObject(getInstanceAdmin());
-        objectOut.writeObject(getInstanceClient());*/
+            objectOut.writeObject(ListeOeuvre.getInstance().getInstanceClient());
+            objectOut.writeObject(ListeOeuvre.getInstance().getInstanceAdmin());
+            objectOut.writeObject(ListeOeuvre.getInstance().getInstanceFilm());
+            objectOut.writeObject(ListeOeuvre.getInstance().getInstanceAnime());
+            objectOut.writeObject(ListeOeuvre.getInstance().getInstanceSerie());
+            objectOut.writeObject(ListeOeuvre.getInstance().getInstanceTrailer());
 
-            objectOut.writeObject(ListeOeuvre.getInstance());
+
+
+            /*objectOut.writeObject(ListeOeuvre.getInstance());
             System.out.println("sérialisation");
-            System.out.println(instance.toString());
+            System.out.println(instance.toString());*/
 
 
-        objectOut.close();
-        fileOut.close();
+        //objectOut.close();
+        //fileOut.close();
 
 
 
