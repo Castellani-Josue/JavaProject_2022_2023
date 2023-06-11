@@ -20,6 +20,8 @@ import javax.swing.event.ListSelectionEvent;
 import java.awt.event.WindowListener;
 import java.awt.event.*;
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.tree.TreePath;
@@ -28,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class controleur extends Component implements ActionListener, WindowListener , ListDataListener , MouseListener , ListSelectionListener
+public class controleur extends Component implements ActionListener, WindowListener , ListDataListener , MouseListener , ListSelectionListener , PropertyChangeListener
 {
 
     private InterfacePrincipale fenetrePrincipale;
@@ -207,7 +209,7 @@ public class controleur extends Component implements ActionListener, WindowListe
                 Film filmtemporaire = new Film(Titre,duree,id2,date,description,editeur,audio,Soustitre,Genre,Pegi);
                 System.out.println(filmtemporaire.toString());
                 ListeOeuvre.getInstance().ajouterFilm(filmtemporaire);
-                fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
+                //fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
 
 
             }
@@ -216,7 +218,7 @@ public class controleur extends Component implements ActionListener, WindowListe
                 Anime Animetempo = new Anime(Titre,duree,id2,date,description,editeur,audio,Soustitre,Genre,Pegi);
                 System.out.println(Animetempo.toString());
                 ListeOeuvre.getInstance().ajouterAnime(Animetempo);
-                fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
+                //fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
 
             }
             else if(fenetreFilm.getTitle().equals("Serie"))
@@ -224,7 +226,7 @@ public class controleur extends Component implements ActionListener, WindowListe
                 Serie serietemporaire = new Serie(Titre,duree,id2,date,description,editeur,audio,Soustitre,Genre,Pegi);
                 System.out.println(serietemporaire.toString());
                 ListeOeuvre.getInstance().ajouterSerie(serietemporaire);
-                fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
+                //fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
 
             }
             else if(fenetreFilm.getTitle().equals("Trailer"))
@@ -232,7 +234,7 @@ public class controleur extends Component implements ActionListener, WindowListe
                 Trailer trailertempo = new Trailer(Titre,duree,id2,date,description,editeur,audio,Soustitre,Genre,Pegi);
                 System.out.println(trailertempo.toString());
                 ListeOeuvre.getInstance().ajouterTrailer(trailertempo);
-                fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
+                //fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
             }
 
             //fenetreFilm.dispose();
@@ -966,4 +968,33 @@ public class controleur extends Component implements ActionListener, WindowListe
     public void mouseExited(MouseEvent e){}
     public void mouseReleased(MouseEvent e){}
     public void mousePressed(MouseEvent e){}
+
+
+    public void propertyChange(PropertyChangeEvent evt) {
+        System.out.println("Je suis rentré chéri !");
+        if(fenetreFilm.getTitle().equals("Film"))
+        {
+
+            fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
+
+
+        }
+        else if(fenetreFilm.getTitle().equals("Anime"))
+        {
+
+            fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
+
+        }
+        else if(fenetreFilm.getTitle().equals("Serie"))
+        {
+
+            fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
+
+        }
+        else if(fenetreFilm.getTitle().equals("Trailer"))
+        {
+
+            fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
+        }
+    }
 }

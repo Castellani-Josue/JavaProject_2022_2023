@@ -202,6 +202,7 @@ public class InterfacePrincipale extends JFrame
     {
 
         //Film.addListDataListener(controleur1);
+
         jMenuItem9.addActionListener(controleur1);
         jMenuItem1.addActionListener(controleur1);
         jMenuItem2.addActionListener(controleur1);

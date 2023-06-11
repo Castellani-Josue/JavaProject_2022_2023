@@ -8,6 +8,8 @@ import TypeOeuvre.Trailer;
 import Utilisateur.Administrateur;
 import Utilisateur.client;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -18,7 +20,8 @@ import java.util.Scanner;
 
 public class ListeOeuvre implements Serializable
 {
-    private static final long serialVersionUID = 1L;
+    protected PropertyChangeSupport pcs;
+
     private ArrayList<Film> listeFilm = new ArrayList<Film>();
     private ArrayList<Serie> listeSerie = new ArrayList<Serie>();
     private ArrayList<Anime> listeAnime = new ArrayList<Anime>();
@@ -41,10 +44,20 @@ public class ListeOeuvre implements Serializable
     private ListeOeuvre()
     {
         //constructeur privé pour empêcher l'instanciation directe de la classe
-        //listeClient = new ArrayList<>();
-        //listeFilm = new ArrayList<>();
-        //listeAdmin = new ArrayList<>();
+        pcs = new PropertyChangeSupport(this);
     }
+
+    public void addPropertyChangeListener(PropertyChangeListener l)
+    {
+        pcs.addPropertyChangeListener(l);
+    }
+    public void removePropertyChangeListener(PropertyChangeListener l)
+    {
+        pcs.removePropertyChangeListener(l);
+    }
+
+
+
     public static ListeOeuvre getInstance()
     {
         if(instance == null) {
@@ -173,26 +186,32 @@ public class ListeOeuvre implements Serializable
     {
 
         listeFilm.add(film);
+        pcs.firePropertyChange("ListeFilm", null, listeFilm);
     }
 
     public void ajouterSerie(Serie serie) {
         listeSerie.add(serie);
+        pcs.firePropertyChange("ListeSerie", null, listeSerie);
     }
 
     public void ajouterAnime(Anime anime) {
         listeAnime.add(anime);
+        pcs.firePropertyChange("ListeAnime", null, listeAnime);
     }
 
     public void ajouterTrailer(Trailer trailer) {
         listeTrailer.add(trailer);
+        pcs.firePropertyChange("ListeTrailer", null, listeTrailer);
     }
 
-    public void ajouterClient(client client1) {listeClient.add(client1);}
+    public void ajouterClient(client client1) {listeClient.add(client1);
+        pcs.firePropertyChange("ListeClient", null, listeClient);}
 
     public void ajoutClientCourant(client clienttmp){ClientCourant =clienttmp;}
 
 
-    public void ajouterAdmin( Administrateur administrateur) {listeAdmin.add(administrateur);}
+    public void ajouterAdmin( Administrateur administrateur) {listeAdmin.add(administrateur);
+        pcs.firePropertyChange("ListeAdmin", null, listeAdmin);}
 
     public void ajoutAdminCourant(Administrateur administrateurtmp){AdminCourant = administrateurtmp;}
 
