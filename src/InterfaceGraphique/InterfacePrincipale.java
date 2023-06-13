@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 public class InterfacePrincipale extends JFrame
 {
     private JPanel mainPanel;
@@ -34,6 +35,8 @@ public class InterfacePrincipale extends JFrame
     JMenuItem jMenuItem7 = new JMenuItem();
     JMenuItem jMenuItem8 = new JMenuItem();
     JMenuItem jMenuItem9 = new JMenuItem();
+
+    JMenuItem jMenuItem10 = new JMenuItem();
 
 
 
@@ -60,11 +63,13 @@ public class InterfacePrincipale extends JFrame
         JMenu jMenu1 = new JMenu();
         JMenu jMenu2 = new JMenu();
         JMenu jMenu3 = new JMenu();
+        JMenu jMenu4 = new JMenu();
 
 
         jMenu1.setText("Connexion");
         jMenu2.setText("Ajouter");
         jMenu3.setText("Favoris");
+        jMenu4.setText("Suppression");
         jMenuItem1.setText("Se connecter");
         jMenuItem2.setText("Se déconnecter");
         jMenuItem3.setText("Reset mot de passe");
@@ -74,10 +79,12 @@ public class InterfacePrincipale extends JFrame
         jMenuItem7.setText("Trailer");
         jMenuItem8.setText("Créer un compte");
         jMenuItem9.setText("Voir Favoris");
+        jMenuItem10.setText("Supprimer une Oeuvre");
 
         jMenuBar1.add(jMenu1);
         jMenuBar1.add(jMenu2);
         jMenuBar1.add(jMenu3);
+        jMenuBar1.add(jMenu4);
         jMenu1.add(jMenuItem1);
         jMenu1.addSeparator();
         jMenu1.add(jMenuItem2);
@@ -93,6 +100,7 @@ public class InterfacePrincipale extends JFrame
         jMenu2.addSeparator();
         jMenu2.add(jMenuItem7);
         jMenu3.add(jMenuItem9);
+        jMenu4.add(jMenuItem10);
 
         jMenuBar1.setBackground(new Color(184, 29, 36));
 
@@ -212,6 +220,7 @@ public class InterfacePrincipale extends JFrame
         jMenuItem6.addActionListener(controleur1);
         jMenuItem7.addActionListener(controleur1);
         jMenuItem8.addActionListener(controleur1);
+        jMenuItem10.addActionListener(controleur1);
         Serie.addListSelectionListener(controleur1);
         Film.addListSelectionListener(controleur1);
         Trailer.addListSelectionListener(controleur1);

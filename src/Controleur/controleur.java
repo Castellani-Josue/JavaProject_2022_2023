@@ -84,40 +84,49 @@ public class controleur extends Component implements ActionListener, WindowListe
         if (e.getActionCommand().equals("Se connecter")) {
             //fenetreConnexion = new InterfaceConnection(null, true, "Entrée en session...");
             fenetreConnexion.setVisible(true);
-
             fenetreConnexion.dispose();
+
         } else if (e.getActionCommand().equals("Créer un compte")) {
             //fenetreCreationCompte = new InterfaceCreate_Account(null, true, "Session de création");
             fenetreCreationCompte.setVisible(true);
-
             fenetreCreationCompte.dispose();
 
-
             } else if (e.getActionCommand().equals("Film")) {
-            fenetreFilm.setTitle("Film");
-            fenetreFilm.setVisible(true);
-            System.out.println("Bonjour");
-
-            fenetreFilm.dispose();
+            if(ListeOeuvre.getInstance().getAdminCourant() == null)
+                JOptionPane.showMessageDialog(fenetrePrincipale, "Action indisponible pour un non-Admin.", "Erreur", JOptionPane.INFORMATION_MESSAGE, null);
+            else {
+                fenetreFilm.setTitle("Film");
+                fenetreFilm.setVisible(true);
+                fenetreFilm.dispose();
+            }
 
             } else if (e.getActionCommand().equals("Anime")) {
-            fenetreFilm.setTitle("Anime");
-            fenetreFilm.setVisible(true);
-
-            fenetreFilm.dispose();
-
+            if(ListeOeuvre.getInstance().getAdminCourant() == null)
+                JOptionPane.showMessageDialog(fenetrePrincipale, "Action indisponible pour un non-Admin.", "Erreur", JOptionPane.INFORMATION_MESSAGE, null);
+            else {
+                fenetreFilm.setTitle("Anime");
+                fenetreFilm.setVisible(true);
+                fenetreFilm.dispose();
+            }
 
             } else if (e.getActionCommand().equals("Série")) {
+            if(ListeOeuvre.getInstance().getAdminCourant() == null)
+                JOptionPane.showMessageDialog(fenetrePrincipale, "Action indisponible pour un non-Admin.", "Erreur", JOptionPane.INFORMATION_MESSAGE, null);
+            else {
                 fenetreFilm.setTitle("Serie");
                 fenetreFilm.setVisible(true);
-
-
                 fenetreFilm.dispose();
+            }
+
             } else if (e.getActionCommand().equals("Trailer")) {
+            if(ListeOeuvre.getInstance().getAdminCourant() == null)
+                JOptionPane.showMessageDialog(fenetrePrincipale, "Action indisponible pour un non-Admin.", "Erreur", JOptionPane.INFORMATION_MESSAGE, null);
+            else {
                 fenetreFilm.setTitle("Trailer");
                 fenetreFilm.setVisible(true);
-
                 fenetreFilm.dispose();
+            }
+
             } else if (e.getActionCommand().equals("Reset mot de passe")) {
             String userInput = JOptionPane.showInputDialog(null, "Vérification du mot de passe actuel", "Reset du mot de passe", JOptionPane.QUESTION_MESSAGE);
             if (userInput != null) {
@@ -470,6 +479,53 @@ public class controleur extends Component implements ActionListener, WindowListe
 
                 JOptionPane.showMessageDialog(fenetrePrincipale, "Aucun client connecté", "Erreur", JOptionPane.INFORMATION_MESSAGE, null);
             }
+        }
+        else if(e.getActionCommand().equals("Supprimer une Oeuvre")) {
+            //affiche une boite ou on peut récup quelque chose
+            //verifier si c'ets un film/anime/trailer/serie
+            System.out.println("je suis dans suppression");
+            if(ListeOeuvre.getInstance().getAdminCourant() != null) {
+                String userInput = JOptionPane.showInputDialog(null, "Nom de l'oeuvre à supprimer", "Suppression", JOptionPane.QUESTION_MESSAGE);
+                System.out.println(userInput);
+                for (Film filmtmp : ListeOeuvre.getInstance().getInstanceFilm()) {
+                    if (filmtmp.getNom().equals(userInput)) {
+                        System.out.println("J'ai supp un film");
+                        ListeOeuvre.getInstance().supprimerFilm(filmtmp);
+                        JOptionPane.showMessageDialog(fenetrePrincipale, "Suppression du film réussie avec succès !", "Suppresion!", JOptionPane.INFORMATION_MESSAGE, null);
+                        break;
+                    }
+
+                }
+                for (Trailer trailertmp : ListeOeuvre.getInstance().getInstanceTrailer()) {
+                    if (trailertmp.getNom().equals(userInput)) {
+                        ListeOeuvre.getInstance().supprimerTrailer(trailertmp);
+                        JOptionPane.showMessageDialog(fenetrePrincipale, "Suppression du trailer réussie avec succès !", "Suppresion!", JOptionPane.INFORMATION_MESSAGE, null);
+                        break;
+                    }
+                }
+
+                for (Serie serietmp : ListeOeuvre.getInstance().getInstanceSerie()) {
+                    if (serietmp.getNom().equals(userInput)) {
+                        ListeOeuvre.getInstance().supprimerSerie(serietmp);
+                        JOptionPane.showMessageDialog(fenetrePrincipale, "Suppression de la série réussie avec succès !", "Suppresion!", JOptionPane.INFORMATION_MESSAGE, null);
+                        break;
+                    }
+                }
+
+                for (Anime animetmp : ListeOeuvre.getInstance().getInstanceAnime()) {
+                    if (animetmp.getNom().equals(userInput)) {
+                        ListeOeuvre.getInstance().supprimerAnime(animetmp);
+                        JOptionPane.showMessageDialog(fenetrePrincipale, "Suppression de l'animé réussie avec succès !", "Suppresion!", JOptionPane.INFORMATION_MESSAGE, null);
+                        break;
+                    }
+                }
+
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(fenetrePrincipale, "Fonctionnalité non disponible pour le client", "Erreur", JOptionPane.INFORMATION_MESSAGE, null);
+            }
+
         }
 
     }
@@ -972,6 +1028,7 @@ public class controleur extends Component implements ActionListener, WindowListe
 
     public void propertyChange(PropertyChangeEvent evt) {
         System.out.println("Je suis rentré chéri !");
+
         if(fenetreFilm.getTitle().equals("Film"))
         {
 
@@ -995,6 +1052,12 @@ public class controleur extends Component implements ActionListener, WindowListe
         {
 
             fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
+        } else  {
+            fenetrePrincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
+            fenetrePrincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
+            fenetrePrincipale.getSerieIp().setListData(ListeOeuvre.getInstance().getInstanceSerie().toArray());
+            fenetrePrincipale.getTrailerIp().setListData(ListeOeuvre.getInstance().getInstanceTrailer().toArray());
+
         }
     }
 }

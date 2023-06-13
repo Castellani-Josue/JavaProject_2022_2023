@@ -3,6 +3,9 @@ import InterfaceGraphique.*;
 import Serialisation.Serializer;
 import Singleton.ListeOeuvre;
 import Utilisateur.client;
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 
 import java.io.File;
 
@@ -13,8 +16,8 @@ public class Main
     private  static   ListeOeuvre listeOeuvre;
     public static void main(String[] args)
     {
-
-
+        FlatLaf.install(new FlatDarculaLaf());
+        ListeOeuvre.getInstance().Deserializer("C:\\Users\\josue\\Java_Project_2022_2023\\JavaProject\\Fichier");
         InterfacePrincipale fenetreprincipale= new InterfacePrincipale();
         fenetreprincipale.getFilmIp().setListData(ListeOeuvre.getInstance().getInstanceFilm().toArray());
         fenetreprincipale.getAnimeIp().setListData(ListeOeuvre.getInstance().getInstanceAnime().toArray());
@@ -31,11 +34,17 @@ public class Main
         fenetreCreate.setControleur(controleur1);
         fenC.setControleur(controleur1);
         fenF.setControleur(controleur1);
+        fenFav.setControleur(controleur1);
+        ListeOeuvre.getInstance().addPropertyChangeListener(controleur1);
+
+        //ListeOeuvre.getInstance().Deserializer("Mesdonnees.dat");
+        /*if(new File("Mesdonnees.data").exists())
+        {
+            ListeOeuvre.getInstance().Deserializer("Mesdonnees.data");
+            System.out.println("ça fonctionne aussi");
+        }*/
+
         fenetreprincipale.setVisible(true);
-
-
-
-
 
 
 
